@@ -2,7 +2,7 @@
 outline: deep
 ---
 
-# Runtime API Examples wowhaha
+# Runtime API Examples wowhaha 啦啦啦
 
 This page demonstrates usage of some of the runtime APIs provided by VitePress.
 
