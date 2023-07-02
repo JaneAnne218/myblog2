@@ -23,6 +23,7 @@ export default defineConfig({
           {text:'http-proxy',link:'/http-proxy'},
           {text:'webpack',link:'/webpack'},
           {text:'bug',link:'/bug'},
+          {text:'pnpmdeploy',link:'/pnpmdeploy'},
         ]
       }
     ],
