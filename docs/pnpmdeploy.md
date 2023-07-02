@@ -1,4 +1,5 @@
 ## 写一个pnpm的github action
+```deploy.yml
 name: Deployhahah
 
 on:
@@ -19,10 +20,11 @@ jobs:
         with:
           version: latest
       - run: pnpm install
-      - run: pnpm run docs:build
+      - run: pnpm run build
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUBTOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
+```
