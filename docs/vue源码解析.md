@@ -1,4 +1,4 @@
-#### 1~209
+# 1~209
 ```js
 /*!
 
@@ -418,10 +418,10 @@ function extend(to, _from) {
 
 }
 ```
-###### 解释
+## 1-200 解释
   
 这段代码是一个实用函数和帮助程序，用于处理JavaScript对象和数组。它包括一些用于检查值类型的函数，将值转换为字符串或数字的函数，创建映射的函数，从数组中删除项的函数以及使用另一个对象的属性扩展对象的函数。代码还包括一些字符串操作函数，用于将连字符或驼峰式字符串转换为不同格式。
-#### 210~400
+# 210~400
 ```js
 /**
 
@@ -807,9 +807,9 @@ var config = {
 
     isUnknownElement: no,
 ```
-###### 解释
+## 201-401 解释
 这是一组在Vue.js中使用的实用函数和配置。`toObject`函数将一个对象数组合并为一个单一的对象，而`noop`是一个什么也不做的空函数。`no`始终返回false，而`identity`返回传递给它的相同值作为参数。`genStaticKeys$1`从编译器模块生成一个包含静态键的字符串。`looseEqual`检查两个值是否松散相等 - 即它们是否具有相同的形状的普通对象。`looseIndexOf`返回数组中第一个松散相等值的索引（如果该值是普通对象，则数组必须包含具有相同形状的对象），否则返回-1。`once`确保一个函数只被调用一次。`hasChanged`确定两个值是否已更改。最后，`config`包含由Vue.js使用的各种选项，例如选项合并策略、是否抑制警告、是否启用开发工具等。
-#### 401~600
+# 401~600
 ```js
   /**
 
@@ -1211,7 +1211,7 @@ var VNode = /** @class */ (function () {
 
     }
 ```
-##### 解释
+## 401-600 解释
 首先，这段代码展示了一些在Vue.js中广泛使用的实用函数和变量声明。其中包括：
 
 -   `getTagNamespace`：获取元素的命名空间
@@ -1230,7 +1230,7 @@ var VNode = /** @class */ (function () {
 最后，这段代码还包括了一些常用的浏览器环境和功能检测，例如检测是否支持Passive事件监听、是否存在Vue开发者工具等，以及虚拟节点类的定义。
 
 总之，这段代码提供了Vue.js中许多重要的实用函数和变量声明，以及一些常用的浏览器环境和功能检测。
-#### 600~840
+# 600~840
 ```js
     Object.defineProperty(VNode.prototype, "child", {
 
@@ -1710,7 +1710,7 @@ var methodsToPatch = [
 
 ]
 ```
-##### 解释
+## 601-840 解释
 这段代码包括了Vue.js中的一些核心逻辑和工具函数，主要包括以下几个部分：
 
 1.  虚拟节点对象VNode的定义和相关函数的实现
@@ -1735,7 +1735,7 @@ var methodsToPatch = [
 
 -   使得在修改响应式数组时能够正确地触发视图更新
 总体而言，这段代码展示了Vue.js中一些非常重要的核心功能和工具函数的实现方式。
-#### 841~1054
+# 841~1054
 ```js
 /**
 
@@ -2165,7 +2165,7 @@ function defineReactive(obj, key, val, customSetter, shallow, mock) {
 
     return dep;
 ```
-##### 解释
+## 841-1044 解释
 这段代码实现了Vue.js响应式系统的核心逻辑，包括Observer类和defineReactive函数。Observer类是一个观察者，将目标对象转换为可监听的对象，并将目标对象的所有属性变成getter/setter形式。defineReactive函数则用于定义一个新属性或修改已有属性，使其成为响应式属性。
 
 具体来说，defineReactive函数通过Object.defineProperty()方法将属性定义为可监听的。当属性被读取时，会收集依赖关系并在属性被修改时通知更新。同时，如果属性值是一个对象，则会对其进行递归处理，使其成为嵌套的响应式对象。
@@ -2173,7 +2173,7 @@ function defineReactive(obj, key, val, customSetter, shallow, mock) {
 Observer类则用于管理依赖项，它会为每个被监听的对象创建一个Dep实例，并在目标对象属性的getter方法中收集依赖项，在setter方法中通知这些依赖项进行更新。同时，如果目标对象是数组，则会为其中每个元素也创建一个Observer实例，使得数组也可以响应式地更新。
 
 总之，这段代码展示了Vue.js响应式系统的重要实现方式，是Vue.js能够实现数据驱动视图更新的核心。
-#### 1055~1226
+# 1055~1226
 ```js
 function set(target, key, val) {
 
@@ -2517,9 +2517,9 @@ function isCollectionType(value) {
 
 }
 ```
-##### 解释
+## 1045- 1205 解释
 这段代码实现了Vue.js响应式系统的核心逻辑，包括数据劫持和依赖收集。通过将对象转换为可监听的对象，使得当对象属性被修改时，能够自动触发更新视图等操作。具体实现方式包括：使用Observer类将目标对象转换为可监听的对象，并使用defineReactive函数定义getter/setter方法；使用Dep类进行依赖管理，使用set函数添加或更新属性值、使用del函数删除属性值、使用dependArray函数收集数组元素的依赖关系。同时还定义了一些辅助函数如reactive、shallowReactive、isReactive、isShallow、isReadonly、isProxy、toRaw、markRaw等，用于判断对象是否可响应、获取原始对象等操作。总之，这段代码是Vue.js响应式系统的核心实现，是Vue.js实现数据驱动的重要基础。
-#### 1206~1501
+# 1206~1501
 ```js
   
 
@@ -3071,9 +3071,9 @@ function computed(getterOrOptions, debugOptions) {
 
 }
 ```
-##### 解释
+## 1206-1501 解释
 这段代码实现了 Vue 2.x 中的响应式系统，包括了 ref、shallowRef、triggerRef、unref、proxyRefs、customRef、toRefs、readonly、shallowReadonly 和 computed 等 API。其中，ref 和 shallowRef 可以用来创建响应式数据对象；triggerRef 可以触发响应式数据对象的依赖更新；unref 可以用来获取非响应式数据对象；proxyRefs 可以将带有响应式属性的对象转化为 Proxy 对象；customRef 可以创建自定义的 ref 对象；toRefs 可以将一个响应式对象转换成由其属性组成的 ref 对象集合；readonly 和 shallowReadonly 可以分别创建只读的深层次和浅层次响应式数据对象；computed 可以用来计算一个响应式数据对象的值。
-#### 1502~1692
+# 1502~1692
 ```js
   
 
@@ -3457,7 +3457,7 @@ function simpleNormalizeChildren(children) {
 
 }
 ```
-##### 解释
+## 1502~1692 解释
 这段代码是与 Vue.js 或其他前端 JavaScript 框架相关的实用函数集合。
 
 代码的第一部分检查当前环境中是否存在某些 API，并在使用这些 API 之前进行判断，例如 `performance` API。
@@ -3471,7 +3471,7 @@ function simpleNormalizeChildren(children) {
 `extractPropsFromVNodeData` 函数根据组件选项中的 prop 定义从 VNode 的 `data` 对象中提取 props。
 
 最后，`simpleNormalizeChildren` 函数通过将任何嵌套数组展平成单层数组来规范化子元素的列表。
-#### 1692~1953
+# 1692~1953
 ```js
 function normalizeChildren(children) {
 
@@ -3987,7 +3987,7 @@ function renderSlot(name, fallbackRender, props, bindObject) {
 
 }
 ```
-###### 解释
+## 1692~1953 解释
 这段代码是一些关于 Vue.js 的运行时帮助函数，包括规范化 children、渲染 v-for 循环列表和渲染插槽的函数。
 
 其中 `normalizeChildren` 函数用于将 children 规范化为一个统一的数组格式，以便在 VNode 渲染时更容易处理。
@@ -3995,7 +3995,7 @@ function renderSlot(name, fallbackRender, props, bindObject) {
 `renderList` 函数用于渲染 v-for 循环列表，根据传入的值类型不同执行不同的循环操作，并返回由每次循环渲染得到的 VNode 数组。
 
 `renderSlot` 函数用于渲染插槽，首先尝试使用作用域插槽进行渲染，若不存在则使用默认插槽进行渲染，并支持指定插槽名和绑定对象。
-#### 2209~2245
+# 2209~2245
 ```js
 function resolveFilter(id) {
 
@@ -4499,9 +4499,9 @@ function isAsyncPlaceholder(node) {
 
 }
 ```
-###### 解释
+## 2209~2245 解释
 这段代码定义了一些 Vue.js 运行时的帮助函数，包括解析过滤器、检查按键码、绑定对象属性和监听器、渲染静态节点等功能。其中 `resolveFilter` 函数用于解析过滤器，`checkKeyCodes` 函数用于检查按键码，`bindObjectProps` 函数用于绑定对象属性，`bindObjectListeners` 函数用于绑定对象监听器，`renderStatic` 函数用于渲染静态节点，`resolveSlots` 函数用于解析插槽内容等。这些函数都是 Vue.js 运行时的核心帮助函数，可以提高组件的性能和效率。
-#### 2246_2451
+# 2246_2451
 ```js
   
 
@@ -4979,9 +4979,9 @@ function getContext() {
 
 }
 ```
-###### 解释
+## 2246_2451 解释
 这段代码是 Vue.js 的运行时核心代码，包括帮助函数和初始化设置相关的函数。其中，normalizeScopedSlots 函数用于规范化作用域插槽，initSetup 函数用于初始化组件的 setup 函数，createSetupContext 函数用于创建 setup 上下文，syncSetupProxy 函数用于同步 setup 代理属性，defineProxyAttr 函数用于定义代理属性，initSlotsProxy 函数用于初始化 slots 代理，useSlots、useAttrs 和 useListeners 函数用于获取当前的 slots、attrs 和 listeners 对象，getContext 函数用于获取当前的 setup 上下文。这些函数为 Vue.js 提供了强大的能力，使得开发者可以更加方便地编写高效、灵活、可维护的组件。
-#### 2452~2707
+# 2452~2707
 ```js
 unction mergeDefaults(raw, defaults) {
 
@@ -5495,9 +5495,9 @@ function getFirstComponentChild(children) {
 
 }
 ```
-###### 解释
+## 2452~2707 解释
 这段代码是 Vue.js 的渲染相关的 mixin，定义了一些与组件渲染相关的函数和逻辑。其中包括 mergeDefaults 函数用于合并默认 prop 值，initRender 函数用于初始化渲染环境，renderMixin 函数用于安装渲染相关的实例方法和定义 _render 函数用于组件渲染。另外还包括一些辅助函数，如 ensureCtor 用于转化异步组件为构造器，createAsyncPlaceholder 用于创建异步组件的占位符节点，resolveAsyncComponent 用于解析异步组件，getFirstComponentChild 用于获取子节点中的第一个组件节点。这些函数为 Vue.js 提供了强大的渲染能力，可以使开发者更加方便地编写高效、灵活、可维护的组件。
-#### 2709~3013
+# 2709~3013
 ```js
   
 
@@ -6111,5 +6111,5 @@ function mountComponent(vm, el, hydrating) {
 
 }
 ```
-##### 解释
+## 2709~3013 解释
 这段代码主要是 Vue.js 框架中的事件处理和生命周期管理相关的函数。其中，eventsMixin 函数用于给 Vue 实例添加事件处理相关的方法，如 on、off 和 emit等；lifecycleMixin函数用于给Vue实例添加生命周期处理相关的方法，如u​pdate、forceUpdate 和 $destroy 等。除此之外，还有一些辅助函数，如 setActiveInstance 函数用于设置当前活跃的 Vue 实例，initEvents 函数用于初始化事件相关的参数，initLifecycle 函数用于初始化生命周期相关的参数，mountComponent 函数用于挂载组件等。这些函数共同构成了 Vue.js 框架的核心部分，能够帮助开发者更方便地管理组件的事件和生命周期。

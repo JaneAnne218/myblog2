@@ -1,0 +1,28 @@
+## 写一个pnpm的github action
+name: Deployhahah
+
+on:
+  push:
+    branches:
+      branch-1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: https://registry.npm.taobao.org
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+      - run: pnpm install
+      - run: pnpm run docs:build
+      
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUBTOKEN }}
+          publish_dir: docs/.vitepress/dist
