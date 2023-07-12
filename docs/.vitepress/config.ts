@@ -26,7 +26,7 @@ export default defineConfig({
           {text:'谷歌插件',link:'/谷歌插件'},
           {text:'win子系统和win下的nginx',link:'/win子系统和win下的nginx'},
           {text:'js',link:'/js'},
-          {text:'koa',link:'/koa'},
+          {text:'koa系列',link:'/koa系列'},
           {text:'vue源码解析',link:'/vue源码解析'},
         ]
       }
