@@ -8,22 +8,22 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
+      {text:'vue源码解析',link:'/vue源码解析'},
+      {text:'webpack',link:'/webpack'},
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '笔记',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
+     
           {text:'vue源码解析',link:'/vue源码解析'},
           {text:'axios',link:'/axios'},
           {text:'http-proxy',link:'/http-proxy'},
           {text:'webpack',link:'/webpack'},
           {text:'bug',link:'/bug'},
           {text:'pnpmdeploy',link:'/pnpmdeploy'},
+          {text:'commander',link:'/commander'},
         ]
       }
     ],
