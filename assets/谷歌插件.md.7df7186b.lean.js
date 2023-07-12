@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,O as l}from"./chunks/framework.269db9bd.js";const i=JSON.parse('{"title":"1.谷歌插件例子","description":"","frontmatter":{},"headers":[],"relativePath":"谷歌插件.md","filePath":"谷歌插件.md"}'),p={name:"谷歌插件.md"},o=l("",15),e=[o];function t(c,r,y,F,D,A){return n(),a("div",null,e)}const m=s(p,[["render",t]]);export{i as __pageData,m as default};
