@@ -8,18 +8,18 @@ hero:
   tagline: 行之于途而应于心
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: vue源码解析
+      link: /vue源码解析
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: webpack
+      link: /webpack
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 布局和动效
+    details: css,taiwindcss,element-plus,animate.css
+  - title: JS
+    details: vue,react,typescript,es6,vite,vitepress,webpack,rollup
+  - title: 服务端
+    details: nodejs,express,koa,nginx
 ---
 
