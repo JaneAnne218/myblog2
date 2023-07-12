@@ -1,5 +1,6 @@
+# koa系列
  >有效率的学习 看直播开发学习+文档+源码 
-# 1. 给文件写内容  fs.writeFileSync(文件路径，文件内容)
+## 1. 给文件写内容  fs.writeFileSync(文件路径，文件内容)
 ```js
 fs.writeFileSync(shellFilePath, shellText);
 ```
@@ -8,7 +9,7 @@ fs.writeFileSync(shellFilePath, shellText);
  C:\Users\janeAnne\Desktop\zuo-deploy\server\index.js
 ```
 
-# 2. 前端发送请求
+## 2. 前端发送请求
 ```js
 //将 shell 内容存储到一个临时文件 temp.sh，用 node 执行该 shell
  axios.post('/runShell', { shellText: this.shellText, timeoutMinute: this.timeoutMinute })
@@ -32,7 +33,7 @@ fs.writeFileSync(shellFilePath, shellText);
 ```
 C:\Users\janeAnne\Desktop\zuo-deploy\frontend\index.html
 ```
-# 3.  koa-router响应请求
+## 3.  koa-router响应请求
 ```js
  router.post("/runShell", async (ctx) => {
  //这个ctx是什么？
@@ -45,7 +46,7 @@ C:\Users\janeAnne\Desktop\zuo-deploy\frontend\index.html
   C:\Users\janeAnne\Desktop\zuo-deploy\server\index.js
 ```
 
-# 4. CommonJS转化为ES6
+## 4. CommonJS转化为ES6
 4.1 package.json 添加"type": "module"  
 4.2 文件名写为mjs  
 4.3 文件中不能有require引入，需要改为import，导出用export  

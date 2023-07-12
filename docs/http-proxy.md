@@ -1,12 +1,14 @@
-1. 使用以下命令来初始化一个新的 Node.js 项目，并创建 `package.json` 文件：
+# http-proxy
+
+## 1. 使用以下命令来初始化一个新的 Node.js 项目，并创建 `package.json` 文件：
 ```bash 
 npm init -y
 ```
-2. 安装 `http-proxy` 模块。在终端或命令提示符窗口中运行以下命令：
+## 2. 安装 `http-proxy` 模块。在终端或命令提示符窗口中运行以下命令：
 ```shell
 npm install http-proxy
 ```
-3. 创建代理服务器的代码文件，并将上面提供的示例代码复制粘贴到该文件中。
+## 3. 创建代理服务器的代码文件，并将上面提供的示例代码复制粘贴到该文件中。
 ```js
 const http = require('http');
 const httpProxy = require('http-proxy');
@@ -22,7 +24,7 @@ proxyServer.listen(8080, () => {
 });
 
 ```
-4. 在终端或命令提示符窗口中执行以下命令来启动代理服务器：
+## 4. 在终端或命令提示符窗口中执行以下命令来启动代理服务器：
 ```shell
 node <filename>.js
 ```

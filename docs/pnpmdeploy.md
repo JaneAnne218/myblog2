@@ -1,3 +1,4 @@
+# pnpm deploy
 ## 写一个pnpm的github action
 ```deploy.yml
 name: Deployhahah

@@ -1,10 +1,10 @@
-
-> [!NOTE] JS
+# js
+> JS
 > JS是一种面向对象语言，简称"OOP"（Object-Oriented Programming）
 
-# 对象与类的区别
+## 对象与类的区别
 
->[!note] 类是ES6引入的概念
+> 类是ES6引入的概念
 
 1. 对象的创建和属性访问
 ```js

@@ -1,4 +1,6 @@
-# 1~209
+# vue源码解析
+## 1~209
+
 ```js
 /*!
 
@@ -19,27 +21,19 @@ var isArray = Array.isArray;
 // explicitness and function inlining.
 
 function isUndef(v) {
-
-    return v === undefined || v === null;
-
+  return v === undefined || v === null;
 }
 
 function isDef(v) {
-
-    return v !== undefined && v !== null;
-
+  return v !== undefined && v !== null;
 }
 
 function isTrue(v) {
-
-    return v === true;
-
+  return v === true;
 }
 
 function isFalse(v) {
-
-    return v === false;
-
+  return v === false;
 }
 
 /**
@@ -49,23 +43,16 @@ function isFalse(v) {
  */
 
 function isPrimitive(value) {
-
-    return (typeof value === 'string' ||
-
-        typeof value === 'number' ||
-
-        // $flow-disable-line
-
-        typeof value === 'symbol' ||
-
-        typeof value === 'boolean');
-
+  return (
+    typeof value === "string" ||
+    typeof value === "number" || // $flow-disable-line
+    typeof value === "symbol" ||
+    typeof value === "boolean"
+  );
 }
 
 function isFunction(value) {
-
-    return typeof value === 'function';
-
+  return typeof value === "function";
 }
 
 /**
@@ -79,9 +66,7 @@ function isFunction(value) {
  */
 
 function isObject(obj) {
-
-    return obj !== null && typeof obj === 'object';
-
+  return obj !== null && typeof obj === "object";
 }
 
 /**
@@ -93,9 +78,7 @@ function isObject(obj) {
 var _toString = Object.prototype.toString;
 
 function toRawType(value) {
-
-    return _toString.call(value).slice(8, -1);
-
+  return _toString.call(value).slice(8, -1);
 }
 
 /**
@@ -107,15 +90,11 @@ function toRawType(value) {
  */
 
 function isPlainObject(obj) {
-
-    return _toString.call(obj) === '[object Object]';
-
+  return _toString.call(obj) === "[object Object]";
 }
 
 function isRegExp(v) {
-
-    return _toString.call(v) === '[object RegExp]';
-
+  return _toString.call(v) === "[object RegExp]";
 }
 
 /**
@@ -125,21 +104,17 @@ function isRegExp(v) {
  */
 
 function isValidArrayIndex(val) {
+  var n = parseFloat(String(val));
 
-    var n = parseFloat(String(val));
-
-    return n >= 0 && Math.floor(n) === n && isFinite(val);
-
+  return n >= 0 && Math.floor(n) === n && isFinite(val);
 }
 
 function isPromise(val) {
-
-    return (isDef(val) &&
-
-        typeof val.then === 'function' &&
-
-        typeof val.catch === 'function');
-
+  return (
+    isDef(val) &&
+    typeof val.then === "function" &&
+    typeof val.catch === "function"
+  );
 }
 
 /**
@@ -149,17 +124,11 @@ function isPromise(val) {
  */
 
 function toString(val) {
-
-    return val == null
-
-        ? ''
-
-        : Array.isArray(val) || (isPlainObject(val) && val.toString === _toString)
-
-            ? JSON.stringify(val, null, 2)
-
-            : String(val);
-
+  return val == null
+    ? ""
+    : Array.isArray(val) || (isPlainObject(val) && val.toString === _toString)
+    ? JSON.stringify(val, null, 2)
+    : String(val);
 }
 
 /**
@@ -171,11 +140,9 @@ function toString(val) {
  */
 
 function toNumber(val) {
+  var n = parseFloat(val);
 
-    var n = parseFloat(val);
-
-    return isNaN(n) ? val : n;
-
+  return isNaN(n) ? val : n;
 }
 
 /**
@@ -187,19 +154,21 @@ function toNumber(val) {
  */
 
 function makeMap(str, expectsLowerCase) {
+  var map = Object.create(null);
 
-    var map = Object.create(null);
+  var list = str.split(",");
 
-    var list = str.split(',');
+  for (var i = 0; i < list.length; i++) {
+    map[list[i]] = true;
+  }
 
-    for (var i = 0; i < list.length; i++) {
-
-        map[list[i]] = true;
-
-    }
-
-    return expectsLowerCase ? function (val) { return map[val.toLowerCase()]; } : function (val) { return map[val]; };
-
+  return expectsLowerCase
+    ? function (val) {
+        return map[val.toLowerCase()];
+      }
+    : function (val) {
+        return map[val];
+      };
 }
 
 /**
@@ -208,7 +177,7 @@ function makeMap(str, expectsLowerCase) {
 
  */
 
-var isBuiltInTag = makeMap('slot,component', true);
+var isBuiltInTag = makeMap("slot,component", true);
 
 /**
 
@@ -216,7 +185,7 @@ var isBuiltInTag = makeMap('slot,component', true);
 
  */
 
-var isReservedAttribute = makeMap('key,ref,slot,slot-scope,is');
+var isReservedAttribute = makeMap("key,ref,slot,slot-scope,is");
 
 /**
 
@@ -225,31 +194,23 @@ var isReservedAttribute = makeMap('key,ref,slot,slot-scope,is');
  */
 
 function remove$2(arr, item) {
+  var len = arr.length;
 
-    var len = arr.length;
+  if (len) {
+    // fast path for the only / last item
 
-    if (len) {
+    if (item === arr[len - 1]) {
+      arr.length = len - 1;
 
-        // fast path for the only / last item
+      return;
+    }
 
-        if (item === arr[len - 1]) {
+    var index = arr.indexOf(item);
 
-            arr.length = len - 1;
-
-            return;
-
-        }
-
-        var index = arr.indexOf(item);
-
-        if (index > -1) {
-
-            return arr.splice(index, 1);
-
-        }
-
-    }
-
+    if (index > -1) {
+      return arr.splice(index, 1);
+    }
+  }
 }
 
 /**
@@ -261,9 +222,7 @@ function remove$2(arr, item) {
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 function hasOwn(obj, key) {
-
-    return hasOwnProperty.call(obj, key);
-
+  return hasOwnProperty.call(obj, key);
 }
 
 /**
@@ -273,17 +232,13 @@ function hasOwn(obj, key) {
  */
 
 function cached(fn) {
+  var cache = Object.create(null);
 
-    var cache = Object.create(null);
+  return function cachedFn(str) {
+    var hit = cache[str];
 
-    return function cachedFn(str) {
-
-        var hit = cache[str];
-
-        return hit || (cache[str] = fn(str));
-
-    };
-
+    return hit || (cache[str] = fn(str));
+  };
 }
 
 /**
@@ -295,9 +250,9 @@ function cached(fn) {
 var camelizeRE = /-(\w)/g;
 
 var camelize = cached(function (str) {
-
-    return str.replace(camelizeRE, function (_, c) { return (c ? c.toUpperCase() : ''); });
-
+  return str.replace(camelizeRE, function (_, c) {
+    return c ? c.toUpperCase() : "";
+  });
 });
 
 /**
@@ -307,9 +262,7 @@ var camelize = cached(function (str) {
  */
 
 var capitalize = cached(function (str) {
-
-    return str.charAt(0).toUpperCase() + str.slice(1);
-
+  return str.charAt(0).toUpperCase() + str.slice(1);
 });
 
 /**
@@ -321,9 +274,7 @@ var capitalize = cached(function (str) {
 var hyphenateRE = /\B([A-Z])/g;
 
 var hyphenate = cached(function (str) {
-
-    return str.replace(hyphenateRE, '-$1').toLowerCase();
-
+  return str.replace(hyphenateRE, "-$1").toLowerCase();
 });
 
 /**
@@ -343,33 +294,23 @@ var hyphenate = cached(function (str) {
 /* istanbul ignore next */
 
 function polyfillBind(fn, ctx) {
+  function boundFn(a) {
+    var l = arguments.length;
 
-    function boundFn(a) {
+    return l
+      ? l > 1
+        ? fn.apply(ctx, arguments)
+        : fn.call(ctx, a)
+      : fn.call(ctx);
+  }
 
-        var l = arguments.length;
+  boundFn._length = fn.length;
 
-        return l
-
-            ? l > 1
-
-                ? fn.apply(ctx, arguments)
-
-                : fn.call(ctx, a)
-
-            : fn.call(ctx);
-
-    }
-
-    boundFn._length = fn.length;
-
-    return boundFn;
-
+  return boundFn;
 }
 
 function nativeBind(fn, ctx) {
-
-    return fn.bind(ctx);
-
+  return fn.bind(ctx);
 }
 
 // @ts-expect-error bind cannot be `undefined`
@@ -383,21 +324,17 @@ var bind$1 = Function.prototype.bind ? nativeBind : polyfillBind;
  */
 
 function toArray(list, start) {
+  start = start || 0;
 
-    start = start || 0;
+  var i = list.length - start;
 
-    var i = list.length - start;
+  var ret = new Array(i);
 
-    var ret = new Array(i);
+  while (i--) {
+    ret[i] = list[i + start];
+  }
 
-    while (i--) {
-
-        ret[i] = list[i + start];
-
-    }
-
-    return ret;
-
+  return ret;
 }
 
 /**
@@ -407,21 +344,20 @@ function toArray(list, start) {
  */
 
 function extend(to, _from) {
+  for (var key in _from) {
+    to[key] = _from[key];
+  }
 
-    for (var key in _from) {
-
-        to[key] = _from[key];
-
-    }
-
-    return to;
-
+  return to;
 }
 ```
+
 ## 1-200 解释
-  
-这段代码是一个实用函数和帮助程序，用于处理JavaScript对象和数组。它包括一些用于检查值类型的函数，将值转换为字符串或数字的函数，创建映射的函数，从数组中删除项的函数以及使用另一个对象的属性扩展对象的函数。代码还包括一些字符串操作函数，用于将连字符或驼峰式字符串转换为不同格式。
+
+这段代码是一个实用函数和帮助程序，用于处理 JavaScript 对象和数组。它包括一些用于检查值类型的函数，将值转换为字符串或数字的函数，创建映射的函数，从数组中删除项的函数以及使用另一个对象的属性扩展对象的函数。代码还包括一些字符串操作函数，用于将连字符或驼峰式字符串转换为不同格式。
+
 # 210~400
+
 ```js
 /**
 
@@ -659,7 +595,7 @@ function hasChanged(x, y) {
 
 }
 
-  
+
 
 var SSR_ATTR = 'data-server-rendered';
 
@@ -697,7 +633,7 @@ var LIFECYCLE_HOOKS = [
 
 ];
 
-  
+
 
 var config = {
 
@@ -807,9 +743,13 @@ var config = {
 
     isUnknownElement: no,
 ```
+
 ## 201-401 解释
-这是一组在Vue.js中使用的实用函数和配置。`toObject`函数将一个对象数组合并为一个单一的对象，而`noop`是一个什么也不做的空函数。`no`始终返回false，而`identity`返回传递给它的相同值作为参数。`genStaticKeys$1`从编译器模块生成一个包含静态键的字符串。`looseEqual`检查两个值是否松散相等 - 即它们是否具有相同的形状的普通对象。`looseIndexOf`返回数组中第一个松散相等值的索引（如果该值是普通对象，则数组必须包含具有相同形状的对象），否则返回-1。`once`确保一个函数只被调用一次。`hasChanged`确定两个值是否已更改。最后，`config`包含由Vue.js使用的各种选项，例如选项合并策略、是否抑制警告、是否启用开发工具等。
+
+这是一组在 Vue.js 中使用的实用函数和配置。`toObject`函数将一个对象数组合并为一个单一的对象，而`noop`是一个什么也不做的空函数。`no`始终返回 false，而`identity`返回传递给它的相同值作为参数。`genStaticKeys$1`从编译器模块生成一个包含静态键的字符串。`looseEqual`检查两个值是否松散相等 - 即它们是否具有相同的形状的普通对象。`looseIndexOf`返回数组中第一个松散相等值的索引（如果该值是普通对象，则数组必须包含具有相同形状的对象），否则返回-1。`once`确保一个函数只被调用一次。`hasChanged`确定两个值是否已更改。最后，`config`包含由 Vue.js 使用的各种选项，例如选项合并策略、是否抑制警告、是否启用开发工具等。
+
 # 401~600
+
 ```js
   /**
 
@@ -857,7 +797,7 @@ var config = {
 
 };
 
-  
+
 
 /**
 
@@ -943,7 +883,7 @@ function parsePath(path) {
 
 }
 
-  
+
 
 // can we use __proto__?
 
@@ -1107,7 +1047,7 @@ else {
 
 }
 
-  
+
 
 var currentInstance = null;
 
@@ -1151,7 +1091,7 @@ function setCurrentInstance(vm) {
 
 }
 
-  
+
 
 /**
 
@@ -1211,26 +1151,30 @@ var VNode = /** @class */ (function () {
 
     }
 ```
-## 401-600 解释
-首先，这段代码展示了一些在Vue.js中广泛使用的实用函数和变量声明。其中包括：
 
--   `getTagNamespace`：获取元素的命名空间
--   `parsePlatformTagName`：解析特定平台的标签名称
--   `mustUseProp`：检查属性是否必须使用属性绑定
--   `async`：指示是否异步执行更新操作
--   `_lifecycleHooks`：已暴露出来的生命周期钩子数组
+## 401-600 解释
+
+首先，这段代码展示了一些在 Vue.js 中广泛使用的实用函数和变量声明。其中包括：
+
+- `getTagNamespace`：获取元素的命名空间
+- `parsePlatformTagName`：解析特定平台的标签名称
+- `mustUseProp`：检查属性是否必须使用属性绑定
+- `async`：指示是否异步执行更新操作
+- `_lifecycleHooks`：已暴露出来的生命周期钩子数组
 
 接下来是一些辅助函数：
 
--   `unicodeRegExp`：用于解析HTML标记、组件名称和属性路径的Unicode字符集正则表达式
--   `isReserved`：判断一个字符串是否以$或_开头，用来判断是否为保留字符
--   `def`：定义一个对象属性
--   `parsePath`：简单路径解析
+- `unicodeRegExp`：用于解析 HTML 标记、组件名称和属性路径的 Unicode 字符集正则表达式
+- `isReserved`：判断一个字符串是否以$或\_开头，用来判断是否为保留字符
+- `def`：定义一个对象属性
+- `parsePath`：简单路径解析
 
-最后，这段代码还包括了一些常用的浏览器环境和功能检测，例如检测是否支持Passive事件监听、是否存在Vue开发者工具等，以及虚拟节点类的定义。
+最后，这段代码还包括了一些常用的浏览器环境和功能检测，例如检测是否支持 Passive 事件监听、是否存在 Vue 开发者工具等，以及虚拟节点类的定义。
 
-总之，这段代码提供了Vue.js中许多重要的实用函数和变量声明，以及一些常用的浏览器环境和功能检测。
+总之，这段代码提供了 Vue.js 中许多重要的实用函数和变量声明，以及一些常用的浏览器环境和功能检测。
+
 # 600~840
+
 ```js
     Object.defineProperty(VNode.prototype, "child", {
 
@@ -1316,7 +1260,7 @@ function cloneVNode(vnode) {
 
 }
 
-  
+
 
 /* not type checking this file because flow doesn't play well with Proxy */
 
@@ -1470,19 +1414,19 @@ if (process.env.NODE_ENV !== 'production') {
 
 }
 
-  
+
 
 /******************************************************************************
 
 Copyright (c) Microsoft Corporation.
 
-  
+
 
 Permission to use, copy, modify, and/or distribute this software for any
 
 purpose with or without fee is hereby granted.
 
-  
+
 
 THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
 
@@ -1500,7 +1444,7 @@ PERFORMANCE OF THIS SOFTWARE.
 
 ***************************************************************************** */
 
-  
+
 
 var __assign = function() {
 
@@ -1522,7 +1466,7 @@ var __assign = function() {
 
 };
 
-  
+
 
 var uid$2 = 0;
 
@@ -1678,7 +1622,7 @@ function popTarget() {
 
 }
 
-  
+
 
 /*
 
@@ -1710,32 +1654,36 @@ var methodsToPatch = [
 
 ]
 ```
+
 ## 601-840 解释
-这段代码包括了Vue.js中的一些核心逻辑和工具函数，主要包括以下几个部分：
 
-1.  虚拟节点对象VNode的定义和相关函数的实现
+这段代码包括了 Vue.js 中的一些核心逻辑和工具函数，主要包括以下几个部分：
 
--   `VNode`：虚拟节点构造函数
--   `createEmptyVNode`：用于创建空虚拟节点的函数
--   `createTextVNode`：用于创建文本节点的函数
--   `cloneVNode`：用于优化浅克隆的函数
+1.  虚拟节点对象 VNode 的定义和相关函数的实现
 
-2.  Vue.js开发调试工具的实现
+- `VNode`：虚拟节点构造函数
+- `createEmptyVNode`：用于创建空虚拟节点的函数
+- `createTextVNode`：用于创建文本节点的函数
+- `cloneVNode`：用于优化浅克隆的函数
 
--   通过设置Proxy代理实例来检测访问不存在属性或方法，并给予警告
--   该功能在生产环境下被禁用
+2.  Vue.js 开发调试工具的实现
 
-3.  响应式系统的基石Dep类
+- 通过设置 Proxy 代理实例来检测访问不存在属性或方法，并给予警告
+- 该功能在生产环境下被禁用
 
--   管理依赖关系和通知更新
--   包括添加和删除依赖项、依赖项收集、通知依赖项更新等核心操作
--   全局唯一的target watcher
+3.  响应式系统的基石 Dep 类
 
-4.  对JavaScript数组原型方法进行代理的实现
+- 管理依赖关系和通知更新
+- 包括添加和删除依赖项、依赖项收集、通知依赖项更新等核心操作
+- 全局唯一的 target watcher
 
--   使得在修改响应式数组时能够正确地触发视图更新
-总体而言，这段代码展示了Vue.js中一些非常重要的核心功能和工具函数的实现方式。
+4.  对 JavaScript 数组原型方法进行代理的实现
+
+- 使得在修改响应式数组时能够正确地触发视图更新
+  总体而言，这段代码展示了 Vue.js 中一些非常重要的核心功能和工具函数的实现方式。
+
 # 841~1054
+
 ```js
 /**
 
@@ -1815,7 +1763,7 @@ var methodsToPatch = [
 
 });
 
-  
+
 
 var arrayKeys = Object.getOwnPropertyNames(arrayMethods);
 
@@ -2165,184 +2113,158 @@ function defineReactive(obj, key, val, customSetter, shallow, mock) {
 
     return dep;
 ```
+
 ## 841-1044 解释
-这段代码实现了Vue.js响应式系统的核心逻辑，包括Observer类和defineReactive函数。Observer类是一个观察者，将目标对象转换为可监听的对象，并将目标对象的所有属性变成getter/setter形式。defineReactive函数则用于定义一个新属性或修改已有属性，使其成为响应式属性。
 
-具体来说，defineReactive函数通过Object.defineProperty()方法将属性定义为可监听的。当属性被读取时，会收集依赖关系并在属性被修改时通知更新。同时，如果属性值是一个对象，则会对其进行递归处理，使其成为嵌套的响应式对象。
+这段代码实现了 Vue.js 响应式系统的核心逻辑，包括 Observer 类和 defineReactive 函数。Observer 类是一个观察者，将目标对象转换为可监听的对象，并将目标对象的所有属性变成 getter/setter 形式。defineReactive 函数则用于定义一个新属性或修改已有属性，使其成为响应式属性。
 
-Observer类则用于管理依赖项，它会为每个被监听的对象创建一个Dep实例，并在目标对象属性的getter方法中收集依赖项，在setter方法中通知这些依赖项进行更新。同时，如果目标对象是数组，则会为其中每个元素也创建一个Observer实例，使得数组也可以响应式地更新。
+具体来说，defineReactive 函数通过 Object.defineProperty()方法将属性定义为可监听的。当属性被读取时，会收集依赖关系并在属性被修改时通知更新。同时，如果属性值是一个对象，则会对其进行递归处理，使其成为嵌套的响应式对象。
 
-总之，这段代码展示了Vue.js响应式系统的重要实现方式，是Vue.js能够实现数据驱动视图更新的核心。
+Observer 类则用于管理依赖项，它会为每个被监听的对象创建一个 Dep 实例，并在目标对象属性的 getter 方法中收集依赖项，在 setter 方法中通知这些依赖项进行更新。同时，如果目标对象是数组，则会为其中每个元素也创建一个 Observer 实例，使得数组也可以响应式地更新。
+
+总之，这段代码展示了 Vue.js 响应式系统的重要实现方式，是 Vue.js 能够实现数据驱动视图更新的核心。
+
 # 1055~1226
+
 ```js
 function set(target, key, val) {
+  if (
+    process.env.NODE_ENV !== "production" &&
+    (isUndef(target) || isPrimitive(target))
+  ) {
+    warn$2(
+      "Cannot set reactive property on undefined, null, or primitive value: ".concat(
+        target
+      )
+    );
+  }
 
-    if (process.env.NODE_ENV !== 'production' && (isUndef(target) || isPrimitive(target))) {
+  if (isReadonly(target)) {
+    process.env.NODE_ENV !== "production" &&
+      warn$2(
+        'Set operation on key "'.concat(key, '" failed: target is readonly.')
+      );
 
-        warn$2("Cannot set reactive property on undefined, null, or primitive value: ".concat(target));
+    return;
+  }
 
-    }
+  var ob = target.__ob__;
 
-    if (isReadonly(target)) {
+  if (isArray(target) && isValidArrayIndex(key)) {
+    target.length = Math.max(target.length, key);
 
-        process.env.NODE_ENV !== 'production' && warn$2("Set operation on key \"".concat(key, "\" failed: target is readonly."));
+    target.splice(key, 1, val); // when mocking for SSR, array methods are not hijacked
 
-        return;
+    if (ob && !ob.shallow && ob.mock) {
+      observe(val, false, true);
+    }
 
-    }
+    return val;
+  }
 
-    var ob = target.__ob__;
+  if (key in target && !(key in Object.prototype)) {
+    target[key] = val;
 
-    if (isArray(target) && isValidArrayIndex(key)) {
+    return val;
+  }
 
-        target.length = Math.max(target.length, key);
+  if (target._isVue || (ob && ob.vmCount)) {
+    process.env.NODE_ENV !== "production" &&
+      warn$2(
+        "Avoid adding reactive properties to a Vue instance or its root $data " +
+          "at runtime - declare it upfront in the data option."
+      );
 
-        target.splice(key, 1, val);
+    return val;
+  }
 
-        // when mocking for SSR, array methods are not hijacked
+  if (!ob) {
+    target[key] = val;
 
-        if (ob && !ob.shallow && ob.mock) {
+    return val;
+  }
 
-            observe(val, false, true);
+  defineReactive(ob.value, key, val, undefined, ob.shallow, ob.mock);
 
-        }
+  if (process.env.NODE_ENV !== "production") {
+    ob.dep.notify({
+      type: "add" /* TriggerOpTypes.ADD */,
 
-        return val;
+      target: target,
 
-    }
+      key: key,
 
-    if (key in target && !(key in Object.prototype)) {
+      newValue: val,
 
-        target[key] = val;
+      oldValue: undefined,
+    });
+  } else {
+    ob.dep.notify();
+  }
 
-        return val;
-
-    }
-
-    if (target._isVue || (ob && ob.vmCount)) {
-
-        process.env.NODE_ENV !== 'production' &&
-
-            warn$2('Avoid adding reactive properties to a Vue instance or its root $data ' +
-
-                'at runtime - declare it upfront in the data option.');
-
-        return val;
-
-    }
-
-    if (!ob) {
-
-        target[key] = val;
-
-        return val;
-
-    }
-
-    defineReactive(ob.value, key, val, undefined, ob.shallow, ob.mock);
-
-    if (process.env.NODE_ENV !== 'production') {
-
-        ob.dep.notify({
-
-            type: "add" /* TriggerOpTypes.ADD */,
-
-            target: target,
-
-            key: key,
-
-            newValue: val,
-
-            oldValue: undefined
-
-        });
-
-    }
-
-    else {
-
-        ob.dep.notify();
-
-    }
-
-    return val;
-
+  return val;
 }
 
 function del(target, key) {
+  if (
+    process.env.NODE_ENV !== "production" &&
+    (isUndef(target) || isPrimitive(target))
+  ) {
+    warn$2(
+      "Cannot delete reactive property on undefined, null, or primitive value: ".concat(
+        target
+      )
+    );
+  }
 
-    if (process.env.NODE_ENV !== 'production' && (isUndef(target) || isPrimitive(target))) {
+  if (isArray(target) && isValidArrayIndex(key)) {
+    target.splice(key, 1);
 
-        warn$2("Cannot delete reactive property on undefined, null, or primitive value: ".concat(target));
+    return;
+  }
 
-    }
+  var ob = target.__ob__;
 
-    if (isArray(target) && isValidArrayIndex(key)) {
+  if (target._isVue || (ob && ob.vmCount)) {
+    process.env.NODE_ENV !== "production" &&
+      warn$2(
+        "Avoid deleting properties on a Vue instance or its root $data " +
+          "- just set it to null."
+      );
 
-        target.splice(key, 1);
+    return;
+  }
 
-        return;
+  if (isReadonly(target)) {
+    process.env.NODE_ENV !== "production" &&
+      warn$2(
+        'Delete operation on key "'.concat(key, '" failed: target is readonly.')
+      );
 
-    }
+    return;
+  }
 
-    var ob = target.__ob__;
+  if (!hasOwn(target, key)) {
+    return;
+  }
 
-    if (target._isVue || (ob && ob.vmCount)) {
+  delete target[key];
 
-        process.env.NODE_ENV !== 'production' &&
+  if (!ob) {
+    return;
+  }
 
-            warn$2('Avoid deleting properties on a Vue instance or its root $data ' +
+  if (process.env.NODE_ENV !== "production") {
+    ob.dep.notify({
+      type: "delete" /* TriggerOpTypes.DELETE */,
 
-                '- just set it to null.');
+      target: target,
 
-        return;
-
-    }
-
-    if (isReadonly(target)) {
-
-        process.env.NODE_ENV !== 'production' &&
-
-            warn$2("Delete operation on key \"".concat(key, "\" failed: target is readonly."));
-
-        return;
-
-    }
-
-    if (!hasOwn(target, key)) {
-
-        return;
-
-    }
-
-    delete target[key];
-
-    if (!ob) {
-
-        return;
-
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-
-        ob.dep.notify({
-
-            type: "delete" /* TriggerOpTypes.DELETE */,
-
-            target: target,
-
-            key: key
-
-        });
-
-    }
-
-    else {
-
-        ob.dep.notify();
-
-    }
-
+      key: key,
+    });
+  } else {
+    ob.dep.notify();
+  }
 }
 
 /**
@@ -2354,35 +2276,23 @@ function del(target, key) {
  */
 
 function dependArray(value) {
+  for (var e = void 0, i = 0, l = value.length; i < l; i++) {
+    e = value[i];
 
-    for (var e = void 0, i = 0, l = value.length; i < l; i++) {
+    if (e && e.__ob__) {
+      e.__ob__.dep.depend();
+    }
 
-        e = value[i];
-
-        if (e && e.__ob__) {
-
-            e.__ob__.dep.depend();
-
-        }
-
-        if (isArray(e)) {
-
-            dependArray(e);
-
-        }
-
-    }
-
+    if (isArray(e)) {
+      dependArray(e);
+    }
+  }
 }
 
-  
-
 function reactive(target) {
+  makeReactive(target, false);
 
-    makeReactive(target, false);
-
-    return target;
-
+  return target;
 }
 
 /**
@@ -2396,111 +2306,100 @@ function reactive(target) {
  */
 
 function shallowReactive(target) {
+  makeReactive(target, true);
 
-    makeReactive(target, true);
+  def(target, "__v_isShallow" /* ReactiveFlags.IS_SHALLOW */, true);
 
-    def(target, "__v_isShallow" /* ReactiveFlags.IS_SHALLOW */, true);
-
-    return target;
-
+  return target;
 }
 
 function makeReactive(target, shallow) {
+  // if trying to observe a readonly proxy, return the readonly version.
 
-    // if trying to observe a readonly proxy, return the readonly version.
+  if (!isReadonly(target)) {
+    if (process.env.NODE_ENV !== "production") {
+      if (isArray(target)) {
+        warn$2(
+          "Avoid using Array as root value for "
+            .concat(
+              shallow ? "shallowReactive()" : "reactive()",
+              " as it cannot be tracked in watch() or watchEffect(). Use "
+            )
+            .concat(
+              shallow ? "shallowRef()" : "ref()",
+              " instead. This is a Vue-2-only limitation."
+            )
+        );
+      }
 
-    if (!isReadonly(target)) {
+      var existingOb = target && target.__ob__;
 
-        if (process.env.NODE_ENV !== 'production') {
+      if (existingOb && existingOb.shallow !== shallow) {
+        warn$2(
+          "Target is already a "
+            .concat(
+              existingOb.shallow ? "" : "non-",
+              "shallow reactive object, and cannot be converted to "
+            )
+            .concat(shallow ? "" : "non-", "shallow.")
+        );
+      }
+    }
 
-            if (isArray(target)) {
+    var ob = observe(
+      target,
+      shallow,
+      isServerRendering() /* ssr mock reactivity */
+    );
 
-                warn$2("Avoid using Array as root value for ".concat(shallow ? "shallowReactive()" : "reactive()", " as it cannot be tracked in watch() or watchEffect(). Use ").concat(shallow ? "shallowRef()" : "ref()", " instead. This is a Vue-2-only limitation."));
+    if (process.env.NODE_ENV !== "production" && !ob) {
+      if (target == null || isPrimitive(target)) {
+        warn$2("value cannot be made reactive: ".concat(String(target)));
+      }
 
-            }
-
-            var existingOb = target && target.__ob__;
-
-            if (existingOb && existingOb.shallow !== shallow) {
-
-                warn$2("Target is already a ".concat(existingOb.shallow ? "" : "non-", "shallow reactive object, and cannot be converted to ").concat(shallow ? "" : "non-", "shallow."));
-
-            }
-
-        }
-
-        var ob = observe(target, shallow, isServerRendering() /* ssr mock reactivity */);
-
-        if (process.env.NODE_ENV !== 'production' && !ob) {
-
-            if (target == null || isPrimitive(target)) {
-
-                warn$2("value cannot be made reactive: ".concat(String(target)));
-
-            }
-
-            if (isCollectionType(target)) {
-
-                warn$2("Vue 2 does not support reactive collection types such as Map or Set.");
-
-            }
-
-        }
-
-    }
-
+      if (isCollectionType(target)) {
+        warn$2(
+          "Vue 2 does not support reactive collection types such as Map or Set."
+        );
+      }
+    }
+  }
 }
 
 function isReactive(value) {
+  if (isReadonly(value)) {
+    return isReactive(value["__v_raw" /* ReactiveFlags.RAW */]);
+  }
 
-    if (isReadonly(value)) {
-
-        return isReactive(value["__v_raw" /* ReactiveFlags.RAW */]);
-
-    }
-
-    return !!(value && value.__ob__);
-
+  return !!(value && value.__ob__);
 }
 
 function isShallow(value) {
-
-    return !!(value && value.__v_isShallow);
-
+  return !!(value && value.__v_isShallow);
 }
 
 function isReadonly(value) {
-
-    return !!(value && value.__v_isReadonly);
-
+  return !!(value && value.__v_isReadonly);
 }
 
 function isProxy(value) {
-
-    return isReactive(value) || isReadonly(value);
-
+  return isReactive(value) || isReadonly(value);
 }
 
 function toRaw(observed) {
+  var raw = observed && observed["__v_raw" /* ReactiveFlags.RAW */];
 
-    var raw = observed && observed["__v_raw" /* ReactiveFlags.RAW */];
-
-    return raw ? toRaw(raw) : observed;
-
+  return raw ? toRaw(raw) : observed;
 }
 
 function markRaw(value) {
+  // non-extensible objects won't be observed anyway
 
-    // non-extensible objects won't be observed anyway
+  if (Object.isExtensible(value)) {
+    def(value, "__v_skip" /* ReactiveFlags.SKIP */, true);
+  }
 
-    if (Object.isExtensible(value)) {
-
-        def(value, "__v_skip" /* ReactiveFlags.SKIP */, true);
-
-    }
-
-    return value;
-
+  return value;
 }
 
 /**
@@ -2510,19 +2409,21 @@ function markRaw(value) {
  */
 
 function isCollectionType(value) {
+  var type = toRawType(value);
 
-    var type = toRawType(value);
-
-    return (type === 'Map' || type === 'WeakMap' || type === 'Set' || type === 'WeakSet');
-
+  return (
+    type === "Map" || type === "WeakMap" || type === "Set" || type === "WeakSet"
+  );
 }
 ```
-## 1045- 1205 解释
-这段代码实现了Vue.js响应式系统的核心逻辑，包括数据劫持和依赖收集。通过将对象转换为可监听的对象，使得当对象属性被修改时，能够自动触发更新视图等操作。具体实现方式包括：使用Observer类将目标对象转换为可监听的对象，并使用defineReactive函数定义getter/setter方法；使用Dep类进行依赖管理，使用set函数添加或更新属性值、使用del函数删除属性值、使用dependArray函数收集数组元素的依赖关系。同时还定义了一些辅助函数如reactive、shallowReactive、isReactive、isShallow、isReadonly、isProxy、toRaw、markRaw等，用于判断对象是否可响应、获取原始对象等操作。总之，这段代码是Vue.js响应式系统的核心实现，是Vue.js实现数据驱动的重要基础。
-# 1206~1501
-```js
-  
 
+## 1045- 1205 解释
+
+这段代码实现了 Vue.js 响应式系统的核心逻辑，包括数据劫持和依赖收集。通过将对象转换为可监听的对象，使得当对象属性被修改时，能够自动触发更新视图等操作。具体实现方式包括：使用 Observer 类将目标对象转换为可监听的对象，并使用 defineReactive 函数定义 getter/setter 方法；使用 Dep 类进行依赖管理，使用 set 函数添加或更新属性值、使用 del 函数删除属性值、使用 dependArray 函数收集数组元素的依赖关系。同时还定义了一些辅助函数如 reactive、shallowReactive、isReactive、isShallow、isReadonly、isProxy、toRaw、markRaw 等，用于判断对象是否可响应、获取原始对象等操作。总之，这段代码是 Vue.js 响应式系统的核心实现，是 Vue.js 实现数据驱动的重要基础。
+
+# 1206~1501
+
+```js
 /**
 
  * @internal
@@ -2532,409 +2433,282 @@ function isCollectionType(value) {
 var RefFlag = "__v_isRef";
 
 function isRef(r) {
-
-    return !!(r && r.__v_isRef === true);
-
+  return !!(r && r.__v_isRef === true);
 }
 
 function ref$1(value) {
-
-    return createRef(value, false);
-
+  return createRef(value, false);
 }
 
 function shallowRef(value) {
-
-    return createRef(value, true);
-
+  return createRef(value, true);
 }
 
 function createRef(rawValue, shallow) {
+  if (isRef(rawValue)) {
+    return rawValue;
+  }
 
-    if (isRef(rawValue)) {
+  var ref = {};
 
-        return rawValue;
+  def(ref, RefFlag, true);
 
-    }
+  def(ref, "__v_isShallow" /* ReactiveFlags.IS_SHALLOW */, shallow);
 
-    var ref = {};
+  def(
+    ref,
+    "dep",
+    defineReactive(ref, "value", rawValue, null, shallow, isServerRendering())
+  );
 
-    def(ref, RefFlag, true);
-
-    def(ref, "__v_isShallow" /* ReactiveFlags.IS_SHALLOW */, shallow);
-
-    def(ref, 'dep', defineReactive(ref, 'value', rawValue, null, shallow, isServerRendering()));
-
-    return ref;
-
+  return ref;
 }
 
 function triggerRef(ref) {
+  if (process.env.NODE_ENV !== "production" && !ref.dep) {
+    warn$2("received object is not a triggerable ref.");
+  }
 
-    if (process.env.NODE_ENV !== 'production' && !ref.dep) {
+  if (process.env.NODE_ENV !== "production") {
+    ref.dep &&
+      ref.dep.notify({
+        type: "set" /* TriggerOpTypes.SET */,
 
-        warn$2("received object is not a triggerable ref.");
+        target: ref,
 
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-
-        ref.dep &&
-
-            ref.dep.notify({
-
-                type: "set" /* TriggerOpTypes.SET */,
-
-                target: ref,
-
-                key: 'value'
-
-            });
-
-    }
-
-    else {
-
-        ref.dep && ref.dep.notify();
-
-    }
-
+        key: "value",
+      });
+  } else {
+    ref.dep && ref.dep.notify();
+  }
 }
 
 function unref(ref) {
-
-    return isRef(ref) ? ref.value : ref;
-
+  return isRef(ref) ? ref.value : ref;
 }
 
 function proxyRefs(objectWithRefs) {
+  if (isReactive(objectWithRefs)) {
+    return objectWithRefs;
+  }
 
-    if (isReactive(objectWithRefs)) {
+  var proxy = {};
 
-        return objectWithRefs;
+  var keys = Object.keys(objectWithRefs);
 
-    }
+  for (var i = 0; i < keys.length; i++) {
+    proxyWithRefUnwrap(proxy, objectWithRefs, keys[i]);
+  }
 
-    var proxy = {};
-
-    var keys = Object.keys(objectWithRefs);
-
-    for (var i = 0; i < keys.length; i++) {
-
-        proxyWithRefUnwrap(proxy, objectWithRefs, keys[i]);
-
-    }
-
-    return proxy;
-
+  return proxy;
 }
 
 function proxyWithRefUnwrap(target, source, key) {
+  Object.defineProperty(target, key, {
+    enumerable: true,
 
-    Object.defineProperty(target, key, {
+    configurable: true,
 
-        enumerable: true,
+    get: function () {
+      var val = source[key];
 
-        configurable: true,
+      if (isRef(val)) {
+        return val.value;
+      } else {
+        var ob = val && val.__ob__;
 
-        get: function () {
+        if (ob) ob.dep.depend();
 
-            var val = source[key];
+        return val;
+      }
+    },
 
-            if (isRef(val)) {
+    set: function (value) {
+      var oldValue = source[key];
 
-                return val.value;
-
-            }
-
-            else {
-
-                var ob = val && val.__ob__;
-
-                if (ob)
-
-                    ob.dep.depend();
-
-                return val;
-
-            }
-
-        },
-
-        set: function (value) {
-
-            var oldValue = source[key];
-
-            if (isRef(oldValue) && !isRef(value)) {
-
-                oldValue.value = value;
-
-            }
-
-            else {
-
-                source[key] = value;
-
-            }
-
-        }
-
-    });
-
+      if (isRef(oldValue) && !isRef(value)) {
+        oldValue.value = value;
+      } else {
+        source[key] = value;
+      }
+    },
+  });
 }
 
 function customRef(factory) {
+  var dep = new Dep();
 
-    var dep = new Dep();
+  var _a = factory(
+      function () {
+        if (process.env.NODE_ENV !== "production") {
+          dep.depend({
+            target: ref,
 
-    var _a = factory(function () {
+            type: "get" /* TrackOpTypes.GET */,
 
-        if (process.env.NODE_ENV !== 'production') {
+            key: "value",
+          });
+        } else {
+          dep.depend();
+        }
+      },
+      function () {
+        if (process.env.NODE_ENV !== "production") {
+          dep.notify({
+            target: ref,
 
-            dep.depend({
+            type: "set" /* TriggerOpTypes.SET */,
 
-                target: ref,
+            key: "value",
+          });
+        } else {
+          dep.notify();
+        }
+      }
+    ),
+    get = _a.get,
+    set = _a.set;
 
-                type: "get" /* TrackOpTypes.GET */,
+  var ref = {
+    get value() {
+      return get();
+    },
 
-                key: 'value'
+    set value(newVal) {
+      set(newVal);
+    },
+  };
 
-            });
+  def(ref, RefFlag, true);
 
-        }
-
-        else {
-
-            dep.depend();
-
-        }
-
-    }, function () {
-
-        if (process.env.NODE_ENV !== 'production') {
-
-            dep.notify({
-
-                target: ref,
-
-                type: "set" /* TriggerOpTypes.SET */,
-
-                key: 'value'
-
-            });
-
-        }
-
-        else {
-
-            dep.notify();
-
-        }
-
-    }), get = _a.get, set = _a.set;
-
-    var ref = {
-
-        get value() {
-
-            return get();
-
-        },
-
-        set value(newVal) {
-
-            set(newVal);
-
-        }
-
-    };
-
-    def(ref, RefFlag, true);
-
-    return ref;
-
+  return ref;
 }
 
 function toRefs(object) {
+  if (process.env.NODE_ENV !== "production" && !isReactive(object)) {
+    warn$2("toRefs() expects a reactive object but received a plain one.");
+  }
 
-    if (process.env.NODE_ENV !== 'production' && !isReactive(object)) {
+  var ret = isArray(object) ? new Array(object.length) : {};
 
-        warn$2("toRefs() expects a reactive object but received a plain one.");
+  for (var key in object) {
+    ret[key] = toRef(object, key);
+  }
 
-    }
-
-    var ret = isArray(object) ? new Array(object.length) : {};
-
-    for (var key in object) {
-
-        ret[key] = toRef(object, key);
-
-    }
-
-    return ret;
-
+  return ret;
 }
 
 function toRef(object, key, defaultValue) {
+  var val = object[key];
 
-    var val = object[key];
+  if (isRef(val)) {
+    return val;
+  }
 
-    if (isRef(val)) {
+  var ref = {
+    get value() {
+      var val = object[key];
 
-        return val;
+      return val === undefined ? defaultValue : val;
+    },
 
-    }
+    set value(newVal) {
+      object[key] = newVal;
+    },
+  };
 
-    var ref = {
+  def(ref, RefFlag, true);
 
-        get value() {
-
-            var val = object[key];
-
-            return val === undefined ? defaultValue : val;
-
-        },
-
-        set value(newVal) {
-
-            object[key] = newVal;
-
-        }
-
-    };
-
-    def(ref, RefFlag, true);
-
-    return ref;
-
+  return ref;
 }
-
-  
 
 var rawToReadonlyFlag = "__v_rawToReadonly";
 
 var rawToShallowReadonlyFlag = "__v_rawToShallowReadonly";
 
 function readonly(target) {
-
-    return createReadonly(target, false);
-
+  return createReadonly(target, false);
 }
 
 function createReadonly(target, shallow) {
+  if (!isPlainObject(target)) {
+    if (process.env.NODE_ENV !== "production") {
+      if (isArray(target)) {
+        warn$2("Vue 2 does not support readonly arrays.");
+      } else if (isCollectionType(target)) {
+        warn$2(
+          "Vue 2 does not support readonly collection types such as Map or Set."
+        );
+      } else {
+        warn$2("value cannot be made readonly: ".concat(typeof target));
+      }
+    }
 
-    if (!isPlainObject(target)) {
+    return target;
+  }
 
-        if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production" && !Object.isExtensible(target)) {
+    warn$2(
+      "Vue 2 does not support creating readonly proxy for non-extensible object."
+    );
+  } // already a readonly object
 
-            if (isArray(target)) {
+  if (isReadonly(target)) {
+    return target;
+  } // already has a readonly proxy
 
-                warn$2("Vue 2 does not support readonly arrays.");
+  var existingFlag = shallow ? rawToShallowReadonlyFlag : rawToReadonlyFlag;
 
-            }
+  var existingProxy = target[existingFlag];
 
-            else if (isCollectionType(target)) {
+  if (existingProxy) {
+    return existingProxy;
+  }
 
-                warn$2("Vue 2 does not support readonly collection types such as Map or Set.");
+  var proxy = Object.create(Object.getPrototypeOf(target));
 
-            }
+  def(target, existingFlag, proxy);
 
-            else {
+  def(proxy, "__v_isReadonly" /* ReactiveFlags.IS_READONLY */, true);
 
-                warn$2("value cannot be made readonly: ".concat(typeof target));
+  def(proxy, "__v_raw" /* ReactiveFlags.RAW */, target);
 
-            }
+  if (isRef(target)) {
+    def(proxy, RefFlag, true);
+  }
 
-        }
+  if (shallow || isShallow(target)) {
+    def(proxy, "__v_isShallow" /* ReactiveFlags.IS_SHALLOW */, true);
+  }
 
-        return target;
+  var keys = Object.keys(target);
 
-    }
+  for (var i = 0; i < keys.length; i++) {
+    defineReadonlyProperty(proxy, target, keys[i], shallow);
+  }
 
-    if (process.env.NODE_ENV !== 'production' && !Object.isExtensible(target)) {
-
-        warn$2("Vue 2 does not support creating readonly proxy for non-extensible object.");
-
-    }
-
-    // already a readonly object
-
-    if (isReadonly(target)) {
-
-        return target;
-
-    }
-
-    // already has a readonly proxy
-
-    var existingFlag = shallow ? rawToShallowReadonlyFlag : rawToReadonlyFlag;
-
-    var existingProxy = target[existingFlag];
-
-    if (existingProxy) {
-
-        return existingProxy;
-
-    }
-
-    var proxy = Object.create(Object.getPrototypeOf(target));
-
-    def(target, existingFlag, proxy);
-
-    def(proxy, "__v_isReadonly" /* ReactiveFlags.IS_READONLY */, true);
-
-    def(proxy, "__v_raw" /* ReactiveFlags.RAW */, target);
-
-    if (isRef(target)) {
-
-        def(proxy, RefFlag, true);
-
-    }
-
-    if (shallow || isShallow(target)) {
-
-        def(proxy, "__v_isShallow" /* ReactiveFlags.IS_SHALLOW */, true);
-
-    }
-
-    var keys = Object.keys(target);
-
-    for (var i = 0; i < keys.length; i++) {
-
-        defineReadonlyProperty(proxy, target, keys[i], shallow);
-
-    }
-
-    return proxy;
-
+  return proxy;
 }
 
 function defineReadonlyProperty(proxy, target, key, shallow) {
+  Object.defineProperty(proxy, key, {
+    enumerable: true,
 
-    Object.defineProperty(proxy, key, {
+    configurable: true,
 
-        enumerable: true,
+    get: function () {
+      var val = target[key];
 
-        configurable: true,
+      return shallow || !isPlainObject(val) ? val : readonly(val);
+    },
 
-        get: function () {
-
-            var val = target[key];
-
-            return shallow || !isPlainObject(val) ? val : readonly(val);
-
-        },
-
-        set: function () {
-
-            process.env.NODE_ENV !== 'production' &&
-
-                warn$2("Set operation on key \"".concat(key, "\" failed: target is readonly."));
-
-        }
-
-    });
-
+    set: function () {
+      process.env.NODE_ENV !== "production" &&
+        warn$2(
+          'Set operation on key "'.concat(key, '" failed: target is readonly.')
+        );
+    },
+  });
 }
 
 /**
@@ -2950,474 +2724,330 @@ function defineReadonlyProperty(proxy, target, key, shallow) {
  */
 
 function shallowReadonly(target) {
-
-    return createReadonly(target, true);
-
+  return createReadonly(target, true);
 }
-
-  
 
 function computed(getterOrOptions, debugOptions) {
+  var getter;
 
-    var getter;
+  var setter;
 
-    var setter;
+  var onlyGetter = isFunction(getterOrOptions);
 
-    var onlyGetter = isFunction(getterOrOptions);
+  if (onlyGetter) {
+    getter = getterOrOptions;
 
-    if (onlyGetter) {
+    setter =
+      process.env.NODE_ENV !== "production"
+        ? function () {
+            warn$2("Write operation failed: computed value is readonly");
+          }
+        : noop;
+  } else {
+    getter = getterOrOptions.get;
 
-        getter = getterOrOptions;
+    setter = getterOrOptions.set;
+  }
 
-        setter = process.env.NODE_ENV !== 'production'
+  var watcher = isServerRendering()
+    ? null
+    : new Watcher(currentInstance, getter, noop, { lazy: true });
 
-            ? function () {
+  if (process.env.NODE_ENV !== "production" && watcher && debugOptions) {
+    watcher.onTrack = debugOptions.onTrack;
 
-                warn$2('Write operation failed: computed value is readonly');
+    watcher.onTrigger = debugOptions.onTrigger;
+  }
 
-            }
+  var ref = {
+    // some libs rely on the presence effect for checking computed refs
 
-            : noop;
+    // from normal refs, but the implementation doesn't matter
 
-    }
+    effect: watcher,
 
-    else {
+    get value() {
+      if (watcher) {
+        if (watcher.dirty) {
+          watcher.evaluate();
+        }
 
-        getter = getterOrOptions.get;
+        if (Dep.target) {
+          if (process.env.NODE_ENV !== "production" && Dep.target.onTrack) {
+            Dep.target.onTrack({
+              effect: Dep.target,
 
-        setter = getterOrOptions.set;
+              target: ref,
 
-    }
+              type: "get" /* TrackOpTypes.GET */,
 
-    var watcher = isServerRendering()
+              key: "value",
+            });
+          }
 
-        ? null
+          watcher.depend();
+        }
 
-        : new Watcher(currentInstance, getter, noop, { lazy: true });
+        return watcher.value;
+      } else {
+        return getter();
+      }
+    },
 
-    if (process.env.NODE_ENV !== 'production' && watcher && debugOptions) {
+    set value(newVal) {
+      setter(newVal);
+    },
+  };
 
-        watcher.onTrack = debugOptions.onTrack;
+  def(ref, RefFlag, true);
 
-        watcher.onTrigger = debugOptions.onTrigger;
+  def(ref, "__v_isReadonly" /* ReactiveFlags.IS_READONLY */, onlyGetter);
 
-    }
-
-    var ref = {
-
-        // some libs rely on the presence effect for checking computed refs
-
-        // from normal refs, but the implementation doesn't matter
-
-        effect: watcher,
-
-        get value() {
-
-            if (watcher) {
-
-                if (watcher.dirty) {
-
-                    watcher.evaluate();
-
-                }
-
-                if (Dep.target) {
-
-                    if (process.env.NODE_ENV !== 'production' && Dep.target.onTrack) {
-
-                        Dep.target.onTrack({
-
-                            effect: Dep.target,
-
-                            target: ref,
-
-                            type: "get" /* TrackOpTypes.GET */,
-
-                            key: 'value'
-
-                        });
-
-                    }
-
-                    watcher.depend();
-
-                }
-
-                return watcher.value;
-
-            }
-
-            else {
-
-                return getter();
-
-            }
-
-        },
-
-        set value(newVal) {
-
-            setter(newVal);
-
-        }
-
-    };
-
-    def(ref, RefFlag, true);
-
-    def(ref, "__v_isReadonly" /* ReactiveFlags.IS_READONLY */, onlyGetter);
-
-    return ref;
-
+  return ref;
 }
 ```
-## 1206-1501 解释
-这段代码实现了 Vue 2.x 中的响应式系统，包括了 ref、shallowRef、triggerRef、unref、proxyRefs、customRef、toRefs、readonly、shallowReadonly 和 computed 等 API。其中，ref 和 shallowRef 可以用来创建响应式数据对象；triggerRef 可以触发响应式数据对象的依赖更新；unref 可以用来获取非响应式数据对象；proxyRefs 可以将带有响应式属性的对象转化为 Proxy 对象；customRef 可以创建自定义的 ref 对象；toRefs 可以将一个响应式对象转换成由其属性组成的 ref 对象集合；readonly 和 shallowReadonly 可以分别创建只读的深层次和浅层次响应式数据对象；computed 可以用来计算一个响应式数据对象的值。
-# 1502~1692
-```js
-  
 
+## 1206-1501 解释
+
+这段代码实现了 Vue 2.x 中的响应式系统，包括了 ref、shallowRef、triggerRef、unref、proxyRefs、customRef、toRefs、readonly、shallowReadonly 和 computed 等 API。其中，ref 和 shallowRef 可以用来创建响应式数据对象；triggerRef 可以触发响应式数据对象的依赖更新；unref 可以用来获取非响应式数据对象；proxyRefs 可以将带有响应式属性的对象转化为 Proxy 对象；customRef 可以创建自定义的 ref 对象；toRefs 可以将一个响应式对象转换成由其属性组成的 ref 对象集合；readonly 和 shallowReadonly 可以分别创建只读的深层次和浅层次响应式数据对象；computed 可以用来计算一个响应式数据对象的值。
+
+# 1502~1692
+
+```js
 var mark;
 
 var measure;
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
+  var perf_1 = inBrowser && window.performance; /* istanbul ignore if */
 
-    var perf_1 = inBrowser && window.performance;
+  if (
+    perf_1 && // @ts-ignore
+    perf_1.mark && // @ts-ignore
+    perf_1.measure && // @ts-ignore
+    perf_1.clearMarks && // @ts-ignore
+    perf_1.clearMeasures
+  ) {
+    mark = function (tag) {
+      return perf_1.mark(tag);
+    };
 
-    /* istanbul ignore if */
+    measure = function (name, startTag, endTag) {
+      perf_1.measure(name, startTag, endTag);
 
-    if (perf_1 &&
+      perf_1.clearMarks(startTag);
 
-        // @ts-ignore
-
-        perf_1.mark &&
-
-        // @ts-ignore
-
-        perf_1.measure &&
-
-        // @ts-ignore
-
-        perf_1.clearMarks &&
-
-        // @ts-ignore
-
-        perf_1.clearMeasures) {
-
-        mark = function (tag) { return perf_1.mark(tag); };
-
-        measure = function (name, startTag, endTag) {
-
-            perf_1.measure(name, startTag, endTag);
-
-            perf_1.clearMarks(startTag);
-
-            perf_1.clearMarks(endTag);
-
-            // perf.clearMeasures(name)
-
-        };
-
-    }
-
+      perf_1.clearMarks(endTag); // perf.clearMeasures(name)
+    };
+  }
 }
 
-  
-
 var normalizeEvent = cached(function (name) {
+  var passive = name.charAt(0) === "&";
 
-    var passive = name.charAt(0) === '&';
+  name = passive ? name.slice(1) : name;
 
-    name = passive ? name.slice(1) : name;
+  var once = name.charAt(0) === "~"; // Prefixed last, checked first
 
-    var once = name.charAt(0) === '~'; // Prefixed last, checked first
+  name = once ? name.slice(1) : name;
 
-    name = once ? name.slice(1) : name;
+  var capture = name.charAt(0) === "!";
 
-    var capture = name.charAt(0) === '!';
+  name = capture ? name.slice(1) : name;
 
-    name = capture ? name.slice(1) : name;
+  return {
+    name: name,
 
-    return {
+    once: once,
 
-        name: name,
+    capture: capture,
 
-        once: once,
-
-        capture: capture,
-
-        passive: passive
-
-    };
-
+    passive: passive,
+  };
 });
 
 function createFnInvoker(fns, vm) {
+  function invoker() {
+    var fns = invoker.fns;
 
-    function invoker() {
+    if (isArray(fns)) {
+      var cloned = fns.slice();
 
-        var fns = invoker.fns;
+      for (var i = 0; i < cloned.length; i++) {
+        invokeWithErrorHandling(cloned[i], null, arguments, vm, "v-on handler");
+      }
+    } else {
+      // return handler return value for single handlers
 
-        if (isArray(fns)) {
+      return invokeWithErrorHandling(fns, null, arguments, vm, "v-on handler");
+    }
+  }
 
-            var cloned = fns.slice();
+  invoker.fns = fns;
 
-            for (var i = 0; i < cloned.length; i++) {
-
-                invokeWithErrorHandling(cloned[i], null, arguments, vm, "v-on handler");
-
-            }
-
-        }
-
-        else {
-
-            // return handler return value for single handlers
-
-            return invokeWithErrorHandling(fns, null, arguments, vm, "v-on handler");
-
-        }
-
-    }
-
-    invoker.fns = fns;
-
-    return invoker;
-
+  return invoker;
 }
 
 function updateListeners(on, oldOn, add, remove, createOnceHandler, vm) {
+  var name, cur, old, event;
 
-    var name, cur, old, event;
+  for (name in on) {
+    cur = on[name];
 
-    for (name in on) {
+    old = oldOn[name];
 
-        cur = on[name];
+    event = normalizeEvent(name);
 
-        old = oldOn[name];
+    if (isUndef(cur)) {
+      process.env.NODE_ENV !== "production" &&
+        warn$2(
+          'Invalid handler for event "'.concat(event.name, '": got ') +
+            String(cur),
+          vm
+        );
+    } else if (isUndef(old)) {
+      if (isUndef(cur.fns)) {
+        cur = on[name] = createFnInvoker(cur, vm);
+      }
 
-        event = normalizeEvent(name);
+      if (isTrue(event.once)) {
+        cur = on[name] = createOnceHandler(event.name, cur, event.capture);
+      }
 
-        if (isUndef(cur)) {
+      add(event.name, cur, event.capture, event.passive, event.params);
+    } else if (cur !== old) {
+      old.fns = cur;
 
-            process.env.NODE_ENV !== 'production' &&
+      on[name] = old;
+    }
+  }
 
-                warn$2("Invalid handler for event \"".concat(event.name, "\": got ") + String(cur), vm);
+  for (name in oldOn) {
+    if (isUndef(on[name])) {
+      event = normalizeEvent(name);
 
-        }
-
-        else if (isUndef(old)) {
-
-            if (isUndef(cur.fns)) {
-
-                cur = on[name] = createFnInvoker(cur, vm);
-
-            }
-
-            if (isTrue(event.once)) {
-
-                cur = on[name] = createOnceHandler(event.name, cur, event.capture);
-
-            }
-
-            add(event.name, cur, event.capture, event.passive, event.params);
-
-        }
-
-        else if (cur !== old) {
-
-            old.fns = cur;
-
-            on[name] = old;
-
-        }
-
-    }
-
-    for (name in oldOn) {
-
-        if (isUndef(on[name])) {
-
-            event = normalizeEvent(name);
-
-            remove(event.name, oldOn[name], event.capture);
-
-        }
-
-    }
-
+      remove(event.name, oldOn[name], event.capture);
+    }
+  }
 }
-
-  
 
 function mergeVNodeHook(def, hookKey, hook) {
+  if (def instanceof VNode) {
+    def = def.data.hook || (def.data.hook = {});
+  }
 
-    if (def instanceof VNode) {
+  var invoker;
 
-        def = def.data.hook || (def.data.hook = {});
+  var oldHook = def[hookKey];
 
-    }
+  function wrappedHook() {
+    hook.apply(this, arguments); // important: remove merged hook to ensure it's called only once // and prevent memory leak
 
-    var invoker;
+    remove$2(invoker.fns, wrappedHook);
+  }
 
-    var oldHook = def[hookKey];
+  if (isUndef(oldHook)) {
+    // no existing hook
 
-    function wrappedHook() {
+    invoker = createFnInvoker([wrappedHook]);
+  } else {
+    /* istanbul ignore if */
 
-        hook.apply(this, arguments);
+    if (isDef(oldHook.fns) && isTrue(oldHook.merged)) {
+      // already a merged invoker
 
-        // important: remove merged hook to ensure it's called only once
+      invoker = oldHook;
 
-        // and prevent memory leak
+      invoker.fns.push(wrappedHook);
+    } else {
+      // existing plain hook
 
-        remove$2(invoker.fns, wrappedHook);
+      invoker = createFnInvoker([oldHook, wrappedHook]);
+    }
+  }
 
-    }
+  invoker.merged = true;
 
-    if (isUndef(oldHook)) {
-
-        // no existing hook
-
-        invoker = createFnInvoker([wrappedHook]);
-
-    }
-
-    else {
-
-        /* istanbul ignore if */
-
-        if (isDef(oldHook.fns) && isTrue(oldHook.merged)) {
-
-            // already a merged invoker
-
-            invoker = oldHook;
-
-            invoker.fns.push(wrappedHook);
-
-        }
-
-        else {
-
-            // existing plain hook
-
-            invoker = createFnInvoker([oldHook, wrappedHook]);
-
-        }
-
-    }
-
-    invoker.merged = true;
-
-    def[hookKey] = invoker;
-
+  def[hookKey] = invoker;
 }
 
-  
-
 function extractPropsFromVNodeData(data, Ctor, tag) {
+  // we are only extracting raw values here.
 
-    // we are only extracting raw values here.
+  // validation and default values are handled in the child
 
-    // validation and default values are handled in the child
+  // component itself.
 
-    // component itself.
+  var propOptions = Ctor.options.props;
 
-    var propOptions = Ctor.options.props;
+  if (isUndef(propOptions)) {
+    return;
+  }
 
-    if (isUndef(propOptions)) {
+  var res = {};
 
-        return;
+  var attrs = data.attrs,
+    props = data.props;
 
-    }
+  if (isDef(attrs) || isDef(props)) {
+    for (var key in propOptions) {
+      var altKey = hyphenate(key);
 
-    var res = {};
+      if (process.env.NODE_ENV !== "production") {
+        var keyInLowerCase = key.toLowerCase();
 
-    var attrs = data.attrs, props = data.props;
+        if (key !== keyInLowerCase && attrs && hasOwn(attrs, keyInLowerCase)) {
+          tip(
+            'Prop "'.concat(keyInLowerCase, '" is passed to component ') +
+              "".concat(
+                formatComponentName(
+                  // @ts-expect-error tag is string
 
-    if (isDef(attrs) || isDef(props)) {
+                  tag || Ctor
+                ),
+                ", but the declared prop name is"
+              ) +
+              ' "'.concat(key, '". ') +
+              "Note that HTML attributes are case-insensitive and camelCased " +
+              "props need to use their kebab-case equivalents when using in-DOM " +
+              'templates. You should probably use "'
+                .concat(altKey, '" instead of "')
+                .concat(key, '".')
+          );
+        }
+      }
 
-        for (var key in propOptions) {
+      checkProp(res, props, key, altKey, true) ||
+        checkProp(res, attrs, key, altKey, false);
+    }
+  }
 
-            var altKey = hyphenate(key);
-
-            if (process.env.NODE_ENV !== 'production') {
-
-                var keyInLowerCase = key.toLowerCase();
-
-                if (key !== keyInLowerCase && attrs && hasOwn(attrs, keyInLowerCase)) {
-
-                    tip("Prop \"".concat(keyInLowerCase, "\" is passed to component ") +
-
-                        "".concat(formatComponentName(
-
-                        // @ts-expect-error tag is string
-
-                        tag || Ctor), ", but the declared prop name is") +
-
-                        " \"".concat(key, "\". ") +
-
-                        "Note that HTML attributes are case-insensitive and camelCased " +
-
-                        "props need to use their kebab-case equivalents when using in-DOM " +
-
-                        "templates. You should probably use \"".concat(altKey, "\" instead of \"").concat(key, "\"."));
-
-                }
-
-            }
-
-            checkProp(res, props, key, altKey, true) ||
-
-                checkProp(res, attrs, key, altKey, false);
-
-        }
-
-    }
-
-    return res;
-
+  return res;
 }
 
 function checkProp(res, hash, key, altKey, preserve) {
+  if (isDef(hash)) {
+    if (hasOwn(hash, key)) {
+      res[key] = hash[key];
 
-    if (isDef(hash)) {
+      if (!preserve) {
+        delete hash[key];
+      }
 
-        if (hasOwn(hash, key)) {
+      return true;
+    } else if (hasOwn(hash, altKey)) {
+      res[key] = hash[altKey];
 
-            res[key] = hash[key];
+      if (!preserve) {
+        delete hash[altKey];
+      }
 
-            if (!preserve) {
+      return true;
+    }
+  }
 
-                delete hash[key];
-
-            }
-
-            return true;
-
-        }
-
-        else if (hasOwn(hash, altKey)) {
-
-            res[key] = hash[altKey];
-
-            if (!preserve) {
-
-                delete hash[altKey];
-
-            }
-
-            return true;
-
-        }
-
-    }
-
-    return false;
-
+  return false;
 }
-
-  
 
 // The template compiler attempts to minimize the need for normalization by
 
@@ -3442,22 +3072,18 @@ function checkProp(res, hash, key, altKey, preserve) {
 // because functional components already normalize their own children.
 
 function simpleNormalizeChildren(children) {
+  for (var i = 0; i < children.length; i++) {
+    if (isArray(children[i])) {
+      return Array.prototype.concat.apply([], children);
+    }
+  }
 
-    for (var i = 0; i < children.length; i++) {
-
-        if (isArray(children[i])) {
-
-            return Array.prototype.concat.apply([], children);
-
-        }
-
-    }
-
-    return children;
-
+  return children;
 }
 ```
+
 ## 1502~1692 解释
+
 这段代码是与 Vue.js 或其他前端 JavaScript 框架相关的实用函数集合。
 
 代码的第一部分检查当前环境中是否存在某些 API，并在使用这些 API 之前进行判断，例如 `performance` API。
@@ -3471,133 +3097,89 @@ function simpleNormalizeChildren(children) {
 `extractPropsFromVNodeData` 函数根据组件选项中的 prop 定义从 VNode 的 `data` 对象中提取 props。
 
 最后，`simpleNormalizeChildren` 函数通过将任何嵌套数组展平成单层数组来规范化子元素的列表。
+
 # 1692~1953
+
 ```js
 function normalizeChildren(children) {
-
-    return isPrimitive(children)
-
-        ? [createTextVNode(children)]
-
-        : isArray(children)
-
-            ? normalizeArrayChildren(children)
-
-            : undefined;
-
+  return isPrimitive(children)
+    ? [createTextVNode(children)]
+    : isArray(children)
+    ? normalizeArrayChildren(children)
+    : undefined;
 }
 
 function isTextNode(node) {
-
-    return isDef(node) && isDef(node.text) && isFalse(node.isComment);
-
+  return isDef(node) && isDef(node.text) && isFalse(node.isComment);
 }
 
 function normalizeArrayChildren(children, nestedIndex) {
+  var res = [];
 
-    var res = [];
+  var i, c, lastIndex, last;
 
-    var i, c, lastIndex, last;
+  for (i = 0; i < children.length; i++) {
+    c = children[i];
 
-    for (i = 0; i < children.length; i++) {
+    if (isUndef(c) || typeof c === "boolean") continue;
 
-        c = children[i];
+    lastIndex = res.length - 1;
 
-        if (isUndef(c) || typeof c === 'boolean')
+    last = res[lastIndex]; //  nested
 
-            continue;
+    if (isArray(c)) {
+      if (c.length > 0) {
+        c = normalizeArrayChildren(
+          c,
+          "".concat(nestedIndex || "", "_").concat(i)
+        ); // merge adjacent text nodes
 
-        lastIndex = res.length - 1;
+        if (isTextNode(c[0]) && isTextNode(last)) {
+          res[lastIndex] = createTextVNode(last.text + c[0].text);
 
-        last = res[lastIndex];
+          c.shift();
+        }
 
-        //  nested
+        res.push.apply(res, c);
+      }
+    } else if (isPrimitive(c)) {
+      if (isTextNode(last)) {
+        // merge adjacent text nodes
 
-        if (isArray(c)) {
+        // this is necessary for SSR hydration because text nodes are
 
-            if (c.length > 0) {
+        // essentially merged when rendered to HTML strings
 
-                c = normalizeArrayChildren(c, "".concat(nestedIndex || '', "_").concat(i));
+        res[lastIndex] = createTextVNode(last.text + c);
+      } else if (c !== "") {
+        // convert primitive to vnode
 
-                // merge adjacent text nodes
+        res.push(createTextVNode(c));
+      }
+    } else {
+      if (isTextNode(c) && isTextNode(last)) {
+        // merge adjacent text nodes
 
-                if (isTextNode(c[0]) && isTextNode(last)) {
+        res[lastIndex] = createTextVNode(last.text + c.text);
+      } else {
+        // default key for nested array children (likely generated by v-for)
 
-                    res[lastIndex] = createTextVNode(last.text + c[0].text);
+        if (
+          isTrue(children._isVList) &&
+          isDef(c.tag) &&
+          isUndef(c.key) &&
+          isDef(nestedIndex)
+        ) {
+          c.key = "__vlist".concat(nestedIndex, "_").concat(i, "__");
+        }
 
-                    c.shift();
+        res.push(c);
+      }
+    }
+  }
 
-                }
-
-                res.push.apply(res, c);
-
-            }
-
-        }
-
-        else if (isPrimitive(c)) {
-
-            if (isTextNode(last)) {
-
-                // merge adjacent text nodes
-
-                // this is necessary for SSR hydration because text nodes are
-
-                // essentially merged when rendered to HTML strings
-
-                res[lastIndex] = createTextVNode(last.text + c);
-
-            }
-
-            else if (c !== '') {
-
-                // convert primitive to vnode
-
-                res.push(createTextVNode(c));
-
-            }
-
-        }
-
-        else {
-
-            if (isTextNode(c) && isTextNode(last)) {
-
-                // merge adjacent text nodes
-
-                res[lastIndex] = createTextVNode(last.text + c.text);
-
-            }
-
-            else {
-
-                // default key for nested array children (likely generated by v-for)
-
-                if (isTrue(children._isVList) &&
-
-                    isDef(c.tag) &&
-
-                    isUndef(c.key) &&
-
-                    isDef(nestedIndex)) {
-
-                    c.key = "__vlist".concat(nestedIndex, "_").concat(i, "__");
-
-                }
-
-                res.push(c);
-
-            }
-
-        }
-
-    }
-
-    return res;
-
+  return res;
 }
-
-  
 
 var SIMPLE_NORMALIZE = 1;
 
@@ -3607,210 +3189,171 @@ var ALWAYS_NORMALIZE = 2;
 
 // without getting yelled at by flow
 
-function createElement$1(context, tag, data, children, normalizationType, alwaysNormalize) {
+function createElement$1(
+  context,
+  tag,
+  data,
+  children,
+  normalizationType,
+  alwaysNormalize
+) {
+  if (isArray(data) || isPrimitive(data)) {
+    normalizationType = children;
 
-    if (isArray(data) || isPrimitive(data)) {
+    children = data;
 
-        normalizationType = children;
+    data = undefined;
+  }
 
-        children = data;
+  if (isTrue(alwaysNormalize)) {
+    normalizationType = ALWAYS_NORMALIZE;
+  }
 
-        data = undefined;
-
-    }
-
-    if (isTrue(alwaysNormalize)) {
-
-        normalizationType = ALWAYS_NORMALIZE;
-
-    }
-
-    return _createElement(context, tag, data, children, normalizationType);
-
+  return _createElement(context, tag, data, children, normalizationType);
 }
 
 function _createElement(context, tag, data, children, normalizationType) {
+  if (isDef(data) && isDef(data.__ob__)) {
+    process.env.NODE_ENV !== "production" &&
+      warn$2(
+        "Avoid using observed data object as vnode data: ".concat(
+          JSON.stringify(data),
+          "\n"
+        ) + "Always create fresh vnode data objects in each render!",
+        context
+      );
+
+    return createEmptyVNode();
+  } // object syntax in v-bind
+
+  if (isDef(data) && isDef(data.is)) {
+    tag = data.is;
+  }
+
+  if (!tag) {
+    // in case of component :is set to falsy value
+
+    return createEmptyVNode();
+  } // warn against non-primitive key
+
+  if (
+    process.env.NODE_ENV !== "production" &&
+    isDef(data) &&
+    isDef(data.key) &&
+    !isPrimitive(data.key)
+  ) {
+    warn$2(
+      "Avoid using non-primitive value as key, " +
+        "use string/number value instead.",
+      context
+    );
+  } // support single function children as default scoped slot
+
+  if (isArray(children) && isFunction(children[0])) {
+    data = data || {};
+
+    data.scopedSlots = { default: children[0] };
+
+    children.length = 0;
+  }
+
+  if (normalizationType === ALWAYS_NORMALIZE) {
+    children = normalizeChildren(children);
+  } else if (normalizationType === SIMPLE_NORMALIZE) {
+    children = simpleNormalizeChildren(children);
+  }
+
+  var vnode, ns;
+
+  if (typeof tag === "string") {
+    var Ctor = void 0;
+
+    ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
+
+    if (config.isReservedTag(tag)) {
+      // platform built-in elements
+
+      if (
+        process.env.NODE_ENV !== "production" &&
+        isDef(data) &&
+        isDef(data.nativeOn) &&
+        data.tag !== "component"
+      ) {
+        warn$2(
+          "The .native modifier for v-on is only valid on components but it was used on <".concat(
+            tag,
+            ">."
+          ),
+          context
+        );
+      }
+
+      vnode = new VNode(
+        config.parsePlatformTagName(tag),
+        data,
+        children,
+        undefined,
+        undefined,
+        context
+      );
+    } else if (
+      (!data || !data.pre) &&
+      isDef((Ctor = resolveAsset(context.$options, "components", tag)))
+    ) {
+      // component
+
+      vnode = createComponent(Ctor, data, context, children, tag);
+    } else {
+      // unknown or unlisted namespaced elements
+
+      // check at runtime because it may get assigned a namespace when its
+
+      // parent normalizes children
+
+      vnode = new VNode(tag, data, children, undefined, undefined, context);
+    }
+  } else {
+    // direct component options / constructor
 
-    if (isDef(data) && isDef(data.__ob__)) {
+    vnode = createComponent(tag, data, context, children);
+  }
 
-        process.env.NODE_ENV !== 'production' &&
+  if (isArray(vnode)) {
+    return vnode;
+  } else if (isDef(vnode)) {
+    if (isDef(ns)) applyNS(vnode, ns);
 
-            warn$2("Avoid using observed data object as vnode data: ".concat(JSON.stringify(data), "\n") + 'Always create fresh vnode data objects in each render!', context);
+    if (isDef(data)) registerDeepBindings(data);
 
-        return createEmptyVNode();
-
-    }
-
-    // object syntax in v-bind
-
-    if (isDef(data) && isDef(data.is)) {
-
-        tag = data.is;
-
-    }
-
-    if (!tag) {
-
-        // in case of component :is set to falsy value
-
-        return createEmptyVNode();
-
-    }
-
-    // warn against non-primitive key
-
-    if (process.env.NODE_ENV !== 'production' && isDef(data) && isDef(data.key) && !isPrimitive(data.key)) {
-
-        warn$2('Avoid using non-primitive value as key, ' +
-
-            'use string/number value instead.', context);
-
-    }
-
-    // support single function children as default scoped slot
-
-    if (isArray(children) && isFunction(children[0])) {
-
-        data = data || {};
-
-        data.scopedSlots = { default: children[0] };
-
-        children.length = 0;
-
-    }
-
-    if (normalizationType === ALWAYS_NORMALIZE) {
-
-        children = normalizeChildren(children);
-
-    }
-
-    else if (normalizationType === SIMPLE_NORMALIZE) {
-
-        children = simpleNormalizeChildren(children);
-
-    }
-
-    var vnode, ns;
-
-    if (typeof tag === 'string') {
-
-        var Ctor = void 0;
-
-        ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
-
-        if (config.isReservedTag(tag)) {
-
-            // platform built-in elements
-
-            if (process.env.NODE_ENV !== 'production' &&
-
-                isDef(data) &&
-
-                isDef(data.nativeOn) &&
-
-                data.tag !== 'component') {
-
-                warn$2("The .native modifier for v-on is only valid on components but it was used on <".concat(tag, ">."), context);
-
-            }
-
-            vnode = new VNode(config.parsePlatformTagName(tag), data, children, undefined, undefined, context);
-
-        }
-
-        else if ((!data || !data.pre) &&
-
-            isDef((Ctor = resolveAsset(context.$options, 'components', tag)))) {
-
-            // component
-
-            vnode = createComponent(Ctor, data, context, children, tag);
-
-        }
-
-        else {
-
-            // unknown or unlisted namespaced elements
-
-            // check at runtime because it may get assigned a namespace when its
-
-            // parent normalizes children
-
-            vnode = new VNode(tag, data, children, undefined, undefined, context);
-
-        }
-
-    }
-
-    else {
-
-        // direct component options / constructor
-
-        vnode = createComponent(tag, data, context, children);
-
-    }
-
-    if (isArray(vnode)) {
-
-        return vnode;
-
-    }
-
-    else if (isDef(vnode)) {
-
-        if (isDef(ns))
-
-            applyNS(vnode, ns);
-
-        if (isDef(data))
-
-            registerDeepBindings(data);
-
-        return vnode;
-
-    }
-
-    else {
-
-        return createEmptyVNode();
-
-    }
-
+    return vnode;
+  } else {
+    return createEmptyVNode();
+  }
 }
 
 function applyNS(vnode, ns, force) {
+  vnode.ns = ns;
 
-    vnode.ns = ns;
+  if (vnode.tag === "foreignObject") {
+    // use default namespace inside foreignObject
 
-    if (vnode.tag === 'foreignObject') {
+    ns = undefined;
 
-        // use default namespace inside foreignObject
+    force = true;
+  }
 
-        ns = undefined;
+  if (isDef(vnode.children)) {
+    for (var i = 0, l = vnode.children.length; i < l; i++) {
+      var child = vnode.children[i];
 
-        force = true;
-
-    }
-
-    if (isDef(vnode.children)) {
-
-        for (var i = 0, l = vnode.children.length; i < l; i++) {
-
-            var child = vnode.children[i];
-
-            if (isDef(child.tag) &&
-
-                (isUndef(child.ns) || (isTrue(force) && child.tag !== 'svg'))) {
-
-                applyNS(child, ns, force);
-
-            }
-
-        }
-
-    }
-
+      if (
+        isDef(child.tag) &&
+        (isUndef(child.ns) || (isTrue(force) && child.tag !== "svg"))
+      ) {
+        applyNS(child, ns, force);
+      }
+    }
+  }
 }
 
 // ref #5318
@@ -3820,22 +3363,14 @@ function applyNS(vnode, ns, force) {
 // :class are used on slot nodes
 
 function registerDeepBindings(data) {
+  if (isObject(data.style)) {
+    traverse(data.style);
+  }
 
-    if (isObject(data.style)) {
-
-        traverse(data.style);
-
-    }
-
-    if (isObject(data.class)) {
-
-        traverse(data.class);
-
-    }
-
+  if (isObject(data.class)) {
+    traverse(data.class);
+  }
 }
-
-  
 
 /**
 
@@ -3844,84 +3379,58 @@ function registerDeepBindings(data) {
  */
 
 function renderList(val, render) {
+  var ret = null,
+    i,
+    l,
+    keys,
+    key;
 
-    var ret = null, i, l, keys, key;
+  if (isArray(val) || typeof val === "string") {
+    ret = new Array(val.length);
 
-    if (isArray(val) || typeof val === 'string') {
+    for (i = 0, l = val.length; i < l; i++) {
+      ret[i] = render(val[i], i);
+    }
+  } else if (typeof val === "number") {
+    ret = new Array(val);
 
-        ret = new Array(val.length);
+    for (i = 0; i < val; i++) {
+      ret[i] = render(i + 1, i);
+    }
+  } else if (isObject(val)) {
+    if (hasSymbol && val[Symbol.iterator]) {
+      ret = [];
 
-        for (i = 0, l = val.length; i < l; i++) {
+      var iterator = val[Symbol.iterator]();
 
-            ret[i] = render(val[i], i);
+      var result = iterator.next();
 
-        }
+      while (!result.done) {
+        ret.push(render(result.value, ret.length));
 
-    }
+        result = iterator.next();
+      }
+    } else {
+      keys = Object.keys(val);
 
-    else if (typeof val === 'number') {
+      ret = new Array(keys.length);
 
-        ret = new Array(val);
+      for (i = 0, l = keys.length; i < l; i++) {
+        key = keys[i];
 
-        for (i = 0; i < val; i++) {
+        ret[i] = render(val[key], key, i);
+      }
+    }
+  }
 
-            ret[i] = render(i + 1, i);
+  if (!isDef(ret)) {
+    ret = [];
+  }
 
-        }
+  ret._isVList = true;
 
-    }
-
-    else if (isObject(val)) {
-
-        if (hasSymbol && val[Symbol.iterator]) {
-
-            ret = [];
-
-            var iterator = val[Symbol.iterator]();
-
-            var result = iterator.next();
-
-            while (!result.done) {
-
-                ret.push(render(result.value, ret.length));
-
-                result = iterator.next();
-
-            }
-
-        }
-
-        else {
-
-            keys = Object.keys(val);
-
-            ret = new Array(keys.length);
-
-            for (i = 0, l = keys.length; i < l; i++) {
-
-                key = keys[i];
-
-                ret[i] = render(val[key], key, i);
-
-            }
-
-        }
-
-    }
-
-    if (!isDef(ret)) {
-
-        ret = [];
-
-    }
-
-    ret._isVList = true;
-
-    return ret;
-
+  return ret;
 }
-
-  
 
 /**
 
@@ -3930,64 +3439,44 @@ function renderList(val, render) {
  */
 
 function renderSlot(name, fallbackRender, props, bindObject) {
+  var scopedSlotFn = this.$scopedSlots[name];
 
-    var scopedSlotFn = this.$scopedSlots[name];
+  var nodes;
 
-    var nodes;
+  if (scopedSlotFn) {
+    // scoped slot
 
-    if (scopedSlotFn) {
+    props = props || {};
 
-        // scoped slot
+    if (bindObject) {
+      if (process.env.NODE_ENV !== "production" && !isObject(bindObject)) {
+        warn$2("slot v-bind without argument expects an Object", this);
+      }
 
-        props = props || {};
+      props = extend(extend({}, bindObject), props);
+    }
 
-        if (bindObject) {
+    nodes =
+      scopedSlotFn(props) ||
+      (isFunction(fallbackRender) ? fallbackRender() : fallbackRender);
+  } else {
+    nodes =
+      this.$slots[name] ||
+      (isFunction(fallbackRender) ? fallbackRender() : fallbackRender);
+  }
 
-            if (process.env.NODE_ENV !== 'production' && !isObject(bindObject)) {
+  var target = props && props.slot;
 
-                warn$2('slot v-bind without argument expects an Object', this);
-
-            }
-
-            props = extend(extend({}, bindObject), props);
-
-        }
-
-        nodes =
-
-            scopedSlotFn(props) ||
-
-                (isFunction(fallbackRender) ? fallbackRender() : fallbackRender);
-
-    }
-
-    else {
-
-        nodes =
-
-            this.$slots[name] ||
-
-                (isFunction(fallbackRender) ? fallbackRender() : fallbackRender);
-
-    }
-
-    var target = props && props.slot;
-
-    if (target) {
-
-        return this.$createElement('template', { slot: target }, nodes);
-
-    }
-
-    else {
-
-        return nodes;
-
-    }
-
+  if (target) {
+    return this.$createElement("template", { slot: target }, nodes);
+  } else {
+    return nodes;
+  }
 }
 ```
+
 ## 1692~1953 解释
+
 这段代码是一些关于 Vue.js 的运行时帮助函数，包括规范化 children、渲染 v-for 循环列表和渲染插槽的函数。
 
 其中 `normalizeChildren` 函数用于将 children 规范化为一个统一的数组格式，以便在 VNode 渲染时更容易处理。
@@ -3995,30 +3484,20 @@ function renderSlot(name, fallbackRender, props, bindObject) {
 `renderList` 函数用于渲染 v-for 循环列表，根据传入的值类型不同执行不同的循环操作，并返回由每次循环渲染得到的 VNode 数组。
 
 `renderSlot` 函数用于渲染插槽，首先尝试使用作用域插槽进行渲染，若不存在则使用默认插槽进行渲染，并支持指定插槽名和绑定对象。
+
 # 2209~2245
+
 ```js
 function resolveFilter(id) {
-
-    return resolveAsset(this.$options, 'filters', id, true) || identity;
-
+  return resolveAsset(this.$options, "filters", id, true) || identity;
 }
 
-  
-
 function isKeyNotMatch(expect, actual) {
-
-    if (isArray(expect)) {
-
-        return expect.indexOf(actual) === -1;
-
-    }
-
-    else {
-
-        return expect !== actual;
-
-    }
-
+  if (isArray(expect)) {
+    return expect.indexOf(actual) === -1;
+  } else {
+    return expect !== actual;
+  }
 }
 
 /**
@@ -4031,33 +3510,25 @@ function isKeyNotMatch(expect, actual) {
 
  */
 
-function checkKeyCodes(eventKeyCode, key, builtInKeyCode, eventKeyName, builtInKeyName) {
+function checkKeyCodes(
+  eventKeyCode,
+  key,
+  builtInKeyCode,
+  eventKeyName,
+  builtInKeyName
+) {
+  var mappedKeyCode = config.keyCodes[key] || builtInKeyCode;
 
-    var mappedKeyCode = config.keyCodes[key] || builtInKeyCode;
+  if (builtInKeyName && eventKeyName && !config.keyCodes[key]) {
+    return isKeyNotMatch(builtInKeyName, eventKeyName);
+  } else if (mappedKeyCode) {
+    return isKeyNotMatch(mappedKeyCode, eventKeyCode);
+  } else if (eventKeyName) {
+    return hyphenate(eventKeyName) !== key;
+  }
 
-    if (builtInKeyName && eventKeyName && !config.keyCodes[key]) {
-
-        return isKeyNotMatch(builtInKeyName, eventKeyName);
-
-    }
-
-    else if (mappedKeyCode) {
-
-        return isKeyNotMatch(mappedKeyCode, eventKeyCode);
-
-    }
-
-    else if (eventKeyName) {
-
-        return hyphenate(eventKeyName) !== key;
-
-    }
-
-    return eventKeyCode === undefined;
-
+  return eventKeyCode === undefined;
 }
-
-  
 
 /**
 
@@ -4066,88 +3537,57 @@ function checkKeyCodes(eventKeyCode, key, builtInKeyCode, eventKeyName, builtInK
  */
 
 function bindObjectProps(data, tag, value, asProp, isSync) {
+  if (value) {
+    if (!isObject(value)) {
+      process.env.NODE_ENV !== "production" &&
+        warn$2(
+          "v-bind without argument expects an Object or Array value",
+          this
+        );
+    } else {
+      if (isArray(value)) {
+        value = toObject(value);
+      }
 
-    if (value) {
+      var hash = void 0;
 
-        if (!isObject(value)) {
+      var _loop_1 = function (key) {
+        if (key === "class" || key === "style" || isReservedAttribute(key)) {
+          hash = data;
+        } else {
+          var type = data.attrs && data.attrs.type;
 
-            process.env.NODE_ENV !== 'production' &&
+          hash =
+            asProp || config.mustUseProp(tag, type, key)
+              ? data.domProps || (data.domProps = {})
+              : data.attrs || (data.attrs = {});
+        }
 
-                warn$2('v-bind without argument expects an Object or Array value', this);
+        var camelizedKey = camelize(key);
 
-        }
+        var hyphenatedKey = hyphenate(key);
 
-        else {
+        if (!(camelizedKey in hash) && !(hyphenatedKey in hash)) {
+          hash[key] = value[key];
 
-            if (isArray(value)) {
+          if (isSync) {
+            var on = data.on || (data.on = {});
 
-                value = toObject(value);
+            on["update:".concat(key)] = function ($event) {
+              value[key] = $event;
+            };
+          }
+        }
+      };
 
-            }
+      for (var key in value) {
+        _loop_1(key);
+      }
+    }
+  }
 
-            var hash = void 0;
-
-            var _loop_1 = function (key) {
-
-                if (key === 'class' || key === 'style' || isReservedAttribute(key)) {
-
-                    hash = data;
-
-                }
-
-                else {
-
-                    var type = data.attrs && data.attrs.type;
-
-                    hash =
-
-                        asProp || config.mustUseProp(tag, type, key)
-
-                            ? data.domProps || (data.domProps = {})
-
-                            : data.attrs || (data.attrs = {});
-
-                }
-
-                var camelizedKey = camelize(key);
-
-                var hyphenatedKey = hyphenate(key);
-
-                if (!(camelizedKey in hash) && !(hyphenatedKey in hash)) {
-
-                    hash[key] = value[key];
-
-                    if (isSync) {
-
-                        var on = data.on || (data.on = {});
-
-                        on["update:".concat(key)] = function ($event) {
-
-                            value[key] = $event;
-
-                        };
-
-                    }
-
-                }
-
-            };
-
-            for (var key in value) {
-
-                _loop_1(key);
-
-            }
-
-        }
-
-    }
-
-    return data;
-
+  return data;
 }
-
-  
 
 /**
 
@@ -4156,31 +3596,23 @@ function bindObjectProps(data, tag, value, asProp, isSync) {
  */
 
 function renderStatic(index, isInFor) {
+  var cached = this._staticTrees || (this._staticTrees = []);
 
-    var cached = this._staticTrees || (this._staticTrees = []);
+  var tree = cached[index]; // if has already-rendered static tree and not inside v-for, // we can reuse the same tree.
 
-    var tree = cached[index];
+  if (tree && !isInFor) {
+    return tree;
+  } // otherwise, render a fresh tree.
 
-    // if has already-rendered static tree and not inside v-for,
+  tree = cached[index] = this.$options.staticRenderFns[index].call(
+    this._renderProxy,
+    this._c,
+    this // for render fns generated for functional component templates
+  );
 
-    // we can reuse the same tree.
+  markStatic$1(tree, "__static__".concat(index), false);
 
-    if (tree && !isInFor) {
-
-        return tree;
-
-    }
-
-    // otherwise, render a fresh tree.
-
-    tree = cached[index] = this.$options.staticRenderFns[index].call(this._renderProxy, this._c, this // for render fns generated for functional component templates
-
-    );
-
-    markStatic$1(tree, "__static__".concat(index), false);
-
-    return tree;
-
+  return tree;
 }
 
 /**
@@ -4192,159 +3624,119 @@ function renderStatic(index, isInFor) {
  */
 
 function markOnce(tree, index, key) {
+  markStatic$1(
+    tree,
+    "__once__".concat(index).concat(key ? "_".concat(key) : ""),
+    true
+  );
 
-    markStatic$1(tree, "__once__".concat(index).concat(key ? "_".concat(key) : ""), true);
-
-    return tree;
-
+  return tree;
 }
 
 function markStatic$1(tree, key, isOnce) {
-
-    if (isArray(tree)) {
-
-        for (var i = 0; i < tree.length; i++) {
-
-            if (tree[i] && typeof tree[i] !== 'string') {
-
-                markStaticNode(tree[i], "".concat(key, "_").concat(i), isOnce);
-
-            }
-
-        }
-
-    }
-
-    else {
-
-        markStaticNode(tree, key, isOnce);
-
-    }
-
+  if (isArray(tree)) {
+    for (var i = 0; i < tree.length; i++) {
+      if (tree[i] && typeof tree[i] !== "string") {
+        markStaticNode(tree[i], "".concat(key, "_").concat(i), isOnce);
+      }
+    }
+  } else {
+    markStaticNode(tree, key, isOnce);
+  }
 }
 
 function markStaticNode(node, key, isOnce) {
+  node.isStatic = true;
 
-    node.isStatic = true;
+  node.key = key;
 
-    node.key = key;
-
-    node.isOnce = isOnce;
-
+  node.isOnce = isOnce;
 }
-
-  
 
 function bindObjectListeners(data, value) {
+  if (value) {
+    if (!isPlainObject(value)) {
+      process.env.NODE_ENV !== "production" &&
+        warn$2("v-on without argument expects an Object value", this);
+    } else {
+      var on = (data.on = data.on ? extend({}, data.on) : {});
 
-    if (value) {
+      for (var key in value) {
+        var existing = on[key];
 
-        if (!isPlainObject(value)) {
+        var ours = value[key];
 
-            process.env.NODE_ENV !== 'production' && warn$2('v-on without argument expects an Object value', this);
+        on[key] = existing ? [].concat(existing, ours) : ours;
+      }
+    }
+  }
 
-        }
-
-        else {
-
-            var on = (data.on = data.on ? extend({}, data.on) : {});
-
-            for (var key in value) {
-
-                var existing = on[key];
-
-                var ours = value[key];
-
-                on[key] = existing ? [].concat(existing, ours) : ours;
-
-            }
-
-        }
-
-    }
-
-    return data;
-
+  return data;
 }
 
-  
+function resolveScopedSlots(
+  fns,
+  res,
 
-function resolveScopedSlots(fns, res,
+  // the following are added in 2.6
 
-// the following are added in 2.6
+  hasDynamicKeys,
+  contentHashKey
+) {
+  res = res || { $stable: !hasDynamicKeys };
 
-hasDynamicKeys, contentHashKey) {
+  for (var i = 0; i < fns.length; i++) {
+    var slot = fns[i];
 
-    res = res || { $stable: !hasDynamicKeys };
+    if (isArray(slot)) {
+      resolveScopedSlots(slot, res, hasDynamicKeys);
+    } else if (slot) {
+      // marker for reverse proxying v-slot without scope on this.$slots
 
-    for (var i = 0; i < fns.length; i++) {
+      // @ts-expect-error
 
-        var slot = fns[i];
+      if (slot.proxy) {
+        // @ts-expect-error
 
-        if (isArray(slot)) {
+        slot.fn.proxy = true;
+      }
 
-            resolveScopedSlots(slot, res, hasDynamicKeys);
+      res[slot.key] = slot.fn;
+    }
+  }
 
-        }
+  if (contentHashKey) {
+    res.$key = contentHashKey;
+  }
 
-        else if (slot) {
-
-            // marker for reverse proxying v-slot without scope on this.$slots
-
-            // @ts-expect-error
-
-            if (slot.proxy) {
-
-                // @ts-expect-error
-
-                slot.fn.proxy = true;
-
-            }
-
-            res[slot.key] = slot.fn;
-
-        }
-
-    }
-
-    if (contentHashKey) {
-
-        res.$key = contentHashKey;
-
-    }
-
-    return res;
-
+  return res;
 }
-
-  
 
 // helper to process dynamic keys for dynamic arguments in v-bind and v-on.
 
 function bindDynamicKeys(baseObj, values) {
+  for (var i = 0; i < values.length; i += 2) {
+    var key = values[i];
 
-    for (var i = 0; i < values.length; i += 2) {
+    if (typeof key === "string" && key) {
+      baseObj[values[i]] = values[i + 1];
+    } else if (
+      process.env.NODE_ENV !== "production" &&
+      key !== "" &&
+      key !== null
+    ) {
+      // null is a special value for explicitly removing a binding
 
-        var key = values[i];
+      warn$2(
+        "Invalid value for dynamic directive argument (expected string or null): ".concat(
+          key
+        ),
+        this
+      );
+    }
+  }
 
-        if (typeof key === 'string' && key) {
-
-            baseObj[values[i]] = values[i + 1];
-
-        }
-
-        else if (process.env.NODE_ENV !== 'production' && key !== '' && key !== null) {
-
-            // null is a special value for explicitly removing a binding
-
-            warn$2("Invalid value for dynamic directive argument (expected string or null): ".concat(key), this);
-
-        }
-
-    }
-
-    return baseObj;
-
+  return baseObj;
 }
 
 // helper to dynamically append modifier runtime markers to event names.
@@ -4354,52 +3746,44 @@ function bindDynamicKeys(baseObj, values) {
 // to string and cause the type check to miss.
 
 function prependModifier(value, symbol) {
-
-    return typeof value === 'string' ? symbol + value : value;
-
+  return typeof value === "string" ? symbol + value : value;
 }
-
-  
 
 function installRenderHelpers(target) {
+  target._o = markOnce;
 
-    target._o = markOnce;
+  target._n = toNumber;
 
-    target._n = toNumber;
+  target._s = toString;
 
-    target._s = toString;
+  target._l = renderList;
 
-    target._l = renderList;
+  target._t = renderSlot;
 
-    target._t = renderSlot;
+  target._q = looseEqual;
 
-    target._q = looseEqual;
+  target._i = looseIndexOf;
 
-    target._i = looseIndexOf;
+  target._m = renderStatic;
 
-    target._m = renderStatic;
+  target._f = resolveFilter;
 
-    target._f = resolveFilter;
+  target._k = checkKeyCodes;
 
-    target._k = checkKeyCodes;
+  target._b = bindObjectProps;
 
-    target._b = bindObjectProps;
+  target._v = createTextVNode;
 
-    target._v = createTextVNode;
+  target._e = createEmptyVNode;
 
-    target._e = createEmptyVNode;
+  target._u = resolveScopedSlots;
 
-    target._u = resolveScopedSlots;
+  target._g = bindObjectListeners;
 
-    target._g = bindObjectListeners;
+  target._d = bindDynamicKeys;
 
-    target._d = bindDynamicKeys;
-
-    target._p = prependModifier;
-
+  target._p = prependModifier;
 }
-
-  
 
 /**
 
@@ -4408,517 +3792,358 @@ function installRenderHelpers(target) {
  */
 
 function resolveSlots(children, context) {
+  if (!children || !children.length) {
+    return {};
+  }
 
-    if (!children || !children.length) {
+  var slots = {};
 
-        return {};
+  for (var i = 0, l = children.length; i < l; i++) {
+    var child = children[i];
 
-    }
+    var data = child.data; // remove slot attribute if the node is resolved as a Vue slot node
 
-    var slots = {};
+    if (data && data.attrs && data.attrs.slot) {
+      delete data.attrs.slot;
+    } // named slots should only be respected if the vnode was rendered in the // same context.
 
-    for (var i = 0, l = children.length; i < l; i++) {
+    if (
+      (child.context === context || child.fnContext === context) &&
+      data &&
+      data.slot != null
+    ) {
+      var name_1 = data.slot;
 
-        var child = children[i];
+      var slot = slots[name_1] || (slots[name_1] = []);
 
-        var data = child.data;
+      if (child.tag === "template") {
+        slot.push.apply(slot, child.children || []);
+      } else {
+        slot.push(child);
+      }
+    } else {
+      (slots.default || (slots.default = [])).push(child);
+    }
+  } // ignore slots that contains only whitespace
 
-        // remove slot attribute if the node is resolved as a Vue slot node
+  for (var name_2 in slots) {
+    if (slots[name_2].every(isWhitespace)) {
+      delete slots[name_2];
+    }
+  }
 
-        if (data && data.attrs && data.attrs.slot) {
-
-            delete data.attrs.slot;
-
-        }
-
-        // named slots should only be respected if the vnode was rendered in the
-
-        // same context.
-
-        if ((child.context === context || child.fnContext === context) &&
-
-            data &&
-
-            data.slot != null) {
-
-            var name_1 = data.slot;
-
-            var slot = slots[name_1] || (slots[name_1] = []);
-
-            if (child.tag === 'template') {
-
-                slot.push.apply(slot, child.children || []);
-
-            }
-
-            else {
-
-                slot.push(child);
-
-            }
-
-        }
-
-        else {
-
-            (slots.default || (slots.default = [])).push(child);
-
-        }
-
-    }
-
-    // ignore slots that contains only whitespace
-
-    for (var name_2 in slots) {
-
-        if (slots[name_2].every(isWhitespace)) {
-
-            delete slots[name_2];
-
-        }
-
-    }
-
-    return slots;
-
+  return slots;
 }
 
 function isWhitespace(node) {
-
-    return (node.isComment && !node.asyncFactory) || node.text === ' ';
-
+  return (node.isComment && !node.asyncFactory) || node.text === " ";
 }
-
-  
 
 function isAsyncPlaceholder(node) {
+  // @ts-expect-error not really boolean type
 
-    // @ts-expect-error not really boolean type
-
-    return node.isComment && node.asyncFactory;
-
+  return node.isComment && node.asyncFactory;
 }
 ```
+
 ## 2209~2245 解释
+
 这段代码定义了一些 Vue.js 运行时的帮助函数，包括解析过滤器、检查按键码、绑定对象属性和监听器、渲染静态节点等功能。其中 `resolveFilter` 函数用于解析过滤器，`checkKeyCodes` 函数用于检查按键码，`bindObjectProps` 函数用于绑定对象属性，`bindObjectListeners` 函数用于绑定对象监听器，`renderStatic` 函数用于渲染静态节点，`resolveSlots` 函数用于解析插槽内容等。这些函数都是 Vue.js 运行时的核心帮助函数，可以提高组件的性能和效率。
+
 # 2246_2451
+
 ```js
-  
+function normalizeScopedSlots(
+  ownerVm,
+  scopedSlots,
+  normalSlots,
+  prevScopedSlots
+) {
+  var res;
 
-function normalizeScopedSlots(ownerVm, scopedSlots, normalSlots, prevScopedSlots) {
+  var hasNormalSlots = Object.keys(normalSlots).length > 0;
 
-    var res;
+  var isStable = scopedSlots ? !!scopedSlots.$stable : !hasNormalSlots;
 
-    var hasNormalSlots = Object.keys(normalSlots).length > 0;
+  var key = scopedSlots && scopedSlots.$key;
 
-    var isStable = scopedSlots ? !!scopedSlots.$stable : !hasNormalSlots;
+  if (!scopedSlots) {
+    res = {};
+  } else if (scopedSlots._normalized) {
+    // fast path 1: child component re-render only, parent did not change
 
-    var key = scopedSlots && scopedSlots.$key;
+    return scopedSlots._normalized;
+  } else if (
+    isStable &&
+    prevScopedSlots &&
+    prevScopedSlots !== emptyObject &&
+    key === prevScopedSlots.$key &&
+    !hasNormalSlots &&
+    !prevScopedSlots.$hasNormal
+  ) {
+    // fast path 2: stable scoped slots w/ no normal slots to proxy,
 
-    if (!scopedSlots) {
+    // only need to normalize once
 
-        res = {};
+    return prevScopedSlots;
+  } else {
+    res = {};
 
-    }
+    for (var key_1 in scopedSlots) {
+      if (scopedSlots[key_1] && key_1[0] !== "$") {
+        res[key_1] = normalizeScopedSlot(
+          ownerVm,
+          normalSlots,
+          key_1,
+          scopedSlots[key_1]
+        );
+      }
+    }
+  } // expose normal slots on scopedSlots
 
-    else if (scopedSlots._normalized) {
+  for (var key_2 in normalSlots) {
+    if (!(key_2 in res)) {
+      res[key_2] = proxyNormalSlot(normalSlots, key_2);
+    }
+  } // avoriaz seems to mock a non-extensible $scopedSlots object // and when that is passed down this would cause an error
 
-        // fast path 1: child component re-render only, parent did not change
+  if (scopedSlots && Object.isExtensible(scopedSlots)) {
+    scopedSlots._normalized = res;
+  }
 
-        return scopedSlots._normalized;
+  def(res, "$stable", isStable);
 
-    }
+  def(res, "$key", key);
 
-    else if (isStable &&
+  def(res, "$hasNormal", hasNormalSlots);
 
-        prevScopedSlots &&
-
-        prevScopedSlots !== emptyObject &&
-
-        key === prevScopedSlots.$key &&
-
-        !hasNormalSlots &&
-
-        !prevScopedSlots.$hasNormal) {
-
-        // fast path 2: stable scoped slots w/ no normal slots to proxy,
-
-        // only need to normalize once
-
-        return prevScopedSlots;
-
-    }
-
-    else {
-
-        res = {};
-
-        for (var key_1 in scopedSlots) {
-
-            if (scopedSlots[key_1] && key_1[0] !== '$') {
-
-                res[key_1] = normalizeScopedSlot(ownerVm, normalSlots, key_1, scopedSlots[key_1]);
-
-            }
-
-        }
-
-    }
-
-    // expose normal slots on scopedSlots
-
-    for (var key_2 in normalSlots) {
-
-        if (!(key_2 in res)) {
-
-            res[key_2] = proxyNormalSlot(normalSlots, key_2);
-
-        }
-
-    }
-
-    // avoriaz seems to mock a non-extensible $scopedSlots object
-
-    // and when that is passed down this would cause an error
-
-    if (scopedSlots && Object.isExtensible(scopedSlots)) {
-
-        scopedSlots._normalized = res;
-
-    }
-
-    def(res, '$stable', isStable);
-
-    def(res, '$key', key);
-
-    def(res, '$hasNormal', hasNormalSlots);
-
-    return res;
-
+  return res;
 }
 
 function normalizeScopedSlot(vm, normalSlots, key, fn) {
+  var normalized = function () {
+    var cur = currentInstance;
 
-    var normalized = function () {
+    setCurrentInstance(vm);
 
-        var cur = currentInstance;
+    var res = arguments.length ? fn.apply(null, arguments) : fn({});
 
-        setCurrentInstance(vm);
+    res =
+      res && typeof res === "object" && !isArray(res)
+        ? [res] // single vnode
+        : normalizeChildren(res);
 
-        var res = arguments.length ? fn.apply(null, arguments) : fn({});
+    var vnode = res && res[0];
 
-        res =
+    setCurrentInstance(cur);
 
-            res && typeof res === 'object' && !isArray(res)
+    return res &&
+      (!vnode ||
+        (res.length === 1 && vnode.isComment && !isAsyncPlaceholder(vnode))) // #9658, #10391
+      ? undefined
+      : res;
+  }; // this is a slot using the new v-slot syntax without scope. although it is // compiled as a scoped slot, render fn users would expect it to be present // on this.$slots because the usage is semantically a normal slot.
 
-                ? [res] // single vnode
+  if (fn.proxy) {
+    Object.defineProperty(normalSlots, key, {
+      get: normalized,
 
-                : normalizeChildren(res);
+      enumerable: true,
 
-        var vnode = res && res[0];
+      configurable: true,
+    });
+  }
 
-        setCurrentInstance(cur);
-
-        return res &&
-
-            (!vnode ||
-
-                (res.length === 1 && vnode.isComment && !isAsyncPlaceholder(vnode))) // #9658, #10391
-
-            ? undefined
-
-            : res;
-
-    };
-
-    // this is a slot using the new v-slot syntax without scope. although it is
-
-    // compiled as a scoped slot, render fn users would expect it to be present
-
-    // on this.$slots because the usage is semantically a normal slot.
-
-    if (fn.proxy) {
-
-        Object.defineProperty(normalSlots, key, {
-
-            get: normalized,
-
-            enumerable: true,
-
-            configurable: true
-
-        });
-
-    }
-
-    return normalized;
-
+  return normalized;
 }
 
 function proxyNormalSlot(slots, key) {
-
-    return function () { return slots[key]; };
-
+  return function () {
+    return slots[key];
+  };
 }
 
-  
-
 function initSetup(vm) {
+  var options = vm.$options;
 
-    var options = vm.$options;
+  var setup = options.setup;
 
-    var setup = options.setup;
+  if (setup) {
+    var ctx = (vm._setupContext = createSetupContext(vm));
 
-    if (setup) {
+    setCurrentInstance(vm);
 
-        var ctx = (vm._setupContext = createSetupContext(vm));
+    pushTarget();
 
-        setCurrentInstance(vm);
+    var setupResult = invokeWithErrorHandling(
+      setup,
+      null,
+      [vm._props || shallowReactive({}), ctx],
+      vm,
+      "setup"
+    );
 
-        pushTarget();
+    popTarget();
 
-        var setupResult = invokeWithErrorHandling(setup, null, [vm._props || shallowReactive({}), ctx], vm, "setup");
+    setCurrentInstance();
 
-        popTarget();
+    if (isFunction(setupResult)) {
+      // render function
 
-        setCurrentInstance();
+      // @ts-ignore
 
-        if (isFunction(setupResult)) {
+      options.render = setupResult;
+    } else if (isObject(setupResult)) {
+      // bindings
 
-            // render function
+      if (
+        process.env.NODE_ENV !== "production" &&
+        setupResult instanceof VNode
+      ) {
+        warn$2(
+          "setup() should not return VNodes directly - " +
+            "return a render function instead."
+        );
+      }
 
-            // @ts-ignore
+      vm._setupState = setupResult; // __sfc indicates compiled bindings from <script setup>
 
-            options.render = setupResult;
+      if (!setupResult.__sfc) {
+        for (var key in setupResult) {
+          if (!isReserved(key)) {
+            proxyWithRefUnwrap(vm, setupResult, key);
+          } else if (process.env.NODE_ENV !== "production") {
+            warn$2("Avoid using variables that start with _ or $ in setup().");
+          }
+        }
+      } else {
+        // exposed for compiled render fn
 
-        }
+        var proxy = (vm._setupProxy = {});
 
-        else if (isObject(setupResult)) {
-
-            // bindings
-
-            if (process.env.NODE_ENV !== 'production' && setupResult instanceof VNode) {
-
-                warn$2("setup() should not return VNodes directly - " +
-
-                    "return a render function instead.");
-
-            }
-
-            vm._setupState = setupResult;
-
-            // __sfc indicates compiled bindings from <script setup>
-
-            if (!setupResult.__sfc) {
-
-                for (var key in setupResult) {
-
-                    if (!isReserved(key)) {
-
-                        proxyWithRefUnwrap(vm, setupResult, key);
-
-                    }
-
-                    else if (process.env.NODE_ENV !== 'production') {
-
-                        warn$2("Avoid using variables that start with _ or $ in setup().");
-
-                    }
-
-                }
-
-            }
-
-            else {
-
-                // exposed for compiled render fn
-
-                var proxy = (vm._setupProxy = {});
-
-                for (var key in setupResult) {
-
-                    if (key !== '__sfc') {
-
-                        proxyWithRefUnwrap(proxy, setupResult, key);
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        else if (process.env.NODE_ENV !== 'production' && setupResult !== undefined) {
-
-            warn$2("setup() should return an object. Received: ".concat(setupResult === null ? 'null' : typeof setupResult));
-
-        }
-
-    }
-
+        for (var key in setupResult) {
+          if (key !== "__sfc") {
+            proxyWithRefUnwrap(proxy, setupResult, key);
+          }
+        }
+      }
+    } else if (
+      process.env.NODE_ENV !== "production" &&
+      setupResult !== undefined
+    ) {
+      warn$2(
+        "setup() should return an object. Received: ".concat(
+          setupResult === null ? "null" : typeof setupResult
+        )
+      );
+    }
+  }
 }
 
 function createSetupContext(vm) {
+  var exposeCalled = false;
 
-    var exposeCalled = false;
+  return {
+    get attrs() {
+      if (!vm._attrsProxy) {
+        var proxy = (vm._attrsProxy = {});
 
-    return {
+        def(proxy, "_v_attr_proxy", true);
 
-        get attrs() {
+        syncSetupProxy(proxy, vm.$attrs, emptyObject, vm, "$attrs");
+      }
 
-            if (!vm._attrsProxy) {
+      return vm._attrsProxy;
+    },
 
-                var proxy = (vm._attrsProxy = {});
+    get listeners() {
+      if (!vm._listenersProxy) {
+        var proxy = (vm._listenersProxy = {});
 
-                def(proxy, '_v_attr_proxy', true);
+        syncSetupProxy(proxy, vm.$listeners, emptyObject, vm, "$listeners");
+      }
 
-                syncSetupProxy(proxy, vm.$attrs, emptyObject, vm, '$attrs');
+      return vm._listenersProxy;
+    },
 
-            }
+    get slots() {
+      return initSlotsProxy(vm);
+    },
 
-            return vm._attrsProxy;
+    emit: bind$1(vm.$emit, vm),
 
-        },
+    expose: function (exposed) {
+      if (process.env.NODE_ENV !== "production") {
+        if (exposeCalled) {
+          warn$2("expose() should be called only once per setup().", vm);
+        }
 
-        get listeners() {
+        exposeCalled = true;
+      }
 
-            if (!vm._listenersProxy) {
-
-                var proxy = (vm._listenersProxy = {});
-
-                syncSetupProxy(proxy, vm.$listeners, emptyObject, vm, '$listeners');
-
-            }
-
-            return vm._listenersProxy;
-
-        },
-
-        get slots() {
-
-            return initSlotsProxy(vm);
-
-        },
-
-        emit: bind$1(vm.$emit, vm),
-
-        expose: function (exposed) {
-
-            if (process.env.NODE_ENV !== 'production') {
-
-                if (exposeCalled) {
-
-                    warn$2("expose() should be called only once per setup().", vm);
-
-                }
-
-                exposeCalled = true;
-
-            }
-
-            if (exposed) {
-
-                Object.keys(exposed).forEach(function (key) {
-
-                    return proxyWithRefUnwrap(vm, exposed, key);
-
-                });
-
-            }
-
-        }
-
-    };
-
+      if (exposed) {
+        Object.keys(exposed).forEach(function (key) {
+          return proxyWithRefUnwrap(vm, exposed, key);
+        });
+      }
+    },
+  };
 }
 
 function syncSetupProxy(to, from, prev, instance, type) {
+  var changed = false;
 
-    var changed = false;
+  for (var key in from) {
+    if (!(key in to)) {
+      changed = true;
 
-    for (var key in from) {
+      defineProxyAttr(to, key, instance, type);
+    } else if (from[key] !== prev[key]) {
+      changed = true;
+    }
+  }
 
-        if (!(key in to)) {
+  for (var key in to) {
+    if (!(key in from)) {
+      changed = true;
 
-            changed = true;
+      delete to[key];
+    }
+  }
 
-            defineProxyAttr(to, key, instance, type);
-
-        }
-
-        else if (from[key] !== prev[key]) {
-
-            changed = true;
-
-        }
-
-    }
-
-    for (var key in to) {
-
-        if (!(key in from)) {
-
-            changed = true;
-
-            delete to[key];
-
-        }
-
-    }
-
-    return changed;
-
+  return changed;
 }
 
 function defineProxyAttr(proxy, key, instance, type) {
+  Object.defineProperty(proxy, key, {
+    enumerable: true,
 
-    Object.defineProperty(proxy, key, {
+    configurable: true,
 
-        enumerable: true,
-
-        configurable: true,
-
-        get: function () {
-
-            return instance[type][key];
-
-        }
-
-    });
-
+    get: function () {
+      return instance[type][key];
+    },
+  });
 }
 
 function initSlotsProxy(vm) {
+  if (!vm._slotsProxy) {
+    syncSetupSlots((vm._slotsProxy = {}), vm.$scopedSlots);
+  }
 
-    if (!vm._slotsProxy) {
-
-        syncSetupSlots((vm._slotsProxy = {}), vm.$scopedSlots);
-
-    }
-
-    return vm._slotsProxy;
-
+  return vm._slotsProxy;
 }
 
 function syncSetupSlots(to, from) {
+  for (var key in from) {
+    to[key] = from[key];
+  }
 
-    for (var key in from) {
-
-        to[key] = from[key];
-
-    }
-
-    for (var key in to) {
-
-        if (!(key in from)) {
-
-            delete to[key];
-
-        }
-
-    }
-
+  for (var key in to) {
+    if (!(key in from)) {
+      delete to[key];
+    }
+  }
 }
 
 /**
@@ -4930,9 +4155,7 @@ function syncSetupSlots(to, from) {
  */
 
 function useSlots() {
-
-    return getContext().slots;
-
+  return getContext().slots;
 }
 
 /**
@@ -4944,9 +4167,7 @@ function useSlots() {
  */
 
 function useAttrs() {
-
-    return getContext().attrs;
-
+  return getContext().attrs;
 }
 
 /**
@@ -4960,28 +4181,26 @@ function useAttrs() {
  */
 
 function useListeners() {
-
-    return getContext().listeners;
-
+  return getContext().listeners;
 }
 
 function getContext() {
+  if (process.env.NODE_ENV !== "production" && !currentInstance) {
+    warn$2("useContext() called without active instance.");
+  }
 
-    if (process.env.NODE_ENV !== 'production' && !currentInstance) {
+  var vm = currentInstance;
 
-        warn$2("useContext() called without active instance.");
-
-    }
-
-    var vm = currentInstance;
-
-    return vm._setupContext || (vm._setupContext = createSetupContext(vm));
-
+  return vm._setupContext || (vm._setupContext = createSetupContext(vm));
 }
 ```
+
 ## 2246_2451 解释
+
 这段代码是 Vue.js 的运行时核心代码，包括帮助函数和初始化设置相关的函数。其中，normalizeScopedSlots 函数用于规范化作用域插槽，initSetup 函数用于初始化组件的 setup 函数，createSetupContext 函数用于创建 setup 上下文，syncSetupProxy 函数用于同步 setup 代理属性，defineProxyAttr 函数用于定义代理属性，initSlotsProxy 函数用于初始化 slots 代理，useSlots、useAttrs 和 useListeners 函数用于获取当前的 slots、attrs 和 listeners 对象，getContext 函数用于获取当前的 setup 上下文。这些函数为 Vue.js 提供了强大的能力，使得开发者可以更加方便地编写高效、灵活、可维护的组件。
+
 # 2452~2707
+
 ```js
 unction mergeDefaults(raw, defaults) {
 
@@ -5029,7 +4248,7 @@ unction mergeDefaults(raw, defaults) {
 
 }
 
-  
+
 
 function initRender(vm) {
 
@@ -5241,7 +4460,7 @@ function renderMixin(Vue) {
 
 }
 
-  
+
 
 function ensureCtor(comp, base) {
 
@@ -5473,7 +4692,7 @@ function resolveAsyncComponent(factory, baseCtor) {
 
 }
 
-  
+
 
 function getFirstComponentChild(children) {
 
@@ -5495,621 +4714,446 @@ function getFirstComponentChild(children) {
 
 }
 ```
+
 ## 2452~2707 解释
-这段代码是 Vue.js 的渲染相关的 mixin，定义了一些与组件渲染相关的函数和逻辑。其中包括 mergeDefaults 函数用于合并默认 prop 值，initRender 函数用于初始化渲染环境，renderMixin 函数用于安装渲染相关的实例方法和定义 _render 函数用于组件渲染。另外还包括一些辅助函数，如 ensureCtor 用于转化异步组件为构造器，createAsyncPlaceholder 用于创建异步组件的占位符节点，resolveAsyncComponent 用于解析异步组件，getFirstComponentChild 用于获取子节点中的第一个组件节点。这些函数为 Vue.js 提供了强大的渲染能力，可以使开发者更加方便地编写高效、灵活、可维护的组件。
+
+这段代码是 Vue.js 的渲染相关的 mixin，定义了一些与组件渲染相关的函数和逻辑。其中包括 mergeDefaults 函数用于合并默认 prop 值，initRender 函数用于初始化渲染环境，renderMixin 函数用于安装渲染相关的实例方法和定义 \_render 函数用于组件渲染。另外还包括一些辅助函数，如 ensureCtor 用于转化异步组件为构造器，createAsyncPlaceholder 用于创建异步组件的占位符节点，resolveAsyncComponent 用于解析异步组件，getFirstComponentChild 用于获取子节点中的第一个组件节点。这些函数为 Vue.js 提供了强大的渲染能力，可以使开发者更加方便地编写高效、灵活、可维护的组件。
+
 # 2709~3013
+
 ```js
-  
-
 function initEvents(vm) {
+  vm._events = Object.create(null);
 
-    vm._events = Object.create(null);
+  vm._hasHookEvent = false; // init parent attached events
 
-    vm._hasHookEvent = false;
+  var listeners = vm.$options._parentListeners;
 
-    // init parent attached events
-
-    var listeners = vm.$options._parentListeners;
-
-    if (listeners) {
-
-        updateComponentListeners(vm, listeners);
-
-    }
-
+  if (listeners) {
+    updateComponentListeners(vm, listeners);
+  }
 }
 
 var target$1;
 
 function add$1(event, fn) {
-
-    target$1.$on(event, fn);
-
+  target$1.$on(event, fn);
 }
 
 function remove$1(event, fn) {
-
-    target$1.$off(event, fn);
-
+  target$1.$off(event, fn);
 }
 
 function createOnceHandler$1(event, fn) {
+  var _target = target$1;
 
-    var _target = target$1;
+  return function onceHandler() {
+    var res = fn.apply(null, arguments);
 
-    return function onceHandler() {
-
-        var res = fn.apply(null, arguments);
-
-        if (res !== null) {
-
-            _target.$off(event, onceHandler);
-
-        }
-
-    };
-
+    if (res !== null) {
+      _target.$off(event, onceHandler);
+    }
+  };
 }
 
 function updateComponentListeners(vm, listeners, oldListeners) {
+  target$1 = vm;
 
-    target$1 = vm;
+  updateListeners(
+    listeners,
+    oldListeners || {},
+    add$1,
+    remove$1,
+    createOnceHandler$1,
+    vm
+  );
 
-    updateListeners(listeners, oldListeners || {}, add$1, remove$1, createOnceHandler$1, vm);
-
-    target$1 = undefined;
-
+  target$1 = undefined;
 }
 
 function eventsMixin(Vue) {
+  var hookRE = /^hook:/;
 
-    var hookRE = /^hook:/;
+  Vue.prototype.$on = function (event, fn) {
+    var vm = this;
 
-    Vue.prototype.$on = function (event, fn) {
+    if (isArray(event)) {
+      for (var i = 0, l = event.length; i < l; i++) {
+        vm.$on(event[i], fn);
+      }
+    } else {
+      (vm._events[event] || (vm._events[event] = [])).push(fn); // optimize hook:event cost by using a boolean flag marked at registration // instead of a hash lookup
 
-        var vm = this;
+      if (hookRE.test(event)) {
+        vm._hasHookEvent = true;
+      }
+    }
 
-        if (isArray(event)) {
+    return vm;
+  };
 
-            for (var i = 0, l = event.length; i < l; i++) {
+  Vue.prototype.$once = function (event, fn) {
+    var vm = this;
 
-                vm.$on(event[i], fn);
+    function on() {
+      vm.$off(event, on);
 
-            }
+      fn.apply(vm, arguments);
+    }
 
-        }
+    on.fn = fn;
 
-        else {
+    vm.$on(event, on);
 
-            (vm._events[event] || (vm._events[event] = [])).push(fn);
+    return vm;
+  };
 
-            // optimize hook:event cost by using a boolean flag marked at registration
+  Vue.prototype.$off = function (event, fn) {
+    var vm = this; // all
 
-            // instead of a hash lookup
+    if (!arguments.length) {
+      vm._events = Object.create(null);
 
-            if (hookRE.test(event)) {
+      return vm;
+    } // array of events
 
-                vm._hasHookEvent = true;
+    if (isArray(event)) {
+      for (var i_1 = 0, l = event.length; i_1 < l; i_1++) {
+        vm.$off(event[i_1], fn);
+      }
 
-            }
+      return vm;
+    } // specific event
 
-        }
+    var cbs = vm._events[event];
 
-        return vm;
+    if (!cbs) {
+      return vm;
+    }
 
-    };
+    if (!fn) {
+      vm._events[event] = null;
 
-    Vue.prototype.$once = function (event, fn) {
+      return vm;
+    } // specific handler
 
-        var vm = this;
+    var cb;
 
-        function on() {
+    var i = cbs.length;
 
-            vm.$off(event, on);
+    while (i--) {
+      cb = cbs[i];
 
-            fn.apply(vm, arguments);
+      if (cb === fn || cb.fn === fn) {
+        cbs.splice(i, 1);
 
-        }
+        break;
+      }
+    }
 
-        on.fn = fn;
+    return vm;
+  };
 
-        vm.$on(event, on);
+  Vue.prototype.$emit = function (event) {
+    var vm = this;
 
-        return vm;
+    if (process.env.NODE_ENV !== "production") {
+      var lowerCaseEvent = event.toLowerCase();
 
-    };
+      if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
+        tip(
+          'Event "'.concat(lowerCaseEvent, '" is emitted in component ') +
+            ""
+              .concat(
+                formatComponentName(vm),
+                ' but the handler is registered for "'
+              )
+              .concat(event, '". ') +
+            "Note that HTML attributes are case-insensitive and you cannot use " +
+            "v-on to listen to camelCase events when using in-DOM templates. " +
+            'You should probably use "'
+              .concat(hyphenate(event), '" instead of "')
+              .concat(event, '".')
+        );
+      }
+    }
 
-    Vue.prototype.$off = function (event, fn) {
+    var cbs = vm._events[event];
 
-        var vm = this;
+    if (cbs) {
+      cbs = cbs.length > 1 ? toArray(cbs) : cbs;
 
-        // all
+      var args = toArray(arguments, 1);
 
-        if (!arguments.length) {
+      var info = 'event handler for "'.concat(event, '"');
 
-            vm._events = Object.create(null);
+      for (var i = 0, l = cbs.length; i < l; i++) {
+        invokeWithErrorHandling(cbs[i], vm, args, vm, info);
+      }
+    }
 
-            return vm;
-
-        }
-
-        // array of events
-
-        if (isArray(event)) {
-
-            for (var i_1 = 0, l = event.length; i_1 < l; i_1++) {
-
-                vm.$off(event[i_1], fn);
-
-            }
-
-            return vm;
-
-        }
-
-        // specific event
-
-        var cbs = vm._events[event];
-
-        if (!cbs) {
-
-            return vm;
-
-        }
-
-        if (!fn) {
-
-            vm._events[event] = null;
-
-            return vm;
-
-        }
-
-        // specific handler
-
-        var cb;
-
-        var i = cbs.length;
-
-        while (i--) {
-
-            cb = cbs[i];
-
-            if (cb === fn || cb.fn === fn) {
-
-                cbs.splice(i, 1);
-
-                break;
-
-            }
-
-        }
-
-        return vm;
-
-    };
-
-    Vue.prototype.$emit = function (event) {
-
-        var vm = this;
-
-        if (process.env.NODE_ENV !== 'production') {
-
-            var lowerCaseEvent = event.toLowerCase();
-
-            if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
-
-                tip("Event \"".concat(lowerCaseEvent, "\" is emitted in component ") +
-
-                    "".concat(formatComponentName(vm), " but the handler is registered for \"").concat(event, "\". ") +
-
-                    "Note that HTML attributes are case-insensitive and you cannot use " +
-
-                    "v-on to listen to camelCase events when using in-DOM templates. " +
-
-                    "You should probably use \"".concat(hyphenate(event), "\" instead of \"").concat(event, "\"."));
-
-            }
-
-        }
-
-        var cbs = vm._events[event];
-
-        if (cbs) {
-
-            cbs = cbs.length > 1 ? toArray(cbs) : cbs;
-
-            var args = toArray(arguments, 1);
-
-            var info = "event handler for \"".concat(event, "\"");
-
-            for (var i = 0, l = cbs.length; i < l; i++) {
-
-                invokeWithErrorHandling(cbs[i], vm, args, vm, info);
-
-            }
-
-        }
-
-        return vm;
-
-    };
-
+    return vm;
+  };
 }
-
-  
 
 var activeInstance = null;
 
 var isUpdatingChildComponent = false;
 
 function setActiveInstance(vm) {
+  var prevActiveInstance = activeInstance;
 
-    var prevActiveInstance = activeInstance;
+  activeInstance = vm;
 
-    activeInstance = vm;
-
-    return function () {
-
-        activeInstance = prevActiveInstance;
-
-    };
-
+  return function () {
+    activeInstance = prevActiveInstance;
+  };
 }
 
 function initLifecycle(vm) {
+  var options = vm.$options; // locate first non-abstract parent
 
-    var options = vm.$options;
+  var parent = options.parent;
 
-    // locate first non-abstract parent
+  if (parent && !options.abstract) {
+    while (parent.$options.abstract && parent.$parent) {
+      parent = parent.$parent;
+    }
 
-    var parent = options.parent;
+    parent.$children.push(vm);
+  }
 
-    if (parent && !options.abstract) {
+  vm.$parent = parent;
 
-        while (parent.$options.abstract && parent.$parent) {
+  vm.$root = parent ? parent.$root : vm;
 
-            parent = parent.$parent;
+  vm.$children = [];
 
-        }
+  vm.$refs = {};
 
-        parent.$children.push(vm);
+  vm._provided = parent ? parent._provided : Object.create(null);
 
-    }
+  vm._watcher = null;
 
-    vm.$parent = parent;
+  vm._inactive = null;
 
-    vm.$root = parent ? parent.$root : vm;
+  vm._directInactive = false;
 
-    vm.$children = [];
+  vm._isMounted = false;
 
-    vm.$refs = {};
+  vm._isDestroyed = false;
 
-    vm._provided = parent ? parent._provided : Object.create(null);
-
-    vm._watcher = null;
-
-    vm._inactive = null;
-
-    vm._directInactive = false;
-
-    vm._isMounted = false;
-
-    vm._isDestroyed = false;
-
-    vm._isBeingDestroyed = false;
-
+  vm._isBeingDestroyed = false;
 }
 
 function lifecycleMixin(Vue) {
+  Vue.prototype._update = function (vnode, hydrating) {
+    var vm = this;
 
-    Vue.prototype._update = function (vnode, hydrating) {
+    var prevEl = vm.$el;
 
-        var vm = this;
+    var prevVnode = vm._vnode;
 
-        var prevEl = vm.$el;
+    var restoreActiveInstance = setActiveInstance(vm);
 
-        var prevVnode = vm._vnode;
+    vm._vnode = vnode; // Vue.prototype.__patch__ is injected in entry points // based on the rendering backend used.
 
-        var restoreActiveInstance = setActiveInstance(vm);
+    if (!prevVnode) {
+      // initial render
 
-        vm._vnode = vnode;
+      vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */);
+    } else {
+      // updates
 
-        // Vue.prototype.__patch__ is injected in entry points
+      vm.$el = vm.__patch__(prevVnode, vnode);
+    }
 
-        // based on the rendering backend used.
+    restoreActiveInstance(); // update __vue__ reference
 
-        if (!prevVnode) {
+    if (prevEl) {
+      prevEl.__vue__ = null;
+    }
 
-            // initial render
+    if (vm.$el) {
+      vm.$el.__vue__ = vm;
+    } // if parent is an HOC, update its $el as well
 
-            vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */);
+    var wrapper = vm;
 
-        }
+    while (
+      wrapper &&
+      wrapper.$vnode &&
+      wrapper.$parent &&
+      wrapper.$vnode === wrapper.$parent._vnode
+    ) {
+      wrapper.$parent.$el = wrapper.$el;
 
-        else {
+      wrapper = wrapper.$parent;
+    } // updated hook is called by the scheduler to ensure that children are // updated in a parent's updated hook.
+  };
 
-            // updates
+  Vue.prototype.$forceUpdate = function () {
+    var vm = this;
 
-            vm.$el = vm.__patch__(prevVnode, vnode);
+    if (vm._watcher) {
+      vm._watcher.update();
+    }
+  };
 
-        }
+  Vue.prototype.$destroy = function () {
+    var vm = this;
 
-        restoreActiveInstance();
+    if (vm._isBeingDestroyed) {
+      return;
+    }
 
-        // update __vue__ reference
+    callHook$1(vm, "beforeDestroy");
 
-        if (prevEl) {
+    vm._isBeingDestroyed = true; // remove self from parent
 
-            prevEl.__vue__ = null;
+    var parent = vm.$parent;
 
-        }
+    if (parent && !parent._isBeingDestroyed && !vm.$options.abstract) {
+      remove$2(parent.$children, vm);
+    } // teardown scope. this includes both the render watcher and other // watchers created
 
-        if (vm.$el) {
+    vm._scope.stop(); // remove reference from data ob // frozen object may not have observer.
 
-            vm.$el.__vue__ = vm;
+    if (vm._data.__ob__) {
+      vm._data.__ob__.vmCount--;
+    } // call the last hook...
 
-        }
+    vm._isDestroyed = true; // invoke destroy hooks on current rendered tree
 
-        // if parent is an HOC, update its $el as well
+    vm.__patch__(vm._vnode, null); // fire destroyed hook
 
-        var wrapper = vm;
+    callHook$1(vm, "destroyed"); // turn off all instance listeners.
 
-        while (wrapper &&
+    vm.$off(); // remove __vue__ reference
 
-            wrapper.$vnode &&
+    if (vm.$el) {
+      vm.$el.__vue__ = null;
+    } // release circular reference (#6759)
 
-            wrapper.$parent &&
-
-            wrapper.$vnode === wrapper.$parent._vnode) {
-
-            wrapper.$parent.$el = wrapper.$el;
-
-            wrapper = wrapper.$parent;
-
-        }
-
-        // updated hook is called by the scheduler to ensure that children are
-
-        // updated in a parent's updated hook.
-
-    };
-
-    Vue.prototype.$forceUpdate = function () {
-
-        var vm = this;
-
-        if (vm._watcher) {
-
-            vm._watcher.update();
-
-        }
-
-    };
-
-    Vue.prototype.$destroy = function () {
-
-        var vm = this;
-
-        if (vm._isBeingDestroyed) {
-
-            return;
-
-        }
-
-        callHook$1(vm, 'beforeDestroy');
-
-        vm._isBeingDestroyed = true;
-
-        // remove self from parent
-
-        var parent = vm.$parent;
-
-        if (parent && !parent._isBeingDestroyed && !vm.$options.abstract) {
-
-            remove$2(parent.$children, vm);
-
-        }
-
-        // teardown scope. this includes both the render watcher and other
-
-        // watchers created
-
-        vm._scope.stop();
-
-        // remove reference from data ob
-
-        // frozen object may not have observer.
-
-        if (vm._data.__ob__) {
-
-            vm._data.__ob__.vmCount--;
-
-        }
-
-        // call the last hook...
-
-        vm._isDestroyed = true;
-
-        // invoke destroy hooks on current rendered tree
-
-        vm.__patch__(vm._vnode, null);
-
-        // fire destroyed hook
-
-        callHook$1(vm, 'destroyed');
-
-        // turn off all instance listeners.
-
-        vm.$off();
-
-        // remove __vue__ reference
-
-        if (vm.$el) {
-
-            vm.$el.__vue__ = null;
-
-        }
-
-        // release circular reference (#6759)
-
-        if (vm.$vnode) {
-
-            vm.$vnode.parent = null;
-
-        }
-
-    };
-
+    if (vm.$vnode) {
+      vm.$vnode.parent = null;
+    }
+  };
 }
 
 function mountComponent(vm, el, hydrating) {
+  vm.$el = el;
+
+  if (!vm.$options.render) {
+    // @ts-expect-error invalid type
 
-    vm.$el = el;
+    vm.$options.render = createEmptyVNode;
 
-    if (!vm.$options.render) {
+    if (process.env.NODE_ENV !== "production") {
+      /* istanbul ignore if */
 
-        // @ts-expect-error invalid type
+      if (
+        (vm.$options.template && vm.$options.template.charAt(0) !== "#") ||
+        vm.$options.el ||
+        el
+      ) {
+        warn$2(
+          "You are using the runtime-only build of Vue where the template " +
+            "compiler is not available. Either pre-compile the templates into " +
+            "render functions, or use the compiler-included build.",
+          vm
+        );
+      } else {
+        warn$2(
+          "Failed to mount component: template or render function not defined.",
+          vm
+        );
+      }
+    }
+  }
 
-        vm.$options.render = createEmptyVNode;
+  callHook$1(vm, "beforeMount");
 
-        if (process.env.NODE_ENV !== 'production') {
+  var updateComponent; /* istanbul ignore if */
 
-            /* istanbul ignore if */
+  if (process.env.NODE_ENV !== "production" && config.performance && mark) {
+    updateComponent = function () {
+      var name = vm._name;
 
-            if ((vm.$options.template && vm.$options.template.charAt(0) !== '#') ||
+      var id = vm._uid;
 
-                vm.$options.el ||
+      var startTag = "vue-perf-start:".concat(id);
 
-                el) {
+      var endTag = "vue-perf-end:".concat(id);
 
-                warn$2('You are using the runtime-only build of Vue where the template ' +
+      mark(startTag);
 
-                    'compiler is not available. Either pre-compile the templates into ' +
+      var vnode = vm._render();
 
-                    'render functions, or use the compiler-included build.', vm);
+      mark(endTag);
 
-            }
+      measure("vue ".concat(name, " render"), startTag, endTag);
 
-            else {
+      mark(startTag);
 
-                warn$2('Failed to mount component: template or render function not defined.', vm);
+      vm._update(vnode, hydrating);
 
-            }
+      mark(endTag);
 
-        }
+      measure("vue ".concat(name, " patch"), startTag, endTag);
+    };
+  } else {
+    updateComponent = function () {
+      vm._update(vm._render(), hydrating);
+    };
+  }
 
-    }
+  var watcherOptions = {
+    before: function () {
+      if (vm._isMounted && !vm._isDestroyed) {
+        callHook$1(vm, "beforeUpdate");
+      }
+    },
+  };
 
-    callHook$1(vm, 'beforeMount');
+  if (process.env.NODE_ENV !== "production") {
+    watcherOptions.onTrack = function (e) {
+      return callHook$1(vm, "renderTracked", [e]);
+    };
 
-    var updateComponent;
+    watcherOptions.onTrigger = function (e) {
+      return callHook$1(vm, "renderTriggered", [e]);
+    };
+  } // we set this to vm._watcher inside the watcher's constructor // since the watcher's initial patch may call $forceUpdate (e.g. inside child // component's mounted hook), which relies on vm._watcher being already defined
 
-    /* istanbul ignore if */
+  new Watcher(
+    vm,
+    updateComponent,
+    noop,
+    watcherOptions,
+    true /* isRenderWatcher */
+  );
 
-    if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
+  hydrating = false; // flush buffer for flush: "pre" watchers queued in setup()
 
-        updateComponent = function () {
+  var preWatchers = vm._preWatchers;
 
-            var name = vm._name;
+  if (preWatchers) {
+    for (var i = 0; i < preWatchers.length; i++) {
+      preWatchers[i].run();
+    }
+  } // manually mounted instance, call mounted on self // mounted is called for render-created child components in its inserted hook
 
-            var id = vm._uid;
+  if (vm.$vnode == null) {
+    vm._isMounted = true;
 
-            var startTag = "vue-perf-start:".concat(id);
+    callHook$1(vm, "mounted");
+  }
 
-            var endTag = "vue-perf-end:".concat(id);
-
-            mark(startTag);
-
-            var vnode = vm._render();
-
-            mark(endTag);
-
-            measure("vue ".concat(name, " render"), startTag, endTag);
-
-            mark(startTag);
-
-            vm._update(vnode, hydrating);
-
-            mark(endTag);
-
-            measure("vue ".concat(name, " patch"), startTag, endTag);
-
-        };
-
-    }
-
-    else {
-
-        updateComponent = function () {
-
-            vm._update(vm._render(), hydrating);
-
-        };
-
-    }
-
-    var watcherOptions = {
-
-        before: function () {
-
-            if (vm._isMounted && !vm._isDestroyed) {
-
-                callHook$1(vm, 'beforeUpdate');
-
-            }
-
-        }
-
-    };
-
-    if (process.env.NODE_ENV !== 'production') {
-
-        watcherOptions.onTrack = function (e) { return callHook$1(vm, 'renderTracked', [e]); };
-
-        watcherOptions.onTrigger = function (e) { return callHook$1(vm, 'renderTriggered', [e]); };
-
-    }
-
-    // we set this to vm._watcher inside the watcher's constructor
-
-    // since the watcher's initial patch may call $forceUpdate (e.g. inside child
-
-    // component's mounted hook), which relies on vm._watcher being already defined
-
-    new Watcher(vm, updateComponent, noop, watcherOptions, true /* isRenderWatcher */);
-
-    hydrating = false;
-
-    // flush buffer for flush: "pre" watchers queued in setup()
-
-    var preWatchers = vm._preWatchers;
-
-    if (preWatchers) {
-
-        for (var i = 0; i < preWatchers.length; i++) {
-
-            preWatchers[i].run();
-
-        }
-
-    }
-
-    // manually mounted instance, call mounted on self
-
-    // mounted is called for render-created child components in its inserted hook
-
-    if (vm.$vnode == null) {
-
-        vm._isMounted = true;
-
-        callHook$1(vm, 'mounted');
-
-    }
-
-    return vm;
-
+  return vm;
 }
 ```
+
 ## 2709~3013 解释
-这段代码主要是 Vue.js 框架中的事件处理和生命周期管理相关的函数。其中，eventsMixin 函数用于给 Vue 实例添加事件处理相关的方法，如 on、off 和 emit等；lifecycleMixin函数用于给Vue实例添加生命周期处理相关的方法，如u​pdate、forceUpdate 和 $destroy 等。除此之外，还有一些辅助函数，如 setActiveInstance 函数用于设置当前活跃的 Vue 实例，initEvents 函数用于初始化事件相关的参数，initLifecycle 函数用于初始化生命周期相关的参数，mountComponent 函数用于挂载组件等。这些函数共同构成了 Vue.js 框架的核心部分，能够帮助开发者更方便地管理组件的事件和生命周期。
+
+这段代码主要是 Vue.js 框架中的事件处理和生命周期管理相关的函数。其中，eventsMixin 函数用于给 Vue 实例添加事件处理相关的方法，如 on、off 和 emit 等；lifecycleMixin 函数用于给 Vue 实例添加生命周期处理相关的方法，如 u​pdate、forceUpdate 和 $destroy 等。除此之外，还有一些辅助函数，如 setActiveInstance 函数用于设置当前活跃的 Vue 实例，initEvents 函数用于初始化事件相关的参数，initLifecycle 函数用于初始化生命周期相关的参数，mountComponent 函数用于挂载组件等。这些函数共同构成了 Vue.js 框架的核心部分，能够帮助开发者更方便地管理组件的事件和生命周期。

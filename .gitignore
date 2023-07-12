@@ -126,5 +126,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 .vitepress/dist 
-.vitepress/cache 
+docs/.vitepress/cache 
 node_modules
+docs/.vitepress/cache/deps/@theme_index.js
+docs/.vitepress/cache/deps/package.json
