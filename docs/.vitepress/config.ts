@@ -17,7 +17,6 @@ export default defineConfig({
         text: '笔记',
         items: [
           {text:'任务',link:'/任务'},
-          {text:'vue源码解析',link:'/vue源码解析'},
           {text:'axios',link:'/axios'},
           {text:'http-proxy',link:'/http-proxy'},
           {text:'webpack',link:'/webpack'},
@@ -27,6 +26,9 @@ export default defineConfig({
           {text:'从0到1实现ci cd',link:'/从0到1实现ci cd'},
           {text:'谷歌插件',link:'/谷歌插件'},
           {text:'win子系统和win下的nginx',link:'/win子系统和win下的nginx'},
+          {text:'js',link:'/js'},
+          {text:'koa',link:'/koa'},
+          {text:'vue源码解析',link:'/vue源码解析'},
         ]
       }
     ],
