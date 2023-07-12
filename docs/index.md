@@ -6,9 +6,6 @@ hero:
   name: "Anne Jane"
   text: "知识体系，技能树"
   tagline: 行之于途而应于心
-  image:
-    src: ./images/1-skills-tree.png
-    alt: VitePress
   actions:
     - theme: brand
       text: 前端基础
