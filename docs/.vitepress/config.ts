@@ -20,7 +20,6 @@ export default defineConfig({
           {text:'axios',link:'/axios'},
           {text:'http-proxy',link:'/http-proxy'},
           {text:'webpack',link:'/webpack'},
-          {text:'bug',link:'/bug'},
           {text:'pnpmdeploy',link:'/pnpmdeploy'},
           {text:'commander',link:'/commander'},
           {text:'从0到1实现ci cd',link:'/从0到1实现ci cd'},
