@@ -5,7 +5,7 @@ fs.writeFileSync(shellFilePath, shellText);
 ```
 
 ```
- C:\Users\haobing\Desktop\zuo-deploy\server\index.js
+ C:\Users\janeAnne\Desktop\zuo-deploy\server\index.js
 ```
 
 2. 前端发送请求
@@ -30,20 +30,20 @@ fs.writeFileSync(shellFilePath, shellText);
 ```
 来源：
 ```
-C:\Users\haobing\Desktop\zuo-deploy\frontend\index.html
+C:\Users\janeAnne\Desktop\zuo-deploy\frontend\index.html
 ```
-3.  koa-router
-响应请求
- ```js
+3.  koa-router响应请求
+```js
  router.post("/runShell", async (ctx) => {
  //这个ctx是什么？
  let { shellText, shellName = "temp.sh", timeoutMinute = 2 } =     ctx.request.body;
  console.log("shellText", shellText);
  }
 ```
+
  来源：
  ```
-  C:\Users\haobing\Desktop\zuo-deploy\server\index.js
+  C:\Users\janeAnne\Desktop\zuo-deploy\server\index.js
 ```
 
 4. CommonJS转化为ES6

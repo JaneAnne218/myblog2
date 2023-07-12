@@ -26,7 +26,7 @@ export default defineConfig({
           {text:'commander',link:'/commander'},
           {text:'从0到1实现ci cd',link:'/从0到1实现ci cd'},
           {text:'谷歌插件',link:'/谷歌插件'},
-          {text:'虚拟机以及子系统',link:'/虚拟机以及子系统'},
+          {text:'win子系统和win下的nginx',link:'/win子系统和win下的nginx'},
         ]
       }
     ],
