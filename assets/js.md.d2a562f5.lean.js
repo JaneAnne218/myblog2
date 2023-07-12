@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,O as l}from"./chunks/framework.269db9bd.js";const i=JSON.parse('{"title":"对象与类的区别","description":"","frontmatter":{},"headers":[],"relativePath":"js.md","filePath":"js.md"}'),o={name:"js.md"},p=l("",9),e=[p];function t(c,r,D,y,F,A){return n(),a("div",null,e)}const m=s(o,[["render",t]]);export{i as __pageData,m as default};
