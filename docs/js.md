@@ -64,3 +64,7 @@ const dog = new Dog('Buddy');
 dog.sayHello(); // 输出：Hello, I'm Buddy.
 dog.bark(); // 输出：Woof woof!
 ```
+- [ ] 如何给文档之间添加跳转  
+比如，这里我想添加，ES6与common Js的区别 
+> 希望可以看懂比教专业的文档
+

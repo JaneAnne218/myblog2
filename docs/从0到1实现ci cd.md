@@ -40,14 +40,14 @@
 ## 3.1 完成接口、静态服务  
 postman可以访问 http://127.0.0.1:7777/user  
 浏览器可以访问 http://127.0.0.1:7777/ 得到index.html页面  
-## 4. 上传npm包
+## 4. 发布npm包
 ## 4.1 本地调试：
 ```js
 npm exec  
 npm link  
 janedeploy start // 就成功了。
 ```  
-## 4.2 上传npm包：
+## 4.2 发布npm包：
  1. 先切换到npm原镜像  npm config set registry https://registry.npmjs.org/
  2. npm adduser; npm login; npm publish
  3. 切回到淘宝镜像 npm config set registry https://registry.npm.taobao.org

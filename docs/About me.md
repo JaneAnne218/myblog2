@@ -5,7 +5,7 @@
 - 职业：前端开发工程师
 ## 个人技能
 - 熟练使用vue,typescript,es6,vite,vitepress,css,taiwindcss,element-plus,animate.css,nodejs,express,koa,nginx等技术栈
-- 熟练使用git,github,gitlab等代码管理工具
+- 熟练使用git,github，github desktop等代码管理工具
 - 熟练使用vscode开发工具
 - 熟练使用obsidian文档工具
 - 熟练使用npm,yarn，pnpm等包管理工具

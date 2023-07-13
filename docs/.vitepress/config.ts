@@ -18,7 +18,6 @@ export default defineConfig({
       {
         text: "前端基础",
         items: [
-          { text: "任务", link: "/任务" },
           { text: "axios", link: "/axios" },
           { text: "http-proxy", link: "/http-proxy" },
           { text: "commander", link: "/commander" },
@@ -44,9 +43,10 @@ export default defineConfig({
         items: [{ text: "谷歌插件", link: "/谷歌插件" }],
       },
       {
-        text: "项目",
+        text: "项目和工具",
         items: [
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
+          {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"}
         ],
       },
       {
@@ -58,10 +58,14 @@ export default defineConfig({
     ],
 
     sidebar: [
+      { text:"todo list",
+        items: [
+          { text: "任务", link: "/任务" },
+        ],
+      },
       {
         text: "前端基础",
         items: [
-          { text: "任务", link: "/任务" },
           { text: "axios", link: "/axios" },
           { text: "http-proxy", link: "/http-proxy" },
           { text: "commander", link: "/commander" },
@@ -87,9 +91,10 @@ export default defineConfig({
         items: [{ text: "谷歌插件", link: "/谷歌插件" }],
       },
       {
-        text: "项目",
+        text: "项目和工具",
         items: [
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
+          {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"}
         ],
       },
       {
@@ -99,7 +104,6 @@ export default defineConfig({
         ]
       }
     ],
-
     socialLinks: [{ icon: "github", link: "https://github.com/JaneAnne218" },{icon:"youtube",link:"https://space.bilibili.com/30063847?spm_id_from=333.1007.0.0"}],
   },
 });
