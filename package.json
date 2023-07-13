@@ -1,5 +1,8 @@
 {
   "devDependencies": {
+    "install": "^0.13.0",
+    "npm": "^9.8.0",
+    "sass": "^1.63.6",
     "vitepress": "1.0.0-beta.3"
   },
   "scripts": {

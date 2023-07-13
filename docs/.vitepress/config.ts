@@ -6,6 +6,11 @@ export default defineConfig({
   description: "学习记录+生活分享",
   base: "/myblog2/",
   themeConfig: {
+    algolia: {
+      appId: "xx",
+      apiKey: "xxxxx",
+      indexName: "xxx"
+    },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '前端基础', 
