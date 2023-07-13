@@ -1,0 +1,1 @@
+import{_ as e,o as i,c as a,R as l}from"./chunks/framework.b8211e81.js";const m=JSON.parse('{"title":"任务","description":"","frontmatter":{},"headers":[],"relativePath":"任务.md","filePath":"任务.md"}'),t={name:"任务.md"},r=l("",14),o=[r];function n(s,d,h,c,u,b){return i(),a("div",null,o)}const f=e(t,[["render",n]]);export{m as __pageData,f as default};
