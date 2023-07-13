@@ -49,6 +49,12 @@ export default defineConfig({
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
         ],
       },
+      {
+        text:"关于我",
+        items:[
+          {text:"About me",link:"/About me"}
+        ]
+      }
     ],
 
     sidebar: [
@@ -86,8 +92,14 @@ export default defineConfig({
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
         ],
       },
+      {
+        text:"关于我",
+        items:[
+          {text:"About me",link:"/About me"}
+        ]
+      }
     ],
 
-    socialLinks: [{ icon: "github", link: "https://github.com/JaneAnne218" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/JaneAnne218" },{icon:"youtube",link:"https://space.bilibili.com/30063847?spm_id_from=333.1007.0.0"}],
   },
 });

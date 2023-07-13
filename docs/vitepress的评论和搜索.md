@@ -22,3 +22,13 @@ https://console.leancloud.cn/apps
 //添加到config.js
 head: [["link", { rel: "icon", href: "/watermelon.ico" }]]
 ```
+2.关于标签页图标的尝试
+```html
+<!-- 在元素下查找favicon -->
+<link rel="icon" href="//www.bilibili.com/favicon.ico">
+```
+>"favicon" 是 "favorite icon" 的缩写，指的是网站或应用程序在浏览器标签页、书签栏和其他界面中显示的小图标。它通常是一个小正方形的图标，用于识别特定网站或应用程序，并提供品牌识别和可视化标识。
+网站的标签页图标是一个网址，我们无法拿到ico后缀的图片。
+
+## 图标库
+1. font awesome

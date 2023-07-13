@@ -8,11 +8,11 @@ hero:
   tagline: 行之于途而应于心
   actions:
     - theme: brand
-      text: 前端基础
-      link: /vue源码解析
+      text: 快速开始
+      link: /任务
     - theme: alt
-      text: 前端工程化
-      link: /webpack
+      text: About me
+      link: /About me
 
 features:
   - icon: 📝
