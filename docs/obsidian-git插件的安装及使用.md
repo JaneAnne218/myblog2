@@ -3,7 +3,7 @@
 1. obsidian的设置-第三方插件
 ## 2. 从GitHub下载库
 1. ctrl+p 打开命令面板，输入git clone
-![](./images/1-git%20clone.png)
+![](./images/1-git-clone.png)
 2. 输入GitHub上的库地址  
 >参考: https://forum.obsidian.md/t/the-easiest-way-to-setup-obsidian-git-to-backup-notes/51429
 
