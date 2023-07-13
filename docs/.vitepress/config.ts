@@ -9,9 +9,9 @@ export default defineConfig({
   themeConfig: {
     
     algolia: {
-      appId: "xx",
-      apiKey: "xxxxx",
-      indexName: "xxx",
+      appId: "94LFGM62N2",
+      apiKey: "7cc3f0c3e84053fa5eaaa1275c46549e",
+      indexName: "my2",
     },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
