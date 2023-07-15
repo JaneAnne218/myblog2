@@ -27,7 +27,7 @@ export default defineConfig({
       {
         text: "前端工程化",
         items: [
-          { text: "从0到1实现ci cd", link: "/从0到1实现ci cd" },
+          { text: "js实现linux运维面板", link: "/js实现linux运维面板" },
           { text: "win子系统和win下的nginx", link: "/win子系统和win下的nginx" },
           { text: "koa系列", link: "/koa系列" },
           { text: "webpack", link: "/webpack" },
@@ -45,6 +45,7 @@ export default defineConfig({
       {
         text: "项目和工具",
         items: [
+          {text:"工具",link:"/工具"},
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
           {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"}
         ],
@@ -52,7 +53,8 @@ export default defineConfig({
       {
         text:"关于我",
         items:[
-          {text:"About me",link:"/About me"}
+          {text:"About me",link:"/About me"},
+          {text:"面试",link:"/面试"}
         ]
       }
     ],
@@ -75,7 +77,7 @@ export default defineConfig({
       {
         text: "前端工程化",
         items: [
-          { text: "从0到1实现ci cd", link: "/从0到1实现ci cd" },
+          { text: "js实现linux运维面板", link: "/js实现linux运维面板" },
           { text: "win子系统和win下的nginx", link: "/win子系统和win下的nginx" },
           { text: "koa系列", link: "/koa系列" },
           { text: "webpack", link: "/webpack" },
@@ -93,6 +95,7 @@ export default defineConfig({
       {
         text: "项目和工具",
         items: [
+          {text:"工具",link:"/工具"},
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
           {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"}
         ],
@@ -100,7 +103,8 @@ export default defineConfig({
       {
         text:"关于我",
         items:[
-          {text:"About me",link:"/About me"}
+          {text:"About me",link:"/About me"},
+          {text:"面试",link:"/面试"}
         ]
       }
     ],

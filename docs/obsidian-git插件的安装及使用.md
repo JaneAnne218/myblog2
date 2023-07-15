@@ -7,7 +7,7 @@
 2. 输入GitHub上的库地址  
 >参考: https://forum.obsidian.md/t/the-easiest-way-to-setup-obsidian-git-to-backup-notes/51429
 
-![](./images/2-填写url.png)
+![](./images/2-enter-remote-url.png)
 ```html
 https://<PERSONAL_ACCESS_TOKEN>@github.com/<USERNAME>/<REPO>.git 
 ```
@@ -17,4 +17,4 @@ https://<PERSONAL_ACCESS_TOKEN>@github.com/<USERNAME>/<REPO>.git
 5. **下载好的文件夹存在本地，可以用vscode、github desktop打开，这个文件夹就是一个git仓库，可以在vscode，github desktop，obsidian使用git命令了，最重要的是这三者是同步的，可以说是很方便了。**  
 ## 3. 优点 
 todo list 可以点击完成以及未完成
-![](./images/3-todo-完成.png)
+![](./images/3-todo-done.png)

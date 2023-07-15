@@ -1,4 +1,4 @@
-# 从0到1实现ci cd
+# js实现linux运维面板
 自动化部署
 ## 1. npm init
  ```json
@@ -41,7 +41,7 @@
 postman可以访问 http://127.0.0.1:7777/user  
 浏览器可以访问 http://127.0.0.1:7777/ 得到index.html页面  
 ## 4. 发布npm包
-## 4.1 本地调试：
+## 4.1 发布npm包前本地调试：
 ```js
 npm exec  
 npm link  
@@ -54,27 +54,16 @@ janedeploy start // 就成功了。
 
 ## 5 杀死进程 
  杀不掉-守护进程  
-## 6. 问题
-0. 在virtual box上全局安装了 jane-deploy，sudo install -g jane-deploy  
+## 6. Linux
+0. 在virtual box上全局安装 jane-deploy，sudo install -g jane-deploy  
 1. 查看bin目录下是否有 janedeploy  
 2. 建议重启终端 sudo reboot  
 3. 查找wsl下的bin，也没有janedeploy，但是却可以启动成功janedeploy,是因为启动的vscode的终端是bash，而不是wsl
 4. 查找janedeploy命令 和zuodeploy：which zuodeploy   
  4.1 在wsl下    
  4.2 在virtualbox的ubuntu下   
- 4.3 在win下     
-  4.3.1  win的路径 C:\\Users\\lala\\AppData\\Roaming\\npm  
-  4.3.2  用两个反引号``包围``  即:`C:\Users\lala\AppData\Roaming\npm `
-
-5.  readerme 换行失效，需要两个空格再换行
-6. 如何在GitHub的readme中加图片   
-  6.1  `![图片描述](./image.png)`  
-  6.2 `![图片描述](https://example.com/image.png)`  
-  6.3  
-```html
-  <img src="./image.png" alt="图片描述" width="300" />
-```
-## 7. 在wsl-ubuntu 安装nginx
+ 4.3 在win下 
+5. 在wsl-ubuntu下的nginx
 ```js
 sudo apt install nginx //安装  
 //命令是 Systemd 的一个工具，用于管理系统服务的启动、停止和状态。
@@ -84,10 +73,22 @@ ps aux //查看当前运行的程序
 ps -aux | grep <程序名称> 
 npm list -g  //查找全局安装的npm包
 rm /usr/bin/janedeploy //删除
-program
- .commond() //解决在bin目录下没有janedeploy的方法：多加一个program
+```    
+ 
+
+5.  readerme 换行失效，需要两个空格再换行
+## 7. markdown 语法   
+1.  `![图片描述](./image.png)`  
+2. `![图片描述](https://example.com/image.png)`  
+3.  
+```html
+  <img src="./image.png" alt="图片描述" width="300" />
 ```
-## 8 问题
+4 `[超链接文字描述](链接)` 相比于图片少了一个！
+5. 转义符号'\'  
+   win的路径 C:\\Users\\lala\\AppData\\Roaming\\npm    
+   用两个反引号``包围``  即:`C:\Users\lala\AppData\Roaming\npm `  
+## 8 bug
 ```js
 sudo npm link //提示错误：npm ERR! path /usr/bin/package.json
 ```

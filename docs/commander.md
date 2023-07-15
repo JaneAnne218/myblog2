@@ -19,3 +19,9 @@ console.log(limit)// 1
 console.log(program.args[1].split(options.separator, limit));//[ 'ls' ]
 
 ```
+## bug
+1.解决在linux全局安装jane-deploy时，bin目录下没有出现janedeploy的方法
+```js
+program//多加一个program
+ .commond() 
+```
