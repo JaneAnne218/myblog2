@@ -7,7 +7,6 @@ export default defineConfig({
   description: "学习记录+生活分享",
   base: "/myblog2/",
   themeConfig: {
-    
     algolia: {
       appId: "94LFGM62N2",
       apiKey: "7cc3f0c3e84053fa5eaaa1275c46549e",
@@ -47,14 +46,16 @@ export default defineConfig({
         items: [
           {text:"工具",link:"/工具"},
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
-          {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"}
+          {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"},
+          {text:"scroll-lyrics",link:"/scroll-lyrics"}
         ],
       },
       {
         text:"关于我",
         items:[
           {text:"About me",link:"/About me"},
-          {text:"面试",link:"/面试"}
+          {text:"面试",link:"/面试"},
+          {text:"js96题",link:"/js96题"}
         ]
       }
     ],
@@ -72,6 +73,7 @@ export default defineConfig({
           { text: "http-proxy", link: "/http-proxy" },
           { text: "commander", link: "/commander" },
           { text: "js", link: "/js" },
+         
         ],
       },
       {
@@ -97,14 +99,17 @@ export default defineConfig({
         items: [
           {text:"工具",link:"/工具"},
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
-          {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"}
+          {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"},
+          {text:"scroll-lyrics",link:"/scroll-lyrics"}
         ],
       },
       {
         text:"关于我",
         items:[
           {text:"About me",link:"/About me"},
-          {text:"面试",link:"/面试"}
+          {text:"面试",link:"/面试"},
+          {text:"js96题",link:"/js96题"},
+          {text:"myhtml",link:"/myhtml"}
         ]
       }
     ],
