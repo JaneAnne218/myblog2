@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  head: [["link", { rel: "icon", href: "/watermelon.ico" }]],
+  head: [["link", { rel: "icon", href: "../images/watermelon.ico" }]],
   title: "AnneJane's Blog",
   description: "学习记录+生活分享",
   base: "/myblog2/",
