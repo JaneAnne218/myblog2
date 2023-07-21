@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,R as l}from"./chunks/framework.b8211e81.js";const h=JSON.parse('{"title":"http-proxy","description":"","frontmatter":{},"headers":[],"relativePath":"http-proxy.md","filePath":"http-proxy.md"}'),o={name:"http-proxy.md"},p=l("",10),e=[p];function t(c,r,y,D,i,C){return a(),n("div",null,e)}const A=s(o,[["render",t]]);export{h as __pageData,A as default};

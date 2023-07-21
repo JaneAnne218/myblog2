@@ -1,0 +1,1 @@
+import{_ as a,o as e,c as t,V as o}from"./chunks/framework.d2bf15db.js";const u=JSON.parse('{"title":"CORS","description":"","frontmatter":{},"headers":[],"relativePath":"CORS.md","filePath":"CORS.md"}'),r={name:"CORS.md"},i=o("",8),l=[i];function s(n,c,h,d,_,S){return e(),t("div",null,l)}const O=a(r,[["render",s]]);export{u as __pageData,O as default};

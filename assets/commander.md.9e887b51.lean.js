@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,V as l}from"./chunks/framework.d2bf15db.js";const i=JSON.parse('{"title":"commander","description":"","frontmatter":{},"headers":[],"relativePath":"commander.md","filePath":"commander.md"}'),o={name:"commander.md"},p=l("",6),e=[p];function t(c,r,D,y,A,C){return a(),n("div",null,e)}const d=s(o,[["render",t]]);export{i as __pageData,d as default};

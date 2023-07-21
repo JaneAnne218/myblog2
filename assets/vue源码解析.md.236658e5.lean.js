@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,R as l}from"./chunks/framework.b8211e81.js";const C=JSON.parse('{"title":"vue源码解析","description":"","frontmatter":{},"headers":[],"relativePath":"vue源码解析.md","filePath":"vue源码解析.md"}'),p={name:"vue源码解析.md"},o=l("",78),e=[o];function t(c,r,F,y,D,A){return n(),a("div",null,e)}const f=s(p,[["render",t]]);export{C as __pageData,f as default};
