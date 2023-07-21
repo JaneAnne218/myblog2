@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Google Search Suggestions</title>
+</head>
+<body>
+  <input type="text" id="search-box" onkeyup="getSuggestions(this.value)">
+  <ul id="suggestions">
+  </ul>
+  <script>
+    function getSuggestions(query) {
+      const url = `https://suggestqueries.google.com/complete/search?client=firefox&q=${query}&callback=handleResponse`;
+      const script = document.createElement('script');
+      script.src = url;
+      document.body.appendChild(script);
+    }
+  
+    function handleResponse(data) {
+      const suggestions = data[1];
+   
+      const suggestionsList = document.getElementById('suggestions');
+      suggestionsList.innerHTML = '';
+      suggestions.forEach(suggestion => {
+        const li = document.createElement('li');
+        li.textContent = suggestion;
+        suggestionsList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

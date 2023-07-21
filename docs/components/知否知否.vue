@@ -5,7 +5,7 @@
     <div>      
       <LyricsScroll :lyrics="songLyrics" :currentTime="currentTime"></LyricsScroll>
     </div>
-  </template>
+</template>
   
   <script>
   import LyricsScroll from './scroll2.vue';
@@ -59,10 +59,11 @@
     mounted() {
       const audio = this.$refs.audioPlayer;
       audio.addEventListener('timeupdate', this.handleTimeUpdate);
+      console.log("handleTimeUpdate",this.handleTimeUpdate)
     },
     methods: {
       handleTimeUpdate(event) {
-  
+        console.log(event)
         this.currentTime = event.target.currentTime;
       }
     }

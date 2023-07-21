@@ -15,12 +15,21 @@ https://console.leancloud.cn/apps
       indexName: "xxx"
     },
 ```
+2. 第二种添加搜索的方法
+>参考：[jcamp-code](https://github.com/jcamp-code/vitepress-blog-theme/blob/main/docs/.vitepress/config.ts)
+```js
+ search: {
+      provider: 'local',
+    },
+```
+优点：省去了algolia的申请、配置，内容变化之后的爬虫
+
 ## feat：添加功能
 >资料：https://blog.csdn.net/qq_42460209/article/details/125647447
 1. 给网页添加标签页图标
 ```js
 //添加到config.js
-head: [["link", { rel: "icon", href: "../images/watermelon.ico" }]]
+head: [["link", { rel: "icon", href: "..//watermelon.ico" }]]
 ```
 2.关于标签页图标的尝试
 ```html
@@ -41,3 +50,5 @@ head: [["link", { rel: "icon", href: "../images/watermelon.ico" }]]
 
 ## 图标库
 1. font awesome
+## Gittalk
+
