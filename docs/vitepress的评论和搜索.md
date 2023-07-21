@@ -51,4 +51,17 @@ head: [["link", { rel: "icon", href: "..//watermelon.ico" }]]
 ## 图标库
 1. font awesome
 ## Gittalk
+1. comments.vue
+>参考[个人站点-clark-cui](https://github.com/clark-cui/vitepress-blog-zaun/blob/53373e8baf38fd4fd4f99b313677b68c2d309aee/.vitepress/theme/components/Comments.vue#L4)
 
+2. mylayout.vue
+>参考[个人站点-clark-cui](https://github.com/clark-cui/vitepress-blog-zaun/blob/53373e8baf38fd4fd4f99b313677b68c2d309aee/.vitepress/theme/components/MyLayout.vue#L24)
+
+3. 解析comment.vue代码
+>参考[如何配置](https://www.jianshu.com/p/83a098b67977)
+
+4. 获取clientID和clientSecret
+>参考[动图](https://blog.csdn.net/xixihahalelehehe/article/details/125294535?ydreferer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8%3D)
+
+5. error not found
+>参考[明察秋毫](https://blog.csdn.net/m0_46916422/article/details/124065600)

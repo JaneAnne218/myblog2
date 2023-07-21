@@ -21,7 +21,7 @@
     const gitalk = new Gitalk({
       clientID: "3e7a27965b4e833922f1",
       clientSecret: "e0f28b92d9bd1e46f9a55892299cd90c153966ac",
-      repo: "blog-comment",
+      repo: "blogComment",
       owner: "JaneAnne218",
       admin: ["JaneAnne218"],
       id: location.pathname.substring(0, 50), // Ensure uniqueness and length less than 50

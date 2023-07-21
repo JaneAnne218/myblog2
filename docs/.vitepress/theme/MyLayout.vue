@@ -9,7 +9,7 @@ const { Layout } = DefaultTheme
 <template>
   <Layout>
     <template #doc-after>
-      <ValineComment />
+      <!-- <ValineComment /> -->
       <Comments />
     </template>
   </Layout>
