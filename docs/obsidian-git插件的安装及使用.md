@@ -1,4 +1,10 @@
-# obsidian-git插件的安装及使用
+---
+title: obsidian git插件的安装及使用
+description: obsidian git插件的安装及使用
+date: 2023-7-4
+tags:
+  - 工具
+---
 ## 1. 安装obsidian git插件
 1. obsidian的设置-第三方插件
 ## 2. 从GitHub下载库

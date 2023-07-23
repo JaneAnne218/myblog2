@@ -1,5 +1,10 @@
-# koa系列
- >有效率的学习 看直播开发学习+文档+源码 
+---
+title: Koa
+description: koa系列
+date: 2023-7-10
+tags:
+  - node.js
+--- >有效率的学习 看直播开发学习+文档+源码 
 ## 1. 给文件写内容  fs.writeFileSync(文件路径，文件内容)
 ```js
 fs.writeFileSync(shellFilePath, shellText);

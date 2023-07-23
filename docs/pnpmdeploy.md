@@ -1,4 +1,10 @@
-# pnpm deploy
+---
+title: pnpmdeploy
+description: pnpmdeploy
+date: 2023-6-10
+tags:
+  - CI/CD
+---
 ## 写一个pnpm的github action
 ```deploy.yml
 name: Deployhahah

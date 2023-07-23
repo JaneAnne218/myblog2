@@ -1,5 +1,10 @@
-# commander
-## 基础
+---
+title: commander
+description: 命令行工具
+date: 2023-5-15
+tags:
+  - 工具
+---
 ```js
 //node 1.js -s / --first a/b/c  ls/d/lss
 const { program } = require('commander');

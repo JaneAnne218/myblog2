@@ -1,17 +1,29 @@
 {
-  "hash": "83e5dfb6",
-  "browserHash": "4a454f02",
+  "hash": "913fd609",
+  "browserHash": "724317a7",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "4dccc3da",
+      "fileHash": "833593ee",
       "needsInterop": false
     },
+    "dayjs": {
+      "src": "../../../../node_modules/dayjs/dayjs.min.js",
+      "file": "dayjs.js",
+      "fileHash": "4414846e",
+      "needsInterop": true
+    },
+    "dayjs/plugin/relativeTime": {
+      "src": "../../../../node_modules/dayjs/plugin/relativeTime.js",
+      "file": "dayjs_plugin_relativeTime.js",
+      "fileHash": "6715c8bf",
+      "needsInterop": true
+    },
     "gitalk": {
-      "src": "../../../../node_modules/.pnpm/gitalk@1.8.0_react-dom@15.7.0_react@15.7.0/node_modules/gitalk/dist/gitalk.js",
+      "src": "../../../../node_modules/gitalk/dist/gitalk.js",
       "file": "gitalk.js",
-      "fileHash": "2b7c5f2e",
+      "fileHash": "2de3ec6a",
       "needsInterop": true
     }
   },

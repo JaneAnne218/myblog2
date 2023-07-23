@@ -1,4 +1,10 @@
-# vitepress评论和搜索
+---
+title: vitepress的评论和搜索
+description: vitepress的评论和搜索
+date: 2023-7-10
+tags:
+  - 组件
+---
 参考链接:
 http://f.zuo11.com/3-optimize/fast-create-website/
 ## 1. 评论valine

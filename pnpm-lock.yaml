@@ -13,6 +13,9 @@ devDependencies:
   install:
     specifier: ^0.13.0
     version: 0.13.0
+  markdown-it-task-lists:
+    specifier: ^2.1.1
+    version: 2.1.1
   npm:
     specifier: ^9.8.0
     version: 9.8.1
@@ -768,6 +771,10 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+
+  /markdown-it-task-lists@2.1.1:
+    resolution: {integrity: sha512-TxFAc76Jnhb2OUu+n3yz9RMu4CwGfaT788br6HhEDlvWfdeJcLUsxk1Hgw2yJio0OXsxv7pyIPmvECY7bMbluA==}
+    dev: true
 
   /ms@2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}

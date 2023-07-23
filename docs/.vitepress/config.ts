@@ -2,6 +2,7 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+
   head: [["link", { rel: "icon", href: "../images/watermelon.ico" }]],
   title: "AnneJane's Blog",
   description: "学习记录+生活分享",
@@ -63,7 +64,10 @@ export default defineConfig({
           { text: "http-proxy", link: "/http-proxy" },
           { text: "commander", link: "/commander" },
           { text: "js", link: "/js" },
-          {text:"CORS",link:"/CORS"}
+          {text:"CORS",link:"/CORS"},
+          {text:"better",link:"/better"},
+          {text:"Archives",link:"/Archives"},
+          {text:"codereview",link:"/codereview"}
         ],
       },
       {
@@ -100,7 +104,9 @@ export default defineConfig({
         items:[
           {text:"About me",link:"/About me"},
           {text:"面试",link:"/面试"},
-          {text:"js96题",link:"/js96题"}
+          {text:"js96题",link:"/js96题"},
+          {text:"myhtml",link:"/myhtml"},
+          {text:"bilibili",link:"/bilibili"}
         ]
       }
     ],
@@ -118,7 +124,10 @@ export default defineConfig({
           { text: "http-proxy", link: "/http-proxy" },
           { text: "commander", link: "/commander" },
           { text: "js", link: "/js" },
-          {text:"CORS",link:"/CORS"}
+          {text:"CORS",link:"/CORS"},
+          {text:"better",link:"/better"},
+          {text:"Archives",link:"/Archives"},
+          {text:"codereview",link:"/codereview"}
          
         ],
       },
@@ -158,7 +167,9 @@ export default defineConfig({
           {text:"About me",link:"/About me"},
           {text:"面试",link:"/面试"},
           {text:"js96题",link:"/js96题"},
-          {text:"myhtml",link:"/myhtml"}
+          {text:"myhtml",link:"/myhtml"},
+          {text:"bilibili",link:"/bilibili"},
+          
         ]
       }
     ],

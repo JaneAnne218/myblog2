@@ -1,4 +1,10 @@
-# About me
+---
+title: About me
+description: 个人简介
+date: 2023-07-01
+tags:
+  - Aboutme
+---
 ## 个人简介
 - 姓名：Anne Jane
 - 专业：电子与通信工程
@@ -20,4 +26,6 @@
 - 看书
 - 写作
 - 旅游
+## 广西漓江
+![漓江边](./images/tour-1-lijiang.png)
 

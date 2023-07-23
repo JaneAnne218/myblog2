@@ -1,5 +1,10 @@
-# js
-
+---
+title: JS
+description: JS基础
+date: 2023-6-10
+tags:
+  - JS
+---
 > JS
 > JS是一种面向对象语言，简称"OOP"（Object-Oriented Programming）
 ## 对象与类的区别

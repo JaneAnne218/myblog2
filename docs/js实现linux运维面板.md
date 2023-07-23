@@ -1,4 +1,10 @@
-# js实现linux运维面板
+---
+title: Js实现linux运维面板
+description: linux
+date: 2023-7-10
+tags:
+  - linux
+---
 自动化部署
 ## 1. npm init
  ```json

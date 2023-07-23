@@ -1,3 +1,10 @@
+---
+title: win子系统和win下的nginx
+description: win子系统和win下的nginx
+date: 2023-6-10
+tags:
+  - win子系统
+---
 # 1. win 下安装 ubuntu 子系统
 在win商店安装
 ## 1.1 启用/关闭 win 系统子功能
