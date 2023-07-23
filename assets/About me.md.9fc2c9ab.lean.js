@@ -1,1 +1,0 @@
-import{_ as e,o as a,c as t,V as i}from"./chunks/framework.d2bf15db.js";const _=JSON.parse('{"title":"About me","description":"","frontmatter":{},"headers":[],"relativePath":"About me.md","filePath":"About me.md"}'),l={name:"About me.md"},o=i("",9),r=[o];function n(s,h,u,c,d,b){return a(),t("div",null,r)}const p=e(l,[["render",n]]);export{_ as __pageData,p as default};

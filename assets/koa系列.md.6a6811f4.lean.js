@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,V as l}from"./chunks/framework.d2bf15db.js";const i=JSON.parse('{"title":"koa系列","description":"","frontmatter":{},"headers":[],"relativePath":"koa系列.md","filePath":"koa系列.md"}'),o={name:"koa系列.md"},p=l("",38),t=[p];function e(c,r,y,D,F,C){return a(),n("div",null,t)}const u=s(o,[["render",e]]);export{i as __pageData,u as default};

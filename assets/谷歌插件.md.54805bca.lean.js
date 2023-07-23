@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,V as l}from"./chunks/framework.d2bf15db.js";const i=JSON.parse('{"title":"谷歌插件","description":"","frontmatter":{},"headers":[],"relativePath":"谷歌插件.md","filePath":"谷歌插件.md"}'),p={name:"谷歌插件.md"},o=l("",16),e=[o];function t(c,r,y,F,D,A){return n(),a("div",null,e)}const m=s(p,[["render",t]]);export{i as __pageData,m as default};

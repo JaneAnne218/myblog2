@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,V as o}from"./chunks/framework.d2bf15db.js";const F=JSON.parse('{"title":"axios","description":"","frontmatter":{},"headers":[],"relativePath":"axios.md","filePath":"axios.md"}'),l={name:"axios.md"},p=o("",8),e=[p];function t(c,r,i,y,C,A){return a(),n("div",null,e)}const d=s(l,[["render",t]]);export{F as __pageData,d as default};
