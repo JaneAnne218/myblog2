@@ -1,7 +1,6 @@
 // .vitepress\theme\index.ts
 import Theme from "vitepress/theme";
 import MyLayout from './MyLayout.vue'
-
 // import "./style/var.css";
 
 export default {

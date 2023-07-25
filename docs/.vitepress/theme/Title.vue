@@ -1,4 +1,4 @@
-  <template>
+<template>
     <h1 class="title">{{ pageData.title }}</h1>
     <div class="date">🕒 Published at: {{ publishDate }}</div>
   </template>

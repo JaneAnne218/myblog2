@@ -28,8 +28,4 @@ tags:
 - 旅游
 ## 广西漓江
 ![漓江边](./images/tour-1-lijiang.png)
-## 账号
-[mastondon](https://mastodon.social/home)
-masondon有不同的server，每个server的主题不同，可以选择自己喜欢的server，然后注册账号。
-[鹿鸣](https://elk.zone/home)可以连接mosondon的server，将自己的账号连接到鹿鸣上，这样就可以在鹿鸣上看到自己的账号的动态了。
 

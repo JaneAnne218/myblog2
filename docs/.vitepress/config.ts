@@ -1,21 +1,40 @@
-import {add} from './serverUtils'
-const config = {
+import { defineConfig } from "vitepress";
+
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
+
   head: [["link", { rel: "icon", href: "../images/watermelon.ico" }]],
   title: "AnneJane's Blog",
   description: "学习记录+生活分享",
   base: "/myblog2/",
-  lastUpdated: true,
   themeConfig: {
- 
+    // algolia: {
+    //   appId: "94LFGM62N2",
+    //   apiKey: "7cc3f0c3e84053fa5eaaa1275c46549e",
+    //   indexName: "my2",
+    // },
     editLink: {
       pattern:
         'https://github.com/jcamp-code/vitepress-blog-theme/edit/main/docs/:path',
     },
+    blog: {
+      title: 'My AI Written Blog',
+      description: 'All these articles were written by AI!',
+      defaultAuthor: 'AI Writer',
+      categoryIcons: {
+        article: 'i-[heroicons-outline/book-open]',
+        tutorial: 'i-[heroicons-outline/academic-cap]',
+        document: 'i-[heroicons-outline/annotation]',
+      },
+      tagIcons: {
+        github: 'i-[carbon/logo-github]',
+        vue: 'i-[carbon/logo-vue]',
+      },
+    },
     search: {
       provider: 'local',
     },
-    // posts: add().then((result) => result),
-    
+    // https://vitepress.dev/reference/default-theme-config
     nav: [
       {
         text: 'Blog',
@@ -45,10 +64,10 @@ const config = {
           { text: "http-proxy", link: "/http-proxy" },
           { text: "commander", link: "/commander" },
           { text: "js", link: "/js" },
-          { text: "CORS", link: "/CORS" },
-          { text: "better", link: "/better" },
-          { text: "Archives", link: "/Archives" },
-          { text: "codereview", link: "/codereview" }
+          {text:"CORS",link:"/CORS"},
+          {text:"better",link:"/better"},
+          {text:"Archives",link:"/Archives"},
+          {text:"codereview",link:"/codereview"}
         ],
       },
       {
@@ -72,33 +91,28 @@ const config = {
       {
         text: "项目和工具",
         items: [
-          { text: "工具", link: "/工具" },
+          {text:"工具",link:"/工具"},
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
-          { text: "obsidian-git插件的安装及使用", link: "/obsidian-git插件的安装及使用" },
-          { text: "scroll-lyrics", link: "/scroll-lyrics" },
-          { text: "fiveDice", link: "/fiveDice" },
-          { text: "getSuggestions", link: "/getSuggestions" },
+          {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"},
+          {text:"scroll-lyrics",link:"/scroll-lyrics"},
+          {text:"fiveDice",link:"/fiveDice"},
+          {text:"getSuggestions",link:"/getSuggestions"},
         ],
       },
       {
-        text: "Tags",
-        items: [{ text: "Tags", link: "/Tag" }]
-      },
-      {
-        text: "关于我",
-        items: [
-          { text: "About me", link: "/About me" },
-          { text: "面试", link: "/面试" },
-          { text: "js96题", link: "/js96题" },
-          { text: "myhtml", link: "/myhtml" },
-          { text: "bilibili", link: "/bilibili" }
+        text:"关于我",
+        items:[
+          {text:"About me",link:"/About me"},
+          {text:"面试",link:"/面试"},
+          {text:"js96题",link:"/js96题"},
+          {text:"myhtml",link:"/myhtml"},
+          {text:"bilibili",link:"/bilibili"}
         ]
       }
     ],
 
     sidebar: [
-      {
-        text: "todo list",
+      { text:"todo list",
         items: [
           { text: "任务", link: "/任务" },
         ],
@@ -110,11 +124,11 @@ const config = {
           { text: "http-proxy", link: "/http-proxy" },
           { text: "commander", link: "/commander" },
           { text: "js", link: "/js" },
-          { text: "CORS", link: "/CORS" },
-          { text: "better", link: "/better" },
-          { text: "Archives", link: "/Archives" },
-          { text: "codereview", link: "/codereview" }
-
+          {text:"CORS",link:"/CORS"},
+          {text:"better",link:"/better"},
+          {text:"Archives",link:"/Archives"},
+          {text:"codereview",link:"/codereview"}
+         
         ],
       },
       {
@@ -138,29 +152,28 @@ const config = {
       {
         text: "项目和工具",
         items: [
-          { text: "工具", link: "/工具" },
+          {text:"工具",link:"/工具"},
           { text: "vitepress的评论和搜索", link: "/vitepress的评论和搜索" },
-          { text: "obsidian-git插件的安装及使用", link: "/obsidian-git插件的安装及使用" },
-          { text: "scroll-lyrics", link: "/scroll-lyrics" },
-          { text: "fiveDice", link: "/fiveDice" },
-          { text: "getSuggestions", link: "/getSuggestions" }
-
+          {text:"obsidian-git插件的安装及使用",link:"/obsidian-git插件的安装及使用"},
+          {text:"scroll-lyrics",link:"/scroll-lyrics"},
+          {text:"fiveDice",link:"/fiveDice"},
+          {text:"getSuggestions",link:"/getSuggestions"}
+        
         ],
       },
       {
-        text: "关于我",
-        items: [
-          { text: "About me", link: "/About me" },
-          { text: "面试", link: "/面试" },
-          { text: "js96题", link: "/js96题" },
-          { text: "myhtml", link: "/myhtml" },
-          { text: "bilibili", link: "/bilibili" },
-
+        text:"关于我",
+        items:[
+          {text:"About me",link:"/About me"},
+          {text:"面试",link:"/面试"},
+          {text:"js96题",link:"/js96题"},
+          {text:"myhtml",link:"/myhtml"},
+          {text:"bilibili",link:"/bilibili"},
+          
         ]
       }
     ],
-    socialLinks: [{ icon: "github", link: "https://github.com/JaneAnne218" }, { icon: "youtube", link: "https://space.bilibili.com/30063847?spm_id_from=333.1007.0.0" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/JaneAnne218" },{icon:"youtube",link:"https://space.bilibili.com/30063847?spm_id_from=333.1007.0.0"}],
   },
-}
-
-export default config;
+  
+});
