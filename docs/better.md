@@ -35,3 +35,5 @@ C:\Users\haobing\Documents\gitmd\git\myblog2\docs\.vitepress\cache\deps\_metadat
 5. 打字效果的主页
 6. 小卡通人物的吉祥物
 7. 一个猫咪的进度条挂坠
+## ES module和commonjs的区别
+在config.ts加一个theme下的posts，用一个getposts()函数来获取posts的数据，然后一直报错。
