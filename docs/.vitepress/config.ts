@@ -7,6 +7,7 @@ export default defineConfig({
   title: "AnneJane's Blog",
   description: "学习记录+生活分享",
   base: "/myblog2/",
+  lastUpdated: true,
   themeConfig: {
     // algolia: {
     //   appId: "94LFGM62N2",
