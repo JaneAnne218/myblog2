@@ -34,4 +34,42 @@ C:\Users\haobing\Documents\gitmd\git\myblog2\docs\.vitepress\cache\deps\_metadat
 4. 邮箱的注册登录
 5. 打字效果的主页
 6. 小卡通人物的吉祥物
+
 7. 一个猫咪的进度条挂坠
+## ES module和commonjs的区别
+在config.ts加一个theme下的posts，用一个getposts()函数来获取posts的数据，然后一直报错。
+## 添加了 lastUpdated: true
+> [参考网址](https://vitepress.dev/reference/default-theme-last-updated)
+bug：所有文章的lastUpdated都是一样的。
+## 在部署的时候，必须package-lock.json，pnpm-lock.yaml不行，如何解决这个问题
+```yml
+name: Deployhaha
+
+on:
+  push:
+    branches:
+      master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm //改了这
+
+      - run: pnpm install --frozen-lockfile //改了
+
+      - name: Build
+        run: npm run docs:build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUBTOKEN }}
+          publish_dir: docs/.vitepress/dist
+
+```
+
