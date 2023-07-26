@@ -1,29 +1,29 @@
 {
-  "hash": "913fd609",
-  "browserHash": "724317a7",
+  "hash": "2dc18081",
+  "browserHash": "78b14bb3",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "833593ee",
+      "fileHash": "76b3fd78",
       "needsInterop": false
     },
+    "gitalk": {
+      "src": "../../../../node_modules/.pnpm/gitalk@1.8.0_react-dom@15.7.0_react@15.7.0/node_modules/gitalk/dist/gitalk.js",
+      "file": "gitalk.js",
+      "fileHash": "5e14394f",
+      "needsInterop": true
+    },
     "dayjs": {
-      "src": "../../../../node_modules/dayjs/dayjs.min.js",
+      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+dayjs@1.11.9/node_modules/dayjs/dayjs.min.js",
       "file": "dayjs.js",
-      "fileHash": "4414846e",
+      "fileHash": "56523384",
       "needsInterop": true
     },
     "dayjs/plugin/relativeTime": {
-      "src": "../../../../node_modules/dayjs/plugin/relativeTime.js",
+      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+dayjs@1.11.9/node_modules/dayjs/plugin/relativeTime.js",
       "file": "dayjs_plugin_relativeTime.js",
-      "fileHash": "6715c8bf",
-      "needsInterop": true
-    },
-    "gitalk": {
-      "src": "../../../../node_modules/gitalk/dist/gitalk.js",
-      "file": "gitalk.js",
-      "fileHash": "2de3ec6a",
+      "fileHash": "57a8d097",
       "needsInterop": true
     }
   },

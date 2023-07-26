@@ -1,6 +1,11 @@
 import { defineConfig } from "vitepress";
-
+import getMarkdownFiles from './add';
+const directory = './docs';
+const markdownFiles = getMarkdownFiles(directory);
+console.log(markdownFiles)
 // https://vitepress.dev/reference/site-config
+
+
 export default defineConfig({
 
   head: [["link", { rel: "icon", href: "../images/watermelon.ico" }]],
@@ -18,46 +23,34 @@ export default defineConfig({
       pattern:
         'https://github.com/jcamp-code/vitepress-blog-theme/edit/main/docs/:path',
     },
-    blog: {
-      title: 'My AI Written Blog',
-      description: 'All these articles were written by AI!',
-      defaultAuthor: 'AI Writer',
-      categoryIcons: {
-        article: 'i-[heroicons-outline/book-open]',
-        tutorial: 'i-[heroicons-outline/academic-cap]',
-        document: 'i-[heroicons-outline/annotation]',
-      },
-      tagIcons: {
-        github: 'i-[carbon/logo-github]',
-        vue: 'i-[carbon/logo-vue]',
-      },
-    },
-    search: {
-      provider: 'local',
-    },
+    posts:markdownFiles,
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       {
-        text: 'Blog',
-        activeMatch: '/blog/',
-        items: [
-          {
-            text: 'Blog Home',
-            link: '/blog/',
-            activeMatch: '/blog/$',
-          },
-          {
-            text: 'Tags',
-            link: '/blog/tags',
-            activeMatch: '/blog/tags',
-          },
-          {
-            text: 'Archives',
-            link: '/blog/archives',
-            activeMatch: '/blog/archives',
-          },
-        ]
+        text:'Archives',
+        link:'/Archives',
       },
+      // {
+      //   text: 'blogs',
+      //   activeMatch: '/blog/',
+      //   items: [
+      //     {
+      //       text: 'Blog Home',
+      //       link: '/blog/',
+      //       activeMatch: '/blog/$',
+      //     },
+      //     {
+      //       text: 'Tags',
+      //       link: '/blog/tags',
+      //       activeMatch: '/blog/tags',
+      //     },
+      //     {
+      //       text: 'Archives',
+      //       link: '/blog/archives',
+      //       activeMatch: '/blog/archives',
+      //     },
+      //   ]
+      // },
       {
         text: "前端基础",
         items: [
@@ -67,7 +60,7 @@ export default defineConfig({
           { text: "js", link: "/js" },
           {text:"CORS",link:"/CORS"},
           {text:"better",link:"/better"},
-          {text:"Archives",link:"/Archives"},
+        
           {text:"codereview",link:"/codereview"}
         ],
       },
@@ -127,7 +120,7 @@ export default defineConfig({
           { text: "js", link: "/js" },
           {text:"CORS",link:"/CORS"},
           {text:"better",link:"/better"},
-          {text:"Archives",link:"/Archives"},
+       
           {text:"codereview",link:"/codereview"}
          
         ],
