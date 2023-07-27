@@ -131,3 +131,5 @@ node_modules
 docs/.vitepress/cache/deps/@theme_index.js
 docs/.vitepress/cac
 he/deps/package.json
+.vitepress/*
+docs/.vitepress/cache/deps/_metadata.json

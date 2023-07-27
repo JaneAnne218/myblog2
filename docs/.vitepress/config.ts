@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 import getMarkdownFiles from './add';
 const directory = './docs';
 const markdownFiles = getMarkdownFiles(directory);
-console.log(markdownFiles)
+console.log(markdownFiles[0])
 // https://vitepress.dev/reference/site-config
 
 
