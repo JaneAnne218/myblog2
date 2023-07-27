@@ -19,6 +19,9 @@ export default defineConfig({
     //   apiKey: "7cc3f0c3e84053fa5eaaa1275c46549e",
     //   indexName: "my2",
     // },
+    search: {
+      provider: 'local',
+    },
     editLink: {
       pattern:
         'https://github.com/jcamp-code/vitepress-blog-theme/edit/main/docs/:path',
@@ -171,7 +174,7 @@ export default defineConfig({
         ]
       }
     ],
-    socialLinks: [{ icon: "github", link: "https://github.com/JaneAnne218" },{icon:"youtube",link:"https://space.bilibili.com/30063847?spm_id_from=333.1007.0.0"}],
+    socialLinks: [{ icon: "github", link: "https://github.com/JaneAnne218" }],
   },
   
 });
