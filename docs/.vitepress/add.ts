@@ -6,7 +6,9 @@ function getMarkdownFiles(directory: string): { title: string, date: string, fro
     .filter(file => file.endsWith('.md'))
     .map(filename => {
       const filePath = `${directory}/${filename}`;
+      console.log("filePath",filePath)
       const fileContent = fs.readFileSync(filePath, 'utf-8');
+      console.log("fileContent",fileContent)
       const frontMatterRegex = /---\r\n([\s\S]*?)\r\n---/m; // 匹配包含在 --- --- 之间的内容
       const frontMatterMatch = fileContent.match(frontMatterRegex);
       console.log("frontMatterMatch",frontMatterMatch)
