@@ -6,12 +6,10 @@ function getMarkdownFiles(directory: string): { title: string, date: string, fro
     .filter(file => file.endsWith('.md'))
     .map(filename => {
       const filePath = `${directory}/${filename}`;
-      console.log("filePath",filePath)
       const fileContent = fs.readFileSync(filePath, 'utf-8');
-      console.log("fileContent",fileContent)
-      const frontMatterRegex = /---\n([\s\S]*?)\n---/m; // 匹配包含在 --- --- 之间的内容
+      const frontMatterRegex = /---\n([\s\S]*?)\n---/m; // 匹配包含在 --- --- 之间的内容 linux下的
+      //const frontMatterRegex = /---\r\n([\s\S]*?)\r\n---/m;
       const frontMatterMatch = fileContent.match(frontMatterRegex);
-      console.log("frontMatterMatch",frontMatterMatch)
       let date = ''; // 默认为空字符串
       let tags: any[] = []; // 默认为空数组
       if (frontMatterMatch) {

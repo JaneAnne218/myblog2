@@ -27,9 +27,8 @@ import { useData, withBase } from "vitepress";
 import { computed } from "vue";
 import {sortDataByYearAndDate} from "../.vitepress/utils"
 const { theme } = useData();
-console.log("theme",theme)
 const data = computed(() => sortDataByYearAndDate(theme.value.posts));
-console.log("datahahah",data)
+
 
 
 </script>

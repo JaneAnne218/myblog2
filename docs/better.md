@@ -76,3 +76,6 @@ jobs:
 > [参考网址](https://www.jianshu.com/p/39848b7ecbaa)
 > [参考网址](https://www.cnblogs.com/mingc/p/7503100.html)
 ```js
+git rm -r --cached A
+```
+已经追踪到的文件，再把它添加到ignore，之后会规则失效，因为已经追踪到了，所以要先删除追踪，再添加ignore。
