@@ -11,7 +11,7 @@ interface Item {
     [year: string]: Item[];
   }
   export function sortDataByYearAndDate(data: Item[]): GroupedData {
-    console.log("sort被调用了");
+    // console.log("sort被调用了");
     const groupedData: GroupedData = {};
   
     data.forEach(item => {
@@ -25,7 +25,7 @@ interface Item {
     });
   
     const sortedYears = Object.keys(groupedData).sort((a, b) => b - a);
-    console.log("sortedYears",sortedYears)
+    // console.log("sortedYears",sortedYears)
   
     sortedYears.forEach(year => {
       const items = groupedData[year];
@@ -43,7 +43,7 @@ interface Item {
         sortedGroupedData[year] = groupedData[year];
     });
   
-    console.log("groupedData", sortedGroupedData);
+    // console.log("groupedData", sortedGroupedData);
     return sortedGroupedData;
   }
   
