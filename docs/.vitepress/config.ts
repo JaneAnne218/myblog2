@@ -27,6 +27,10 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       {
+        text:'Tags',
+        link:'/tags',
+      },
+      {
         text:'Archives',
         link:'/archives',
       },
