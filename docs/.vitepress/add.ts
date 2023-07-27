@@ -39,6 +39,7 @@ function getMarkdownFiles(directory: string): { title: string, date: string, fro
         regularPath: title+'.html',
       };
     });
+    console.log("add.ts调用结束了")
   return markdownFiles;
 }
 

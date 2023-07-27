@@ -23,11 +23,14 @@ export default defineConfig({
       pattern:
         'https://github.com/jcamp-code/vitepress-blog-theme/edit/main/docs/:path',
     },
+    search: {
+      provider: 'local',
+    },
     posts:markdownFiles,
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       {
-        text:'Archives',
+        text:'归档',
         link:'/Archives',
       },
       // {
