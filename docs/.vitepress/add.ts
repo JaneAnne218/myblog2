@@ -18,6 +18,7 @@ function getMarkdownFiles(directory: string): { title: string, date: string, fro
         const dateRegex = /^date:\s*(.*)/m; // 匹配以 date: 开头的行
         
         const dateMatch = frontMatterContent.match(dateRegex);
+        console.log("dateMatch",dateMatch)
   
         if (dateMatch) {
           date = dateMatch[1];
