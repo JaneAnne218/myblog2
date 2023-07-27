@@ -28,6 +28,7 @@ import { computed } from "vue";
 import {sortDataByYearAndDate} from "../.vitepress/utils"
 const { theme } = useData();
 console.log("theme",theme)
+console.log("theme.value.posts",theme.value.posts)
 const data = computed(() => sortDataByYearAndDate(theme.value.posts));
 console.log("datahahah",data)
 

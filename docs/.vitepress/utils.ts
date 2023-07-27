@@ -11,9 +11,8 @@ interface Item {
     [year: string]: Item[];
   }
   export function sortDataByYearAndDate(data: Item[]): GroupedData {
-    console.log("sort被调用了");
     const groupedData: GroupedData = {};
-  
+    console.log("data是数组么",data)
     data.forEach(item => {
       const year = item.frontMatter.date.slice(0, 4);
   

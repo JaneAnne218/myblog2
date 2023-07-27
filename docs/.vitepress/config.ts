@@ -1,8 +1,17 @@
 import { defineConfig } from "vitepress";
 import getMarkdownFiles from './add';
-const directory = './docs';
-const markdownFiles = getMarkdownFiles(directory);
-console.log(markdownFiles)
+
+async function fetchMarkdownFiles() {
+  const directory = './docs';
+  const markdownFiles = await getMarkdownFiles(directory);
+  return markdownFiles; // 返回结果
+}
+
+const markdownFilesPromise = fetchMarkdownFiles();
+markdownFilesPromise.then(result => {
+  console.log("markdownFilesPromise", result);
+});
+
 // https://vitepress.dev/reference/site-config
 
 
@@ -23,10 +32,10 @@ export default defineConfig({
       pattern:
         'https://github.com/jcamp-code/vitepress-blog-theme/edit/main/docs/:path',
     },
+    posts: () => markdownFilesPromise,
     search: {
       provider: 'local',
     },
-    posts:markdownFiles,
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       {

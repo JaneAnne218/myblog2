@@ -15,7 +15,6 @@
     lastUpdated: number;
     relativePath: string;
   };
-  console.log("titile下的usedata",useData())
   const pageData: pageData = useData().page;
   const publishDate = ref("");
   dayjs.extend(relativeTime);
