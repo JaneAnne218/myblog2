@@ -1,7 +1,7 @@
 ---
 title: Js实现linux运维面板
 description: linux
-date: 2023-7-10
+date: 2023-07-10
 tags:
   - linux
 ---

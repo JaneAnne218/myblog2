@@ -1,7 +1,7 @@
 ---
 title: axios
 description: axios
-date: 2022-11-1
+date: 2022-11-01
 tags:
   - axios
 ---

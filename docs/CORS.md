@@ -1,9 +1,9 @@
 ---
 title: CORS
 description: 跨域
-date: 2023-7-13
+date: 2023-07-13
 tags:
-  - codereview
+  - 前端基础
 ---
 ## 跨域
 ### 什么是跨域

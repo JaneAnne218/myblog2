@@ -1,7 +1,7 @@
 ---
 title: pnpmdeploy
 description: pnpmdeploy
-date: 2023-6-10
+date: 2023-06-10
 tags:
   - CI/CD
 ---

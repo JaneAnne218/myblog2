@@ -1,9 +1,9 @@
 ---
 title: commander
 description: 命令行工具
-date: 2023-5-15
+date: 2023-05-15
 tags:
-  - 工具
+  - 前端基础
 ---
 ```js
 //node 1.js -s / --first a/b/c  ls/d/lss

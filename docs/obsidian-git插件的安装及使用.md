@@ -1,7 +1,7 @@
 ---
 title: obsidian git插件的安装及使用
 description: obsidian git插件的安装及使用
-date: 2023-7-4
+date: 2023-07-04
 tags:
   - 工具
 ---

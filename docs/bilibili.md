@@ -1,7 +1,7 @@
 ---
 title: bilibili
 description: b站up主
-date: 2023-7-15
+date: 2023-07-15
 tags:
   - bilibili
 ---

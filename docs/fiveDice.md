@@ -1,7 +1,7 @@
 ---
 title: fiveDice 
 description: 骰子
-date: 2023-7-15
+date: 2023-07-15
 tags:
   - html css
 ---

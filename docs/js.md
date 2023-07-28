@@ -1,7 +1,7 @@
 ---
 title: JS
 description: JS基础
-date: 2023-6-10
+date: 2023-06-10
 tags:
   - JS
 ---

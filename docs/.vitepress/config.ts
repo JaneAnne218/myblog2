@@ -67,8 +67,8 @@ export default defineConfig({
           { text: "js", link: "/js" },
           {text:"CORS",link:"/CORS"},
           {text:"better",link:"/better"},
-        
-          {text:"codereview",link:"/codereview"}
+          {text:"codereview",link:"/codereview"},
+          {text:"regex",link:"/regex"},
         ],
       },
       {
@@ -127,9 +127,8 @@ export default defineConfig({
           { text: "js", link: "/js" },
           {text:"CORS",link:"/CORS"},
           {text:"better",link:"/better"},
-       
-          {text:"codereview",link:"/codereview"}
-         
+          {text:"codereview",link:"/codereview"},
+          {text:"regex",link:"/regex"},
         ],
       },
       {

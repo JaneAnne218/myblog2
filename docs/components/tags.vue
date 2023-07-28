@@ -1,6 +1,5 @@
 <template>
     <div class="main">
-      <h1 class="tags-header">Tags</h1>
       <div class="tags">
         <span
           @click="toggleTag(key)"

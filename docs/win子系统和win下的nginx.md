@@ -1,7 +1,7 @@
 ---
 title: win子系统和win下的nginx
 description: win子系统和win下的nginx
-date: 2023-6-10
+date: 2023-06-10
 tags:
   - win子系统
 ---

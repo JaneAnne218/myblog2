@@ -1,9 +1,9 @@
 ---
 title: http-proxy
 description: http代理
-date: 2022-7-10
+date: 2022-07-10
 tags:
-  - 工具
+  - 前端基础
 ---
 ## 1. 使用以下命令来初始化一个新的 Node.js 项目，并创建 `package.json` 文件：
 ```bash 

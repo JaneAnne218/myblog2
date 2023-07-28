@@ -1,7 +1,7 @@
 ---
 title: scroll-lyrics
 description: 滚动歌词
-date: 2023-7-13
+date: 2023-07-13
 tags:
   - 组件
 ---
