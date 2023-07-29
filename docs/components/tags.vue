@@ -54,7 +54,6 @@
   
   const { theme } = useData();
   const data = computed(() => initTags(theme.value.posts));
-  console.log("tags下的data",data)
   let selectTag = ref("");
   const toggleTag = (tag: string) => {
     selectTag.value = tag;

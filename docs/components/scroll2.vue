@@ -29,10 +29,11 @@ export default {
 
   },
   methods: {
-
     scrollLyrics() {
     const currentTime = this.currentTime;
+    console.log("currentTime", currentTime)
     const lyricsList = this.$refs.lyricsList;
+    console.log("lyricsList", lyricsList)
     const lyricsLines = lyricsList.querySelectorAll('li');
     const lineHeight = lyricsLines[0].offsetHeight;
     for (let i = 0; i < lyricsLines.length; i++) {
@@ -47,6 +48,7 @@ export default {
   },
   watch: {
     currentTime() {
+      console.log("currentTime1", this.currentTime)
       this.scrollLyrics();
     },
   },
