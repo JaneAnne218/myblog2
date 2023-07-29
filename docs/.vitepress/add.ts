@@ -7,8 +7,8 @@ function getMarkdownFiles(directory: string): { title: string, date: string, fro
     .map(filename => {
       const filePath = `${directory}/${filename}`;
       const fileContent = fs.readFileSync(filePath, 'utf-8');
-      //const frontMatterRegex = /---\n([\s\S]*?)\n---/m; // 匹配包含在 --- --- 之间的内容 linux下的
-      const frontMatterRegex = /---\r\n([\s\S]*?)\r\n---/m;
+      const frontMatterRegex = /---\n([\s\S]*?)\n---/m; // 匹配包含在 --- --- 之间的内容 linux下的
+      //const frontMatterRegex = /---\r\n([\s\S]*?)\r\n---/m;
       const frontMatterMatch = fileContent.match(frontMatterRegex);
       let date = ''; // 默认为空字符串
       let tags: any[] = []; // 默认为空数组
