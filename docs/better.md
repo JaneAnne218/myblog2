@@ -79,3 +79,24 @@ jobs:
 git rm -r --cached A
 ```
 已经追踪到的文件，再把它添加到ignore，之后会规则失效，因为已经追踪到了，所以要先删除追踪，再添加ignore。
+## 不明白啊
+[专辑下载](https://www.xoshares.com/?thread-8415.htm)这些网站让你免费下载专辑干嘛？
+## iframe标签
+很多博客网站不支持嵌入iframe标签，vitepress博客也不支持
+```html
+ <iframe
+      frameborder="no"
+      border="0"
+      marginwidth="0"
+      marginheight="0"
+      width="330"
+      height="450"
+      src="//music.163.com/outchain/player?type=1&id=149772654&auto=1&height=430"
+    ></iframe>
+  ```
+## 生成分享链接的时候加密
+对id加密
+## 压缩格式
+7-zip，用winara解压缩，winara个人版是免费的
+
+  
