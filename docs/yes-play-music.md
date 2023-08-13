@@ -172,25 +172,31 @@ import xxx from "xxx.svg";
 这样写是对的。
 
 ## 发送 axios 请求获得数据
-创建axios请求
+
+创建 axios 请求
+
 ```js
-import axios from 'axios'
+import axios from "axios";
 const request = axios.create({
-  baseURL: 'https://autumnfish.cn',
-  timeout: 10000
-})
-export default request
+  baseURL: "https://autumnfish.cn",
+  timeout: 10000,
+});
+export default request;
 ```
-在vue中使用
+
+在 vue 中使用
+
 ```js
-import request from '@/utils/request'
+import request from "@/utils/request";
 request({
-  url: '/banner'
-}).then(res => {
-  console.log(res)
-})
+  url: "/banner",
+}).then((res) => {
+  console.log(res);
+});
 ```
+
 ## 路由守卫
+
 路由守卫的作用是什么？<br>
 路由守卫的作用是在路由跳转之前做一些事情，比如判断用户是否登录，如果没有登录，就跳转到登录页面，如果登录了，就跳转到目标页面。<br>
 路由守卫有哪些？<br>
@@ -208,7 +214,6 @@ beforeRouteEnter 是在路由跳转之前执行的，beforeRouteUpdate 是在路
 路由守卫的执行顺序是什么？<br>
 路由守卫的执行顺序是 beforeEach、beforeResolve、beforeEnter、beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave、afterEach。<br>
 
-
 ## vue 的 methods 里面定义的方法是什么时候执行的呢？
 
 1. 在 vue 的生命周期里面执行的，比如 created、mounted 等
@@ -219,32 +224,36 @@ beforeRouteEnter 是在路由跳转之前执行的，beforeRouteUpdate 是在路
 6. 在 vue 的路由里面执行的，比如路由守卫
 7. 在 vue 的 store 里面执行的，比如 vuex
 
-## axios发送请求返回的数据的处理
+## axios 发送请求返回的数据的处理
+
 ```js
-import request from '@/utils/request'
+import request from "@/utils/request";
 export function getBanner() {
   return request({
-    url: '/banner'
-  })
+    url: "/banner",
+  });
 }
 ```
+
 ```js
-import { getBanner } from '@/api/home'
+import { getBanner } from "@/api/home";
 export default {
-  name: 'Home',
+  name: "Home",
   data() {
     return {
-      banners: []
-    }
+      banners: [],
+    };
   },
   created() {
-    getBanner().then(res => {
-      this.banners = res.data.banners
-    })
-  }
-}
+    getBanner().then((res) => {
+      this.banners = res.data.banners;
+    });
+  },
+};
 ```
+
 ## 路由传参
+
 ```js
 // 路由配置
 {
@@ -262,20 +271,26 @@ this.$router.push({
 // 路由接收
 this.$route.params.id
 ```
-## 那如果得到的数据是长度是17的数组，但是我只想要其中前10个数据怎么办？
+
+## 那如果得到的数据是长度是 17 的数组，但是我只想要其中前 10 个数据怎么办？
+
 ```js
-this.banners = res.data.banners.slice(0, 10)
+this.banners = res.data.banners.slice(0, 10);
 ```
+
 如果返回数据是一个对象数组该如何解决呢？
+
 ```js
-this.banners = res.data.banners.slice(0, 10).map(item => {
+this.banners = res.data.banners.slice(0, 10).map((item) => {
   return {
     id: item.id,
-    pic: item.pic
-  }
-})
+    pic: item.pic,
+  };
+});
 ```
+
 项目代码
+
 ```js
   created() {
     dailyRecommendPlaylist().then(
@@ -285,23 +300,338 @@ this.banners = res.data.banners.slice(0, 10).map(item => {
 )
   },
 ```
-## 获取推荐艺人
-1. css <br>
->需要注意，在css的定义中，需要先自我明确是给哪些内容加样式。这里我犯了个错误是，把推荐艺人写进栅格里了。
 
-用grid，一行6张图片，且图片大小一样。
+## 获取推荐艺人
+
+1. css <br>
+   > 需要注意，在 css 的定义中，需要先自我明确是给哪些内容加样式。这里我犯了个错误是，把推荐艺人写进栅格里了。
+
+用 grid，一行 6 张图片，且图片大小一样。
+
 ```css
 .artist {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 10px;
   img {
-    width: 100%;//由于占整个格子，所以图片大小一样，但却是椭圆，border-radius50%和100%的效果是一样的。
+    width: 100%; //由于占整个格子，所以图片大小一样，但却是椭圆，border-radius50%和100%的效果是一样的。
     border-radius: 50%;
   }
 }
 ```
 
+## 代码重构
+
+1. 重复代码的抽取
+2. 代码的分层
+3. 代码的复用
+4. 代码的可维护性
+5. 代码的可读性
+6. 代码的可扩展性
+7. 代码的可测试性
+8. 代码的性能
+9. 代码的安全性
+10. 代码的规范性
+11. 代码的健壮性
+12. 代码的可靠性
+13. 代码的可用性
+14. 代码的易用性
+15. 代码的易学性
+16. 代码的易懂性
+
+## 新专速递、排行榜
+
+与上面相似
+
+## loading="lazy"
+
+image 的属性，用于懒加载，当图片进入可视区域时，才会加载图片。
+懒加载：当图片进入可视区域时，才会加载图片。
+可视化区域：浏览器的可视区域，即浏览器的窗口大小。
+
+## 为什么要用懒加载？
+
+1. 减少请求次数，提升性能
+2. 减少服务器压力
+3. 减少流量消耗
+
+## 如何实现带 id 的路由跳转
+
+```js
+this.$router.push({
+  name: "Detail",
+  params: {
+    id: 1,
+  },
+});
+```
+
+或者
+
+```js
+this.$router.push("/detail/" + id);
+```
+
+那 routes.js 里面的路由配置是怎么写的呢？
+
+```js
+{
+  path: '/detail/:id',
+  name: 'Detail',
+  component: () => import('@/views/detail')
+}
+```
+
+## 如何路由跳转的时候携带 vue 组件的 data
+
+```js
+this.$router.push({
+  name: "Detail",
+  params: {
+    id: 1,
+    data: this.data,
+  },
+});
+```
+
+我如果使用的 router-ink 呢如何携带 vue 组件的 data 呢？
+
+```js
+<router-link :to="{name: 'Detail', params: {id: 1, data: data}}">详情</router-link>
+```
+
+如果是
+
+```html
+<router-link :to="`/playlist/${item.id}`"></router-link>
+```
+
+在 router-link 里面怎么传递 data 呢？
+
+```html
+<router-link :to="`/playlist/${item.id}`" :data="data"></router-link>
+```
+
+如何传递 vue 组件的 data 呢
+
+```js
+this.$router.push({
+  path: "/playlist/" + id,
+  query: {
+    data: this.data,
+  },
+});
+```
+
+## 如何获取路由跳转时携带的 data
+
+```js
+this.$route.params.data;
+```
+
+或者
+
+```js
+this.$route.query.data;
+```
+
+## 如何实现路由跳转的时候，页面滚动到顶部
+
+```js
+scrollBehavior(to, from, savedPosition) {
+  return { x: 0, y: 0 }
+}
+```
+
+## 如何实现路由跳转的时候，页面滚动到指定位置
+
+```js
+scrollBehavior(to, from, savedPosition) {
+  return { selector: '.app' }
+}
+```
+
+## 路由跳转的 params 和 query，meta
+
+1. params 是路由跳转的时候，url 里面的参数，比如
+
+```js
+this.$router.push({
+  path: "/playlist/" + id,
+  params: {
+    data: this.data,
+  },
+});
+```
+
+2. query 是路由跳转的时候，url 里面的参数，比如
+
+```js
+this.$router.push({
+  path: "/playlist/" + id,
+  query: {
+    data: this.data,
+  },
+});
+```
+
+3. meta传递非url参数
+
+```js
+meta: {
+  msg: "hello";
+}
+```
+## vue存储A组件数据
+如何存储A组件的数据
+1. vuex
+2. localStorage
+3. sessionStorage
+4. cookie
+5. sessionStorage
+分别解释如何使用呢？
+1. vuex如何使用呢？
+```js
+// store.js
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+export default new Vuex.Store({
+  state: {
+    msg: 'hello'
+  },
+  mutations: {
+    setMsg(state, msg) {
+      state.msg = msg
+    }
+  }
+})
+```
+```js
+// A.vue
+import { mapState, mapMutations } from 'vuex'
+export default {
+  computed: {
+    ...mapState(['msg'])
+  },
+  methods: {
+    ...mapMutations(['setMsg'])
+  }
+}
+```
+```js
+// B.vue
+import { mapState, mapMutations } from 'vuex'
+export default {
+  computed: {
+    ...mapState(['msg'])
+  },
+  methods: {
+    ...mapMutations(['setMsg'])
+  }
+}
+```
+## vuex
+创建stroe实例
+```js
+// store.js
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+export default new Vuex.Store({
+  state: {
+    msg: 'hello'
+  },
+  mutations: {
+    setMsg(state, msg) {
+      state.msg = msg
+    }
+  }
+})
+```
+上面这种创建store实例的方法，报错export 'default' (imported as 'Vue') was not found in 'vue'，是所以采用另外一种创建store实例的方法：
+```js
+// /store/index.js
+import { createStore } from 'vuex';
+console.log('我在store里面')
+const store = createStore({
+  state() {
+    return {
+      count: 0,
+      username: '',
+      // 其他状态数据...
+      msg:'hello'
+    };
+  },
+  mutations: {
+    increment(state) {
+      state.count++;
+    },
+    setUsername(state, name) {
+      state.username = name;
+    },
+    // 其他 mutations 方法...
+  },
+});
+export default store
+```
+使用这个store实例的方法
+```js
+//main.js
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+
+const app = createApp(App);
+app.use(router);
+app.use(store);
+app.mount('#app');
+```
+此时可以在vue devtools可以看到vuex选项
+## vuex存储整个项目的所有数据
+vue组件的数据传给vuex<br>
+1. store
+```js
+// store/index.js
+mustations: {
+  updateData(state, data) {
+    state.data = data
+  }
+}
+```
+2. vue组件
+```js
+// A.vue
+mounted() {
+  this.$store.commit('updateData', this.recommendArtists)
+}
+```
+3. 其他vue组件传数据给vuex的方法-使用actions
+```js
+// store/index.js
+actions: {
+  updateData(context, data) {
+    context.commit('updateData', data)
+  }
+}
+```
+```js
+// A.vue
+mounted() {
+  this.$store.dispatch('updateData', this.recommendArtists)
+}
+```
+使用this.$store.commit('updateData', this.recommendArtists)和this.$store.dispatch('updateData', this.recommendArtists)的区别是什么呢？<br>
+this.$store.commit('updateData', this.recommendArtists)是直接调用mutations里面的方法，而this.$store.dispatch('updateData', this.recommendArtists)是调用actions里面的方法，actions里面的方法再调用mutations里面的方法。<br>
+使用this.$store.dispatch('updateData', this.recommendArtists)的好处是什么呢？<br>
+1. 可以在actions里面做一些异步操作，比如发送ajax请求，然后再调用mutations里面的方法。
+2. 可以在actions里面做一些判断，比如判断数据是否存在，如果存在就不调用mutations里面的方法。
+## player
+## library
+## playbutton
+## settings
+## 登录
 
 
 
