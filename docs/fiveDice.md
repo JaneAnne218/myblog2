@@ -7,5 +7,7 @@ tags:
 ---
 <script setup>
 import fiveDice from './components/fiveDice.vue'
+import eatbeas from './components/eatbeas.vue'
 </script>
 <fiveDice/>
+<eatbeas/>

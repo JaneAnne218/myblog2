@@ -16,11 +16,13 @@ husky 是一个 git hook 工具，可以在 git hook 之前执行脚本，比如
 
 ## janeplaymusic
 
-vue-cli vue3+webpack 1.发送 axios 请求
-参考 [axios](https://janeanne218.github.io/myblog2/axios.html) 2. 解决同一个组件需要发送多个请求的问题 3. JSON.stringify(response.data, null, 2);
-JSON.stringify 是将一个对象转换成 json 字符串，null 是转换过程中的替换函数，2 是缩进用的空格数。
-举个例子 JSON.stringify(response.data, null, 2);：
-
+vue-cli vue3+webpack<br/>
+1.发送 axios 请求<br/>
+参考 [axios](https://janeanne218.github.io/myblog2/axios.html)<br/>
+2. 解决同一个组件需要发送多个请求的问题<br/>
+3. JSON.stringify(response.data, null, 2);<br/>
+JSON.stringify 是将一个对象转换成 json 字符串，null 是转换过程中的替换函数，2 是缩进用的空格数。<br/>
+举个例子 JSON.stringify(response.data, null, 2);<br/>
 ```js
 var obj = {
   a: 1,
@@ -475,92 +477,103 @@ this.$router.push({
 });
 ```
 
-3. meta传递非url参数
+3. meta 传递非 url 参数
 
 ```js
 meta: {
   msg: "hello";
 }
 ```
-## vue存储A组件数据
-如何存储A组件的数据
+
+## vue 存储 A 组件数据
+
+如何存储 A 组件的数据
+
 1. vuex
 2. localStorage
 3. sessionStorage
 4. cookie
 5. sessionStorage
-分别解释如何使用呢？
-1. vuex如何使用呢？
+   分别解释如何使用呢？
+6. vuex 如何使用呢？
+
 ```js
 // store.js
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
+import Vue from "vue";
+import Vuex from "vuex";
+Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    msg: 'hello'
+    msg: "hello",
   },
   mutations: {
     setMsg(state, msg) {
-      state.msg = msg
-    }
-  }
-})
+      state.msg = msg;
+    },
+  },
+});
 ```
+
 ```js
 // A.vue
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from "vuex";
 export default {
   computed: {
-    ...mapState(['msg'])
+    ...mapState(["msg"]),
   },
   methods: {
-    ...mapMutations(['setMsg'])
-  }
-}
+    ...mapMutations(["setMsg"]),
+  },
+};
 ```
+
 ```js
 // B.vue
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from "vuex";
 export default {
   computed: {
-    ...mapState(['msg'])
+    ...mapState(["msg"]),
   },
   methods: {
-    ...mapMutations(['setMsg'])
-  }
-}
+    ...mapMutations(["setMsg"]),
+  },
+};
 ```
+
 ## vuex
-创建stroe实例
+
+创建 stroe 实例
+
 ```js
 // store.js
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
+import Vue from "vue";
+import Vuex from "vuex";
+Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    msg: 'hello'
+    msg: "hello",
   },
   mutations: {
     setMsg(state, msg) {
-      state.msg = msg
-    }
-  }
-})
+      state.msg = msg;
+    },
+  },
+});
 ```
-上面这种创建store实例的方法，报错export 'default' (imported as 'Vue') was not found in 'vue'，是所以采用另外一种创建store实例的方法：
+
+上面这种创建 store 实例的方法，报错 export 'default' (imported as 'Vue') was not found in 'vue'，是所以采用另外一种创建 store 实例的方法：
+
 ```js
 // /store/index.js
-import { createStore } from 'vuex';
-console.log('我在store里面')
+import { createStore } from "vuex";
+console.log("我在store里面");
 const store = createStore({
   state() {
     return {
       count: 0,
-      username: '',
+      username: "",
       // 其他状态数据...
-      msg:'hello'
+      msg: "hello",
     };
   },
   mutations: {
@@ -573,25 +586,32 @@ const store = createStore({
     // 其他 mutations 方法...
   },
 });
-export default store
+export default store;
 ```
-使用这个store实例的方法
+
+使用这个 store 实例的方法
+
 ```js
 //main.js
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
 const app = createApp(App);
 app.use(router);
 app.use(store);
-app.mount('#app');
+app.mount("#app");
 ```
-此时可以在vue devtools可以看到vuex选项
-## vuex存储整个项目的所有数据
-vue组件的数据传给vuex<br>
+
+此时可以在 vue devtools 可以看到 vuex 选项
+
+## vuex 存储整个项目的所有数据
+
+vue 组件的数据传给 vuex<br>
+
 1. store
+
 ```js
 // store/index.js
 mustations: {
@@ -600,14 +620,18 @@ mustations: {
   }
 }
 ```
-2. vue组件
+
+2. vue 组件
+
 ```js
 // A.vue
 mounted() {
   this.$store.commit('updateData', this.recommendArtists)
 }
 ```
-3. 其他vue组件传数据给vuex的方法-使用actions
+
+3. 其他 vue 组件传数据给 vuex 的方法-使用 actions
+
 ```js
 // store/index.js
 actions: {
@@ -616,22 +640,357 @@ actions: {
   }
 }
 ```
+
 ```js
 // A.vue
 mounted() {
   this.$store.dispatch('updateData', this.recommendArtists)
 }
 ```
-使用this.$store.commit('updateData', this.recommendArtists)和this.$store.dispatch('updateData', this.recommendArtists)的区别是什么呢？<br>
-this.$store.commit('updateData', this.recommendArtists)是直接调用mutations里面的方法，而this.$store.dispatch('updateData', this.recommendArtists)是调用actions里面的方法，actions里面的方法再调用mutations里面的方法。<br>
-使用this.$store.dispatch('updateData', this.recommendArtists)的好处是什么呢？<br>
-1. 可以在actions里面做一些异步操作，比如发送ajax请求，然后再调用mutations里面的方法。
-2. 可以在actions里面做一些判断，比如判断数据是否存在，如果存在就不调用mutations里面的方法。
+
+使用 this.$store.commit('updateData', this.recommendArtists)和this.$store.dispatch('updateData', this.recommendArtists)的区别是什么呢？<br>
+this.$store.commit('updateData', this.recommendArtists)是直接调用mutations里面的方法，而this.$store.dispatch('updateData', this.recommendArtists)是调用 actions 里面的方法，actions 里面的方法再调用 mutations 里面的方法。<br>
+使用 this.$store.dispatch('updateData', this.recommendArtists)的好处是什么呢？<br>
+
+1. 可以在 actions 里面做一些异步操作，比如发送 ajax 请求，然后再调用 mutations 里面的方法。
+2. 可以在 actions 里面做一些判断，比如判断数据是否存在，如果存在就不调用 mutations 里面的方法。
+
 ## player
+
 ## library
+
 ## playbutton
+
 ## settings
+
 ## 登录
+
+## :src
+
+```html
+<img :src="playlist.coverImgUrl" alt="" />
+```
+
+## 播放+音量滑块+进度条滑块
+
+用 audio 标签，属性：volume、currentTime、duration
+
+1.  在播放的时候拖动进度条会有声音，解决办法是在拖动的时候设置 audio 标签的 muted 属性为 true，拖动结束的时候设置 audio 标签的 muted 属性为 false
+
+## "vue-slider-component": "4.0.0-beta.8",
+
+提示不兼容，之后换成这个版本就可以了
+
+> 参考 [链接](https://github.com/NightCatSama/vue-slider-component/issues/604)
+
+在 audioPlayer 组件引入 slider.css 文件。<br>
+
+1.  解决进度条上小圆点上的数字是 1-100，不是实时的播放时间。<br>
+2.  解决音量播放只有 0 和 1 两个选择，我需要 0 到 1 的连续变化，而不是 0 和 1 的离散变化。如何解决呢？
+
+```html
+<vue-slider
+  v-model="volume"
+  :min="0"
+  :max="1"
+  :height="8"
+  :tip="false"
+  :lazy="false"
+  :piecewise="false"
+  :process="false"
+  :reverse="false"
+  :speed="0.5"
+  :tooltip="false"
+  :width="100"
+/>
+```
+
+解释这个 vue-slider 的属性：
+
+```js
+:min="0" :max="1" // 最小值和最大值
+:height="8" // 进度条的高度
+:tip="false" // 是否显示小圆点上的数字
+:lazy="false" // 是否惰性渲染
+:piecewise="false" // 是否显示小圆点
+:process="false" // 是否显示进度条
+:reverse="false" // 是否反转
+:speed="0.5" // 滑块滑动的速度
+:tooltip="false" // 是否显示tooltip
+:width="100" // 进度条的宽度
+```
+
+## 歌单详情的播放按钮，它的样式影响了 player 的按钮，我要如何如何解决这种问题呢？要么都把所有的按钮样式统一，要么实现样式的隔离?
+
+1. 用 scoped，但是 scoped 只能影响当前组件的样式，不能影响子组件的样式
+2. 用 deep，但是 deep 只能影响子组件的样式，不能影响当前组件的样式
+3. 用>>>，但是>>>只能影响子组件的样式，不能影响当前组件的样式
+4. 用/deep/，但是/deep/只能影响子组件的样式，不能影响当前组件的样式
+5. 用::v-deep，但是::v-deep 只能影响子组件的样式，不能影响当前组件的样式
+6. 用::v-slotted，但是::v-slotted 只能影响子组件的样式，不能影响当前组件的样式
+7. 用::v-context，但是::v-context 只能影响子组件的样式，不能影响当前组件的样式
+8. 用::v-global，但是::v-global 只能影响子组件的样式，不能影响当前组件的样式
+9. 用::v-shallow，但是::v-shallow 只能影响子组件的样式，不能影响当前组件的样式
+10. 用::v-unsafe，但是::v-unsafe 只能影响子组件的样式，不能影响当前组件的样式
+
+## vscode 显示调用层次结构
+
+1. 显示传出调用<br>
+2. 显示传入调用<br>
+   但是 vue 组件里面的方法无法显示调用层次结构<br>
+
+## howler
+
+howler 是一个音频库，可以用来播放音频，如何使用呢？
+
+```js
+import { Howl } from "howler";
+const sound = new Howl({
+  src: ["sound.webm", "sound.mp3"],
+});
+sound.play();
+```
+
+## 安装了一个 wakatime
+
+可记录代码时间
+
+## 添加了双击
+
+```html
+<div
+  v-for="item in playlist.tracks"
+  :key="item.id"
+  class="song-item"
+  @dblclick="helloApple(item.name)"
+></div>
+```
+
+双击就可以拿到 item 值。
+
+## beforeRouteUpdate
+
+beforeRouteUpdate 函数会在当前路由即将更新时调用。具体情况是，当你在同一个路由下进行参数的切换，例如从 /artist/1 切换到 /artist/2，或者从 /artist/2 切换回 /artist/1 时，会触发 beforeRouteUpdate 函数。
+
+## 为什么 activated 不起作用，但是 mounted 却是成功的？
+
+> arist.vue
+
+1. activated 是 keep-alive 的钩子函数，只有在 keep-alive 的组件里面才能使用，而 mounted 是 vue 的钩子函数，所有的组件都可以使用。<br>
+2. 解释 keep-alive <br>
+   keep-alive 是 vue 的内置组件，可以使被包含的组件保留状态，或避免重新渲染。它们有两个非常有用的特性：include 和 exclude 属性允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示。
+
+## 关注/正在关注
+
+artist.followed
+?需要刷新数据才更新
+
+## 。。。按钮
+
+1. 绝对定位<br/>
+2. refs
+
+## 最新发布
+
+## 如何使用 VueI18n
+
+要使用 VueI18n 来实现多语言支持，你可以按照以下步骤进行操作：
+
+1. 安装 VueI18n：在你的项目目录下运行以下命令安装 VueI18n。
+
+```bash
+npm install vue-i18n --save
+```
+
+2. 创建语言文件：在你的项目中创建一个目录来存放语言文件，例如 `src/locale`。在该目录下创建一个 `locales` 文件夹，并在其中创建针对每种语言的 JSON 文件。比如，你可以创建 `en.json` 和 `zh.json` 分别代表英文和中文。
+
+示例 `en.json` 文件内容：
+
+```json
+{
+  "message": "Hello, world!",
+  "greeting": "Good morning!"
+}
+```
+
+示例 `zh.json` 文件内容：
+
+```json
+{
+  "message": "你好，世界！",
+  "greeting": "早上好！"
+}
+```
+
+3. 创建 VueI18n 实例：在你的应用的入口文件（通常是 `main.js`）中，导入 Vue 和 VueI18n，并创建 VueI18n 实例。
+
+```javascript
+import Vue from "vue";
+import VueI18n from "vue-i18n";
+
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+  locale: "en", // 默认语言
+  fallbackLocale: "en", // 当当前语言不存在时的回退语言
+  messages: {
+    en: require("./locale/locales/en.json"), // 导入英文语言文件
+    zh: require("./locale/locales/zh.json"), // 导入中文语言文件
+  },
+});
+
+new Vue({
+  i18n,
+  // ...
+}).$mount("#app");
+```
+
+4. 在组件中使用翻译：在需要翻译的组件模板中，使用 `$t` 方法来进行翻译。
+
+```html
+<template>
+  <div>
+    <p>{{ $t('message') }}</p>
+    <p>{{ $t('greeting') }}</p>
+  </div>
+</template>
+```
+
+请注意，在以上示例中，`$t` 方法会根据当前的语言设置自动选择对应的翻译文本。
+
+5. 切换语言：你可以通过 `$i18n.locale` 属性来切换当前的语言。
+
+```javascript
+methods: {
+  switchLanguage(lang) {
+    this.$i18n.locale = lang;
+  }
+}
+```
+
+这样，当调用 `switchLanguage` 方法并传入 `'en'` 或 `'zh'` 时，就可以切换到相应的语言。
+
+这就是使用 VueI18n 实现多语言支持的基本步骤。你可以根据需要在语言文件中添加更多的翻译文本，并在组件中使用 `$t` 方法来进行翻译。
+
+## Vue-Clipboard2
+
+要使用 Vue-Clipboard2，在你的 Vue 项目中执行以下步骤：
+
+1. 安装 `vue-clipboard2`：在终端中运行以下命令：
+
+   ```shell
+   npm install vue-clipboard2 --save
+   ```
+
+2. 在你的 Vue 组件中引入 `vue-clipboard2`：
+
+   ```javascript
+   import VueClipboard from "vue-clipboard2";
+   ```
+
+3. 在同一个组件中注册 `VueClipboard` 插件：
+
+   ```javascript
+   Vue.use(VueClipboard);
+   ```
+
+4. 在你的模板中使用 `v-clipboard` 指令，以及绑定点击事件和剪贴板内容：
+
+   ```html
+   <template>
+     <div>
+       <button v-clipboard:copy="clipboardText" v-clipboard:success="onCopy">
+         复制
+       </button>
+     </div>
+   </template>
+   ```
+
+5. 在你的 Vue 组件的 `data` 中定义剪贴板的内容：
+   ```javascript
+   export default {
+     data() {
+       return {
+         clipboardText: "要复制的文本",
+       };
+     },
+     methods: {
+       onCopy() {
+         console.log("复制成功！");
+       },
+     },
+   };
+   ```
+
+这样，当用户点击 "复制" 按钮时，指定的文本将被复制到剪贴板，并且 `onCopy` 方法会被触发。
+
+以上是使用 `vue-clipboard2` 的基本步骤，请根据你的实际需求做适当的调整。可以参考 `vue-clipboard2` 的文档（https://www.npmjs.com/package/vue-clipboard2）获取更多详细的用法和选项。
+## vue3如何使用vue-i18n
+1. 安装 Vue I18n <br/>
+```js
+npm install vue-i18n@next
+```
+2. 创建本地化消息文件<br/>
+例如，你可以创建一个 locales 文件夹，并在其中创建以下文件：<br/>
+en.js 包含英语翻译<br/>
+zh-CN.js 包含简体中文翻译<br/>
+fr.js 包含法语翻译<br/>
+3. 配置 Vue I18n<br/>
+```js
+import { createApp } from 'vue';
+import { createI18n } from 'vue-i18n';
+import en from './locales/en'; // 导入英语翻译文件
+import zhCN from './locales/zh-CN'; // 导入简体中文翻译文件
+
+const i18n = createI18n({
+  locale: 'en', // 默认语言
+  messages: {
+    en, // 英语翻译
+    'zh-CN': zhCN, // 简体中文翻译
+    // 可以添加其他语言的翻译文件
+  },
+});
+
+const app = createApp(App);
+app.use(i18n); // 注册 Vue I18n 实例
+app.mount('#app');
+```
+4. 在组件中翻译<br/>
+```vue
+<template>
+  <div>
+    <p>{{ $t('greeting') }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  // ...
+};
+</script>
+```
+5. 切换语言<br/>
+```js
+// 在组件中切换语言
+i18n.setLocale('zh-CN'); // 切换到简体中文
+```
+## 过滤器
+对于vue 3，过滤器已经被弃用了。vue2可以使用。
+## 无障碍树
+## vue的slot
+1. vue插槽的内容和出口
+父组件提供插槽内容，slot元素是插槽出口。
+## $refs
+```js
+ this.$refs.menu.openMenu(e);
+```
+在 Vue 中，通过 $refs 属性可以访问到组件中的子组件实例。<br/>
+假设上下文为一个父组件中，有一个 ContextMenu 子组件是通过 <ContextMenu ref="menu" /> 方式创建的，那么 this.$refs.menu 就指向了 menu 组件的实例。而 openMenu() 方法是在 menu 组件中定义的方法，它会在右键点击时打开菜单，需要传入事件对象 e 作为参数。<br/>
+因此 this.$refs.menu.openMenu(e) 的作用就是调用 menu 组件实例中的 openMenu() 方法，并将 $event 对象作为参数传递给该方法。<br/>
+## this.$nextTick
+this.$nextTick() 方法可以在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。<br/>
+
+
 
 
 
